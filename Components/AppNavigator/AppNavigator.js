@@ -2,7 +2,7 @@ import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-const MainNavigator = createStackNavigator({
+const AppNavigator = createStackNavigator({
     Login: {screen: LoginScreen},
     Home: {screen: HomeScreen},
     HumanProfile: {screen: HumanProfileScreen},
@@ -13,6 +13,6 @@ const MainNavigator = createStackNavigator({
     initialRouteName: 'HomeScreen',
   });
 
-const App = createAppContainer(MainNavigator);
+const App = createAppContainer(AppNavigator);
 
 export default App;
