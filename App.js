@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 
 export default class App extends React.Component {
@@ -13,7 +14,15 @@ export default class App extends React.Component {
     let { image } = this.state
     return (
       <View style={styles.container}>
-        <Text onPress={() => this.selectImg()}>Open up App.js to start working on your app!</Text>
+        <Text>PupDates</Text>
+        <Button 
+          onPress={() => this.selectImg()}
+          title="Add Photo"
+        />
+        <Button 
+          onPress={() => this.takeImg()}
+          title="Camera"
+        />
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
       </View>
@@ -25,6 +34,16 @@ selectImg() {
     .then(response => {
       if (response.granted === true) {
         ImagePicker.launchImageLibraryAsync()
+          .then(response => this.setState({ image: response.uri }))
+      }
+    })
+  }
+
+takeImg() {
+  Camera.requestPermissionsAsync()
+    .then(response => {
+      if (response.granted === true) {
+        ImagePicker.launchCameraAsync()
           .then(response => this.setState({ image: response.uri }))
       }
     })
