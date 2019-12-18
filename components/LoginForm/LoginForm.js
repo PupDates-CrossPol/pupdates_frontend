@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -23,7 +23,8 @@ class LoginScreen extends React.Component {
   render() {
     let { image } = this.state
     return (
-      <View style={styles.container}>
+      <SafeAreaView>
+      <ScrollView style={styles.contentContainer}>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
         <TextInput placeholder="Email" style={styles.input} />
@@ -46,7 +47,8 @@ class LoginScreen extends React.Component {
         />
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
-      </View>
+      </ScrollView>
+      </SafeAreaView>
     );
   }
 
@@ -74,6 +76,10 @@ takeImg() {
 
 
 const styles = StyleSheet.create({
+  contentContainer: {
+    paddingVertical: 20
+  },
+
   container: {
     flex: 1,
     backgroundColor: '#fff',
