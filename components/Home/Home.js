@@ -6,8 +6,10 @@ import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default class App extends React.Component {
+class HomeScreen extends React.Component {
   state = {
     image: null
   }
@@ -117,3 +119,11 @@ const styles = StyleSheet.create({
     fontSize: 25,
   }
 });
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+});
+
+export default createAppContainer(AppNavigator)
