@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default class App extends React.Component {
   state = {
@@ -24,6 +25,12 @@ export default class App extends React.Component {
         <Text style={styles.title}>PupDates</Text>
         <TextInput placeholder="Email" style={styles.input} />
         <TextInput placeholder="Password" style={styles.input}/>
+        <LinearGradient
+          colors={['orange', '#c32525']}
+          style={styles.linearGradient}
+        >
+          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+        </LinearGradient>
         {/* <Text onPress={() => this.selectImg()}>Open up App.js to start working on your app!</Text> */}
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
@@ -48,7 +55,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     marginTop: 70
-    // justifyContent: 'center',
   },
   image: {
     height: 140,
@@ -61,13 +67,33 @@ const styles = StyleSheet.create({
   input: {
     height: 30,
     width: '70%',
-    borderColor: 'black',
+    borderColor: 'lightgrey',
     borderRadius: 50,
-    borderColor: 'rgba(33,33,33,0.81)',
+    // borderColor: 'rgba(33,33,33,0.81)',
     borderWidth: 1.5,
     padding: 10,
     height: 60,
     margin: 20,
     alignItems: 'center'
+  },
+  linearGradient: {
+    width: '70%',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    // borderRadius: 50,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'black'
+  },
+  buttonText: {
+    color: '#fff'
   }
 });

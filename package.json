@@ -18,10 +18,13 @@
     "react-native-gesture-handler": "^1.5.2",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3"
+    "react-navigation-stack": "^1.10.3",
+    "expo-linear-gradient": "~8.0.0"
   },
   "rnpm": {
-    "assets": ["./assets/fonts"]
+    "assets": [
+      "./assets/fonts"
+    ]
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0"
