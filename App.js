@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
+import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -31,7 +32,15 @@ export default class App extends React.Component {
         >
           <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
         </LinearGradient>
-        {/* <Text onPress={() => this.selectImg()}>Open up App.js to start working on your app!</Text> */}
+        <Text>PupDates</Text>
+        <Button 
+          onPress={() => this.selectImg()}
+          title="Add Photo"
+        />
+        <Button 
+          onPress={() => this.takeImg()}
+          title="Camera"
+        />
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
       </View>
@@ -43,6 +52,16 @@ selectImg() {
     .then(response => {
       if (response.granted === true) {
         ImagePicker.launchImageLibraryAsync()
+          .then(response => this.setState({ image: response.uri }))
+      }
+    })
+  }
+
+takeImg() {
+  Camera.requestPermissionsAsync()
+    .then(response => {
+      if (response.granted === true) {
+        ImagePicker.launchCameraAsync()
           .then(response => this.setState({ image: response.uri }))
       }
     })
