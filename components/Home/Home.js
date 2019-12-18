@@ -21,60 +21,14 @@ class HomeScreen extends React.Component {
   // }
 
   render() {
-    let { image } = this.state
     return (
-      <View style={styles.container}>
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
-        <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} />
-        <TextInput placeholder="Password" style={styles.input}/>
-        <LinearGradient
-          colors={['orange', '#c32525']}
-          style={styles.linearGradient}
-        >
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
-        </LinearGradient>
-        <Text>PupDates</Text>
-        <Button 
-          onPress={() => this.selectImg()}
-          title="Add Photo"
-        />
-        <Button 
-          onPress={() => this.takeImg()}
-          title="Camera"
-        />
-        {image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      <View>
+        <Button onPress={() => console.log('hellooooo')} title="a button" />
+        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
       </View>
     );
   }
-
-selectImg() {
-  ImagePicker.requestCameraRollPermissionsAsync()
-    .then(response => {
-      if (response.granted === true) {
-        ImagePicker.launchImageLibraryAsync()
-          .then(response => this.setState({ image: response.uri }))
-      }
-    })
-  }
-
-takeImg() {
-  Camera.requestPermissionsAsync()
-    .then(response => {
-      if (response.granted === true) {
-        ImagePicker.launchCameraAsync()
-          .then(response => this.setState({ image: response.uri }))
-      }
-    })
-  }
 }
-
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-});
 
 const styles = StyleSheet.create({
   container: {
@@ -124,6 +78,13 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 25,
   }
+});
+
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
 });
 
 

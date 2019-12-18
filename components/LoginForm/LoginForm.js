@@ -31,8 +31,9 @@ class LoginScreen extends React.Component {
         <LinearGradient
           colors={['orange', '#c32525']}
           style={styles.linearGradient}
+          onPress={() => console.log('does this work?')}
         >
-          <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
         </LinearGradient>
         <Text>PupDates</Text>
         <Button 

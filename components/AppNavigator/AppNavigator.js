@@ -5,11 +5,11 @@ import LoginScreen from '../LoginForm/LoginForm'
 // import {createStackNavigator} from 'react-navigation-stack';
 
 const AppNavigator = createStackNavigator({
+  Login: LoginScreen,
   Home: HomeScreen,
-  Login: LoginScreen
 },
 {
-  initialRouteName: 'LoginScreen'
+  initialRouteName: 'Login'
 })
 
 export default class App extends Component {

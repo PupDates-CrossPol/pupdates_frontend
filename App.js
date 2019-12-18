@@ -4,8 +4,8 @@ import HomeScreen from './components/Home/Home'
 import LoginScreen from './components/LoginForm/LoginForm'
 
 const MainNavigator = createStackNavigator({
+  Login: {screen: LoginScreen},
   Home: {screen: HomeScreen},
-  Login: {screen: LoginScreen}
 })
 
 const App = createAppContainer(MainNavigator)
