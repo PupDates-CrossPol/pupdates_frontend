@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Constants from 'expo-constants';
@@ -10,7 +10,7 @@ export default class App extends React.Component {
     image: null
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     Font.loadAsync({
       'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
@@ -22,6 +22,8 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Image source={require('./assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
+        <TextInput placeholder="Email" style={styles.input} />
+        <TextInput placeholder="Password" style={styles.input}/>
         {/* <Text onPress={() => this.selectImg()}>Open up App.js to start working on your app!</Text> */}
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
@@ -55,5 +57,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 50,
     fontFamily: 'major-mono-display'
+  },
+  input: {
+    height: 30,
+    width: '70%',
+    borderColor: 'black',
+    borderRadius: 50,
+    borderColor: 'rgba(33,33,33,0.81)',
+    borderWidth: 1.5,
+    padding: 10,
+    height: 60,
+    margin: 20,
+    alignItems: 'center'
   }
 });
