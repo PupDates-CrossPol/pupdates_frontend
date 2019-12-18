@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { createAppContainer } from 'react-navigation';
+// import { createAppContainer } from 'react-navigation';
 import HomeScreen from '../Home/Home.js';
+// import {createStackNavigator} from 'react-navigation-stack';
 
-const AppContainer = createAppContainer({
+const AppNavigator = createStackNavigator({
   Home: HomeScreen
 },
 {
-  initialRouteName: 'Home'
+  initialRouteName: 'HomeScreen'
 })
 
 export default class App extends Component {

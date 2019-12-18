@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -14,17 +14,17 @@ class HomeScreen extends React.Component {
     image: null
   }
 
-  async componentDidMount() {
-    Font.loadAsync({
-      'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
-    });
-  }
+  // async componentDidMount() {
+  //   Font.loadAsync({
+  //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
+  //   });
+  // }
 
   render() {
     let { image } = this.state
     return (
       <View style={styles.container}>
-        <Image source={require('./assets/PupDatesLogo.png')} style={styles.image}/>
+        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
         <TextInput placeholder="Email" style={styles.input} />
         <TextInput placeholder="Password" style={styles.input}/>
@@ -70,6 +70,12 @@ takeImg() {
   }
 }
 
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+});
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
-    fontFamily: 'major-mono-display'
+    // fontFamily: 'major-mono-display'
   },
   input: {
     height: 30,
@@ -120,10 +126,6 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-});
+
 
 export default createAppContainer(AppNavigator)
