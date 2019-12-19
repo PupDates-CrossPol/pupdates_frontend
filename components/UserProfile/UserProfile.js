@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 
-class MenuScreen extends React.Component {
+class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Text style={styles.title}>PupDates</Text>,
@@ -27,13 +27,9 @@ class MenuScreen extends React.Component {
         return (
             <SafeAreaView>
                 <View>
-                    <Text>This is the Menu!</Text>
+                    <Text>This is the user's profile!</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
-                    <Button onPress={() => this.props.navigation.navigate('DogPack')} title="Go to DogPack" />
-                    <Button onPress={() => this.props.navigation.navigate('UserProfile')} title="Go to User Profile" />
-                    <Button onPress={() => this.props.navigation.navigate('Matches')} title="Go to Matches" />
-
                 </View>
             </SafeAreaView>
         )
@@ -94,8 +90,8 @@ const styles = StyleSheet.create({
     }
   });
 const AppNavigator = createStackNavigator({
-    Menu: {
-        screen: MenuScreen,
+    UserProfile: {
+        screen: UserProfileScreen,
     },
 });
   export default createAppContainer(AppNavigator)

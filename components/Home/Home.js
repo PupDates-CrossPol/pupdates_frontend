@@ -5,6 +5,7 @@ import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -18,11 +19,9 @@ class HomeScreen extends React.Component {
     headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
     headerTitle: () => <Text style={styles.title}>PupDates</Text>,
     headerRight: () => (
-      <Button
-        onPress={() => navigation.navigate('Menu')}
-        title="+1"
-        color="#f4511e"
-      />
+      <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+        <Ionicons name="ios-menu" size={32} color="green"/>
+      </TouchableOpacity>
     ),
     headerStyle: {
       backgroundColor: '#fff',
