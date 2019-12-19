@@ -6,7 +6,7 @@ import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 class HomeScreen extends React.Component {
@@ -23,8 +23,8 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View>
-        <Button onPress={() => console.log('hellooooo')} title="a button" />
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
+        <Button onPress={() => this.props.navigation.navigate('Menu')} title="a button" />
       </View>
     );
   }
