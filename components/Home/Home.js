@@ -55,11 +55,9 @@ class HomeScreen extends React.Component {
               </Text>
             </Body>
           </CardItem>
-        </Card>
-        <Card style={styles.infoCard}>
-          <CardItem style={styles.infoCard}>
+          <CardItem>
             <Body style={styles.infoBody}>
-              <Text style={styles.infoText}>Rose</Text>
+              <Text style={styles.infoTextName}>Rose</Text>
               <Text style={styles.infoText}>Golden Retriever</Text>
               <Text style={styles.infoText}>3 Years Old</Text>
               <Text style={styles.infoText}>Female</Text>
@@ -99,7 +97,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 15,
+  },
+  infoCard: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+    width: '80%'
   },
   packName: {
     fontSize: 25
@@ -108,8 +113,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    borderColor: 'black',
-    borderWidth: 2,
     height: 350,
   },
   buttonText: {
@@ -137,24 +140,20 @@ leftNavIcon: {
     borderWidth: 3.5,
     borderRadius: 50
   },
-  infoCard: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'left',
-    borderColor: 'red',
-    borderWidth: 2,
-    // width: 275,
-  },
   infoText: {
     textAlign: 'left',
     fontSize: 20,
+    color: 'grey',
+    alignSelf: 'stretch'
+  },
+  infoTextName: {
+    fontSize: 30
   },
   infoBody: {
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
+    textAlign: 'left'
   }
 });
 
