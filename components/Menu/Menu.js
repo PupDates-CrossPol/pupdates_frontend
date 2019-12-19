@@ -3,16 +3,16 @@ import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Scr
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
+import { Ionicons } from '@expo/vector-icons';
+
 class MenuScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Text style={styles.title}>PupDates</Text>,
         headerRight: () => (
-          <Button
-          onPress={() => navigation.navigate('Home')}
-          title="+1"
-            color="#f4511e"
-          />
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <Ionicons name="ios-close" size={32} color="green" />
+            </TouchableOpacity>
         ),
         headerStyle: {
           backgroundColor: '#fff',
