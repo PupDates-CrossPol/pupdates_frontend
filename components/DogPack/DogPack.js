@@ -27,7 +27,7 @@ class DogPackScreen extends React.Component {
         return (
             <SafeAreaView>
                 <View>
-                    <Text>This is the Menu!</Text>
+                    <Text>This is the DogPack!</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
                 </View>
