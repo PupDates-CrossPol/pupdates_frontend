@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 
-class DogPackScreen extends React.Component {
+class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Text style={styles.title}>PupDates</Text>,
@@ -27,7 +27,7 @@ class DogPackScreen extends React.Component {
         return (
             <SafeAreaView>
                 <View>
-                    <Text>This is the DogPack!</Text>
+                    <Text>Here are all your Matches!</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
                 </View>
@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
     }
   });
 const AppNavigator = createStackNavigator({
-    DogPack: {
-        screen: DogPackScreen,
+    Matches: {
+        screen: MatchesScreen,
     },
 });
   export default createAppContainer(AppNavigator)

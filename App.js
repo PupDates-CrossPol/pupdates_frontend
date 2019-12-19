@@ -9,7 +9,8 @@ const MainNavigator = createSwitchNavigator({
   Login: {screen: LoginScreen},
   Home: {screen: HomeScreen},
   Menu: {screen: MenuScreen},
-  DogPack: {screen: DogPackScreen}
+  DogPack: {screen: DogPackScreen},
+  Matches: {screen: MatchesScreen}
 })
 
 const AppContainer = createAppContainer(MainNavigator)
