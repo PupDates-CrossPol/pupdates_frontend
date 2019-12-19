@@ -6,13 +6,32 @@ import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer } from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 class HomeScreen extends React.Component {
   state = {
     image: null
   }
+
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
+    headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+    headerRight: () => (
+      <Button
+        onPress={() => navigation.navigate('Menu')}
+        title="+1"
+        color="#f4511e"
+      />
+    ),
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  });
 
   // async componentDidMount() {
   //   Font.loadAsync({
@@ -23,6 +42,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View>
+        <Text>This is the Home!</Text>
         <Button onPress={() => console.log('hellooooo')} title="a button" />
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
       </View>
@@ -37,6 +57,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 90
   },
+  logo: {
+    height: 40,
+    width: 40,
+},
   image: {
     height: 140,
     width: 140,

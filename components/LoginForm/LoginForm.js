@@ -6,7 +6,7 @@ import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 class LoginScreen extends React.Component {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createSwitchNavigator({
   Login: {
     screen: LoginScreen,
   },
