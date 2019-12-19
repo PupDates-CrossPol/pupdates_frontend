@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet,  View, TextInput, Button, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -9,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base';
 
 class HomeScreen extends React.Component {
   state = {
@@ -34,19 +35,29 @@ class HomeScreen extends React.Component {
     headerRightContainerStyle: styles.rightNavIcon,
   });
 
-  // async componentDidMount() {
-  //   Font.loadAsync({
-  //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
-  //   });
-  // }
+  async componentDidMount() {
+   await Font.loadAsync({
+      'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
+    });
+  }
 
   render() {
     return (
-      <View>
-        <Text>This is the Home!</Text>
-        <Button onPress={() => console.log('hellooooo')} title="a button" />
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-      </View>
+
+      <Container>
+      <Content>
+        <Card style={styles.imageCard}>
+          <Text style={styles.packName}> Jordan's Pack </Text>
+          <CardItem style={styles.imageCardContent}>
+            <Body>
+              <Text>
+                <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
+              </Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
     );
   }
 }
@@ -62,42 +73,28 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
 },
-  image: {
-    height: 140,
-    width: 140,
-  },
+  // image: {
+  //   height: 140,
+  //   width: 140,
+  // },
   title: {
     fontSize: 50,
-    // fontFamily: 'major-mono-display'
   },
-  input: {
-    height: 30,
-    width: '70%',
-    borderColor: 'lightgrey',
-    borderRadius: 50,
-    // borderColor: 'rgba(33,33,33,0.81)',
-    borderWidth: 1.5,
-    padding: 10,
-    height: 60,
-    margin: 20,
-    alignItems: 'center'
-  },
-  linearGradient: {
-    width: '70%',
-    borderRadius: 25,
-    height: 50,
+  imageCard: {
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 20,
   },
-  button: {
-    // borderRadius: 50,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
+  packName: {
+    fontSize: 25
+  },
+  imageCardContent: {
+    // borderColor: 'black',
+    // borderWidth: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    flexDirection: 'column'
   },
   buttonText: {
     color: '#fff',
@@ -111,7 +108,19 @@ const styles = StyleSheet.create({
 rightNavIcon: { 
     marginRight: 10,  
 },
-leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
+leftNavIcon: { 
+  marginLeft: 10,  
+  marginBottom: 5, 
+},
+  image: {
+    height: 275,
+    width: 275,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'black',
+    borderWidth: 3.5,
+    borderRadius: 50
+  }
 });
 
 

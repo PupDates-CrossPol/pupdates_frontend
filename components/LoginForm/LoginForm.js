@@ -14,11 +14,11 @@ class LoginScreen extends React.Component {
     image: null
   }
 
-  // async componentDidMount() {
-  //   Font.loadAsync({
-  //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
-  //   });
-  // }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
+    });
+  }
 
   render() {
     let { image } = this.state
