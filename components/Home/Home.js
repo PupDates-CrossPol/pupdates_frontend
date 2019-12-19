@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  View, TextInput, Button, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet,  View, TextInput, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -43,7 +43,7 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-
+      <ScrollView>
       <Container>
       <Content>
         <Card style={styles.imageCard}>
@@ -56,8 +56,23 @@ class HomeScreen extends React.Component {
             </Body>
           </CardItem>
         </Card>
+        <Card style={styles.infoCard}>
+          <CardItem style={styles.infoCard}>
+            <Body style={styles.infoBody}>
+              <Text style={styles.infoText}>Rose</Text>
+              <Text style={styles.infoText}>Golden Retriever</Text>
+              <Text style={styles.infoText}>3 Years Old</Text>
+              <Text style={styles.infoText}>Female</Text>
+              <Text style={styles.infoText}>Spayed? Yes</Text>
+              <Text style={styles.infoText}>Vaccinated? Yes</Text>
+              <Text style={styles.infoText}>Good with kids? Yes</Text>
+            </Body>
+          </CardItem>
+        </Card>
       </Content>
     </Container>
+    </ScrollView>
+
     );
   }
 }
@@ -90,11 +105,12 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   imageCardContent: {
-    // borderColor: 'black',
-    // borderWidth: 1.5,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    borderColor: 'black',
+    borderWidth: 2,
+    height: 350,
   },
   buttonText: {
     color: '#fff',
@@ -113,13 +129,32 @@ leftNavIcon: {
   marginBottom: 5, 
 },
   image: {
-    height: 275,
+    height: 325,
     width: 275,
     alignItems: 'center',
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 3.5,
     borderRadius: 50
+  },
+  infoCard: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'left',
+    borderColor: 'red',
+    borderWidth: 2,
+    // width: 275,
+  },
+  infoText: {
+    textAlign: 'left',
+    fontSize: 20,
+  },
+  infoBody: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
   }
 });
 
