@@ -6,13 +6,32 @@ import * as Camera from 'expo-camera';
 import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer } from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 class HomeScreen extends React.Component {
   state = {
     image: null
   }
+
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
+    headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+    headerRight: () => (
+      <Button
+        onPress={() => navigation.navigate('Menu')}
+        title="+1"
+        color="#f4511e"
+      />
+    ),
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  });
 
   // async componentDidMount() {
   //   Font.loadAsync({
@@ -81,7 +100,7 @@ const styles = StyleSheet.create({
 });
 
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createSwitchNavigator({
   Home: {
     screen: HomeScreen,
   },
