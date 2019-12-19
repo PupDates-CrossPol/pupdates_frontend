@@ -4,13 +4,13 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 class MenuScreen extends React.Component {
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Text style={styles.title}>PupDates</Text>,
         headerRight: () => (
           <Button
-            // onPress={navigation.getParam('increaseCount')}
-            title="+1"
+          onPress={() => navigation.navigate('Home')}
+          title="+1"
             color="#f4511e"
           />
         ),
@@ -21,7 +21,8 @@ class MenuScreen extends React.Component {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      };
+      })
+
     render() {
         return (
             <SafeAreaView>
@@ -34,6 +35,7 @@ class MenuScreen extends React.Component {
         )
     }
 }
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,

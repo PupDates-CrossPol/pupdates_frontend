@@ -42,6 +42,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View>
+        <Text>This is the Home!</Text>
         <Button onPress={() => console.log('hellooooo')} title="a button" />
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
       </View>
@@ -56,6 +57,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 90
   },
+  logo: {
+    height: 40,
+    width: 40,
+},
   image: {
     height: 140,
     width: 140,
@@ -100,7 +105,7 @@ const styles = StyleSheet.create({
 });
 
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createStackNavigator({
   Home: {
     screen: HomeScreen,
   },
