@@ -6,13 +6,34 @@ import HomeScreen from '../Home/Home'
 
 class MenuScreen extends React.Component {
 
+    static navigationOptions = {
+        headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
+        headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+        headerRight: () => (
+          <Button
+            // onPress={navigation.getParam('increaseCount')}
+            title="+1"
+            color="#f4511e"
+          />
+        ),
+        headerStyle: {
+          backgroundColor: '#fff',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      };
+
     render() {
         return (
-            <View>
-            <Text>This is the Menu!</Text>
-            <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
-            <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-          </View>
+            <SafeAreaView>
+                <View>
+                    <Text>This is the Menu!</Text>
+                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
+                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
+                </View>
+            </SafeAreaView>
         )
     }
 }
@@ -24,6 +45,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginTop: 90
     },
+    logo: {
+        height: 40,
+        width: 40,
+    }, 
     image: {
       height: 140,
       width: 140,
@@ -67,7 +92,7 @@ const styles = StyleSheet.create({
     }
   });
 
-const AppNavigator = createSwitchNavigator({
+const AppNavigator = createStackNavigator({
     Menu: {
         screen: MenuScreen,
     },

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, SafeAreaView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -14,6 +14,26 @@ class HomeScreen extends React.Component {
     image: null
   }
 
+  static navigationOptions = ({navigation}) => ({
+    headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
+    headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+    headerRight: () => (
+      <Button
+        // onPress={navigation.getParam('increaseCount')}
+        onPress={() => navigation.navigate('Menu')}
+        title="+1"
+        color="#f4511e"
+      />
+    ),
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  });
+
   // async componentDidMount() {
   //   Font.loadAsync({
   //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
@@ -22,12 +42,16 @@ class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-        <Button onPress={() => this.props.navigation.navigate('Menu')} title="a button" />
-      </View>
-    );
-  }
+        <SafeAreaView>
+            <View>
+              <Text style={styles.image}>.icon-menu</Text>
+                <Text>This is the HomeScreen!</Text>
+                <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
+                <Button onPress={() => this.props.navigation.navigate('Menu')} title="Menu" />
+            </View>
+        </SafeAreaView>
+    )
+}
 }
 
 const styles = StyleSheet.create({
@@ -37,12 +61,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 90
   },
+  menuIcon: {
+    fontFamily: "Simple-Line-Icons",
+  },
+  logo: {
+    height: 40,
+    width: 40,
+  },
   image: {
     height: 140,
     width: 140,
   },
   title: {
     fontSize: 50,
+    paddingBottom: 25,
+    paddingTop: 0,
+    margin: 0,
     // fontFamily: 'major-mono-display'
   },
   input: {
@@ -78,7 +112,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 25,
   }
-});
+}); 
 
 
 const AppNavigator = createStackNavigator({
