@@ -55,7 +55,7 @@ class HomeScreen extends React.Component {
               </Text>
             </Body>
           </CardItem>
-          <CardItem>
+          <CardItem style={styles.imageCardContent}>
             <Body style={styles.infoBody}>
               <Text style={styles.infoTextName}>Rose</Text>
               <Text style={styles.infoText}>Golden Retriever</Text>
@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     height: 350,
+    
   },
   buttonText: {
     color: '#fff',
