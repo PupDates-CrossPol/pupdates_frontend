@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 const MainNavigator = createSwitchNavigator({
   Login: {screen: LoginScreen},
   Home: {screen: HomeScreen},
+  Menu: {screen: MenuScreen}
 })
 
 const AppContainer = createAppContainer(MainNavigator)
