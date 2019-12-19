@@ -50,9 +50,9 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-              <Text>
+              {/* <Text> */}
                 <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
-              </Text>
+              {/* </Text> */}
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContent}>
