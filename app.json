@@ -28,7 +28,7 @@
       "bundleIdentifier": "com.turing.PupDates"
     },
     "android": {
-      "package": "com.yourcompany.yourappname"
+      "package": "com.turing.PupDates"
     }
   }
 }
