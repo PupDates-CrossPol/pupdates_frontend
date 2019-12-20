@@ -15,11 +15,11 @@ class LoginScreen extends React.Component {
     image: null
   }
 
-  // async componentDidMount() {
-  //   Font.loadAsync({
-  //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
-  //   });
-  // }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
+    });
+  }
 
   render() {
     let { image } = this.state
@@ -30,13 +30,15 @@ class LoginScreen extends React.Component {
         <Text style={styles.title}>PupDates</Text>
         <TextInput placeholder="Email" style={styles.input} />
         <TextInput placeholder="Password" style={styles.input}/>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
         <LinearGradient
           colors={['orange', '#c32525']}
           style={styles.linearGradient}
           onPress={() => console.log('does this work?')}
         >
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+            <Text style={styles.buttonText}>Login</Text>
         </LinearGradient>
+          </TouchableOpacity>
         <Text>PupDates</Text>
         <Button 
           onPress={() => this.selectImg()}

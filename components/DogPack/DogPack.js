@@ -8,10 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
         headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Ionicons name="ios-close" size={32} color="green" />
+                <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
             </TouchableOpacity>
         ),
         headerStyle: {
@@ -21,6 +21,8 @@ class DogPackScreen extends React.Component {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        headerLeftContainerStyle: styles.leftNavIcon,
+        headerRightContainerStyle: styles.rightNavIcon,
       })
 
     render() {
@@ -87,7 +89,17 @@ const styles = StyleSheet.create({
     buttonText: {
       color: '#fff',
       fontSize: 25,
-    }
+    },
+    navTitle: {
+        width: 160,
+        height: 40,
+        marginBottom: 5,
+    },
+    rightNavIcon: { 
+        marginRight: 20,  
+        marginBottom: 10, 
+    },
+    leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
 const AppNavigator = createStackNavigator({
     DogPack: {

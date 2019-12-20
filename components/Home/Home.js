@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -9,6 +9,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Container, Header, Content, Card, CardItem, Text, Body, Button } from 'native-base';
+import { Entypo } from '@expo/vector-icons';
 
 class HomeScreen extends React.Component {
   state = {
@@ -17,10 +19,10 @@ class HomeScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
     headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-    headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+    headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-        <Ionicons name="ios-menu" size={32} color="green"/>
+        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)'/>
       </TouchableOpacity>
     ),
     headerStyle: {
@@ -30,21 +32,47 @@ class HomeScreen extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
+    headerLeftContainerStyle: styles.leftNavIcon,
+    headerRightContainerStyle: styles.rightNavIcon,
   });
 
-  // async componentDidMount() {
-  //   Font.loadAsync({
-  //     'major-mono-display': require('./assets/fonts/MajorMonoDisplay-Regular.ttf'),
-  //   });
-  // }
+  async componentDidMount() {
+   await Font.loadAsync({
+      'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
+    });
+  }
 
   render() {
     return (
-      <View>
-        <Text>This is the Home!</Text>
-        <Button onPress={() => console.log('hellooooo')} title="a button" />
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-      </View>
+      <ScrollView>
+      <Container>
+      <Content>
+        <Card style={styles.imageCard}>
+          <Text style={styles.packName}> Jordan's Pack </Text>
+          <CardItem style={styles.imageCardContent}>
+            <Body>
+              <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
+            </Body>
+          </CardItem>
+          <CardItem style={styles.imageCardContent}>
+            <Body style={styles.infoBody}>
+              <Text style={styles.infoTextName}>Rose</Text>
+              <Text style={styles.infoText}>Golden Retriever</Text>
+              <Text style={styles.infoText}>3 Years Old</Text>
+              <Text style={styles.infoText}>Female</Text>
+              <Text style={styles.infoText}>Spayed? Yes</Text>
+              <Text style={styles.infoText}>Vaccinated? Yes</Text>
+              <Text style={styles.infoText}>Good with kids? Yes</Text>
+            {/* <Button rounded style={styles.roundBtn}> */}
+            <Ionicons name="md-paw" size={40} color="black" />
+            {/* </Button> */}
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+    </Container>
+    </ScrollView>
+
     );
   }
 }
@@ -60,46 +88,78 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
 },
-  image: {
-    height: 140,
-    width: 140,
-  },
+  // image: {
+  //   height: 140,
+  //   width: 140,
+  // },
   title: {
     fontSize: 50,
-    // fontFamily: 'major-mono-display'
   },
-  input: {
-    height: 30,
-    width: '70%',
-    borderColor: 'lightgrey',
-    borderRadius: 50,
-    // borderColor: 'rgba(33,33,33,0.81)',
-    borderWidth: 1.5,
-    padding: 10,
-    height: 60,
-    margin: 20,
-    alignItems: 'center'
-  },
-  linearGradient: {
-    width: '70%',
-    borderRadius: 25,
-    height: 50,
+  imageCard: {
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 15,
   },
-  button: {
-    // borderRadius: 50,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
+  infoCard: {
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    marginTop: 10,
+    width: '80%'
+  },
+  packName: {
+    fontSize: 25
+  },
+  imageCardContent: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: 350,
+    
   },
   buttonText: {
     color: '#fff',
     fontSize: 25,
+  },
+  navTitle: {
+    width: 160,
+    height: 40,
+    marginBottom: 5,
+},
+rightNavIcon: { 
+    marginRight: 10,  
+},
+leftNavIcon: { 
+  marginLeft: 10,  
+  marginBottom: 5, 
+},
+  image: {
+    height: 325,
+    width: 275,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'black',
+    borderWidth: 3.5,
+    borderRadius: 50
+  },
+  infoText: {
+    textAlign: 'left',
+    fontSize: 20,
+    color: 'grey',
+    alignSelf: 'stretch'
+  },
+  infoTextName: {
+    fontSize: 30
+  },
+  infoBody: {
+    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    textAlign: 'left'
+  },
+  roundBtn: {
+    width: 40
   }
 });
 
