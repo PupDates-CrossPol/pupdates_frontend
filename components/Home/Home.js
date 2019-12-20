@@ -10,7 +10,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Text, Body, Button } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 class HomeScreen extends React.Component {
   state = {
@@ -51,9 +51,7 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-              {/* <Text> */}
-               <Text> <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} /></Text>
-              {/* </Text> */}
+              <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContent}>
@@ -65,9 +63,9 @@ class HomeScreen extends React.Component {
               <Text style={styles.infoText}>Spayed? Yes</Text>
               <Text style={styles.infoText}>Vaccinated? Yes</Text>
               <Text style={styles.infoText}>Good with kids? Yes</Text>
-            <Button rounded>
-            <Ionicons name="heart" size={32} color="black" />
-            </Button>
+            {/* <Button rounded style={styles.roundBtn}> */}
+            <Ionicons name="md-paw" size={40} color="black" />
+            {/* </Button> */}
             </Body>
           </CardItem>
         </Card>
@@ -159,6 +157,9 @@ leftNavIcon: {
     flexDirection: 'column',
     justifyContent: 'center',
     textAlign: 'left'
+  },
+  roundBtn: {
+    width: 40
   }
 });
 
