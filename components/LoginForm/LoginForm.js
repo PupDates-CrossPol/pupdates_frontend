@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
   state = {
@@ -67,9 +68,18 @@ takeImg() {
     .then(response => {
       if (response.granted === true) {
         ImagePicker.launchCameraAsync()
-          .then(response => this.setState({ image: response.uri }))
+          .then(response => this.uploadImg(response.uri, "Test-Image")
+        )
       }
     })
+  }
+
+  uploadImg = async (uri, imageName) => {
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    let ref = firebase.storage().ref().child(`images/${imageName}`);
+    return ref.put(blob)
   }
 }
 

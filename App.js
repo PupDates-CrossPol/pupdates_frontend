@@ -7,6 +7,17 @@ import DogPackScreen from './components/DogPack/DogPack'
 import MatchesScreen from './components/Matches/Matches'
 import UserProfileScreen from './components/UserProfile/UserProfile'
 import React, { Component } from 'react';
+import firebase from 'firebase';
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDvMymaerxk1xU-cyKi_EHhHFyIz8tcJu4",
+  authDomain: "pupdates-b3204.firebaseapp.com",
+  databaseURL: "",
+  storageBucket: "gs://pupdates-b3204.appspot.com"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 const MainNavigator = createSwitchNavigator({
   Login: {screen: LoginScreen},
