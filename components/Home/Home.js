@@ -20,7 +20,7 @@ class HomeScreen extends React.Component {
     headerTitle: () => <Text style={styles.title}>PupDates</Text>,
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-        <Ionicons name="ios-menu" size={32} color="green"/>
+        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)'/>
       </TouchableOpacity>
     ),
     headerStyle: {
@@ -30,6 +30,9 @@ class HomeScreen extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
+    headerLeftContainerStyle: { marginLeft: 10, },
+    headerTitleStyle: { backgroundColor: 'blue',  },
+    headerRightContainerStyle: { marginRight: 10,},
   });
 
   // async componentDidMount() {

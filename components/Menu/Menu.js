@@ -11,7 +11,7 @@ class MenuScreen extends React.Component {
         headerTitle: () => <Text style={styles.title}>PupDates</Text>,
         headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Ionicons name="ios-close" size={32} color="green" />
+                <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
             </TouchableOpacity>
         ),
         headerStyle: {
@@ -21,6 +21,9 @@ class MenuScreen extends React.Component {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
+        headerLeftContainerStyle: { marginLeft: 10, },
+        headerTitleStyle: { backgroundColor: 'blue',  },
+        headerRightContainerStyle: { marginRight: 20,},
       })
 
     render() {
