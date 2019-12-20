@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  View, TextInput, Button, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -9,7 +9,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base';
+import { Container, Header, Content, Card, CardItem, Text, Body, Button } from 'native-base';
+import { Ionicons } from '@expo/vector-icons';
 
 class HomeScreen extends React.Component {
   state = {
@@ -51,7 +52,7 @@ class HomeScreen extends React.Component {
           <CardItem style={styles.imageCardContent}>
             <Body>
               {/* <Text> */}
-                <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
+               <Text> <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} /></Text>
               {/* </Text> */}
             </Body>
           </CardItem>
@@ -64,6 +65,9 @@ class HomeScreen extends React.Component {
               <Text style={styles.infoText}>Spayed? Yes</Text>
               <Text style={styles.infoText}>Vaccinated? Yes</Text>
               <Text style={styles.infoText}>Good with kids? Yes</Text>
+            <Button rounded>
+            <Ionicons name="heart" size={32} color="black" />
+            </Button>
             </Body>
           </CardItem>
         </Card>
