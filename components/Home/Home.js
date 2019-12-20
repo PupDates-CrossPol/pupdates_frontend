@@ -17,7 +17,7 @@ class HomeScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => ({
     headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-    headerTitle: () => <Text style={styles.title}>PupDates</Text>,
+    headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
         <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)'/>
@@ -30,9 +30,8 @@ class HomeScreen extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerLeftContainerStyle: { marginLeft: 10, },
-    headerTitleStyle: { backgroundColor: 'blue',  },
-    headerRightContainerStyle: { marginRight: 10,},
+    headerLeftContainerStyle: styles.leftNavIcon,
+    headerRightContainerStyle: styles.rightNavIcon,
   });
 
   // async componentDidMount() {
@@ -103,7 +102,16 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 25,
-  }
+  },
+  navTitle: {
+    width: 160,
+    height: 40,
+    marginBottom: 5,
+},
+rightNavIcon: { 
+    marginRight: 10,  
+},
+leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
 });
 
 
