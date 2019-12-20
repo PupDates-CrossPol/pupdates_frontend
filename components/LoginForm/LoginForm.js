@@ -53,22 +53,23 @@ class LoginScreen extends React.Component {
     );
   }
 
-selectImg() {
-  ImagePicker.requestCameraRollPermissionsAsync()
-    .then(response => {
-      if (response.granted === true) {
-        ImagePicker.launchImageLibraryAsync()
-          .then(response => this.setState({ image: response.uri }))
+  selectImg() {
+    ImagePicker.requestCameraRollPermissionsAsync()
+      .then(response => {
+        if (response.granted === true) {
+          ImagePicker.launchImageLibraryAsync()
+            .then(response => this.uploadImg(response.uri, "Test-Image")
+        )
       }
     })
   }
 
-takeImg() {
-  Camera.requestPermissionsAsync()
-    .then(response => {
-      if (response.granted === true) {
-        ImagePicker.launchCameraAsync()
-          .then(response => this.uploadImg(response.uri, "Test-Image")
+  takeImg() {
+    Camera.requestPermissionsAsync()
+      .then(response => {
+        if (response.granted === true) {
+          ImagePicker.launchCameraAsync()
+            .then(response => this.uploadImg(response.uri, "Test-Image")
         )
       }
     })
@@ -82,8 +83,6 @@ takeImg() {
     return ref.put(blob)
   }
 }
-
-
 
 const styles = StyleSheet.create({
   contentContainer: {
