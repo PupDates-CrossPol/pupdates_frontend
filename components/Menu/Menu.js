@@ -28,7 +28,7 @@ class MenuScreen extends React.Component {
     render() {
         return (
                 <View style={styles.container}>
-                    <Text>This is the Menu!</Text>
+                    <Text style={styles.componentTitle} >Menu</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
                     <Button onPress={() => this.props.navigation.navigate('DogPack')} title="Go to DogPack" />
@@ -45,7 +45,14 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       backgroundColor: '#fff',
       alignItems: 'center',
-      marginTop: 90
+      justifyContent: 'space-between',
+      marginTop: '2%',
+      marginBottom: '2%'
+    },
+    componentTitle: {
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 30,
+      fontWeight: '300',
     },
     logo: {
         height: 40,
