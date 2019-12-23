@@ -27,17 +27,14 @@ class MenuScreen extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <View>
+                <View style={styles.container}>
                     <Text>This is the Menu!</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
                     <Button onPress={() => this.props.navigation.navigate('DogPack')} title="Go to DogPack" />
                     <Button onPress={() => this.props.navigation.navigate('UserProfile')} title="Go to User Profile" />
                     <Button onPress={() => this.props.navigation.navigate('Matches')} title="Go to Matches" />
-
                 </View>
-            </SafeAreaView>
         )
     }
 }
@@ -45,6 +42,7 @@ class MenuScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      flexDirection: 'column',
       backgroundColor: '#fff',
       alignItems: 'center',
       marginTop: 90
