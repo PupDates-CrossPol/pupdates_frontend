@@ -27,17 +27,27 @@ class MenuScreen extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <View>
-                    <Text>This is the Menu!</Text>
-                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
-                    <Button onPress={() => this.props.navigation.navigate('DogPack')} title="Go to DogPack" />
-                    <Button onPress={() => this.props.navigation.navigate('UserProfile')} title="Go to User Profile" />
-                    <Button onPress={() => this.props.navigation.navigate('Matches')} title="Go to Matches" />
-
+                <View style={styles.container}>
+                    <Text style={styles.componentTitle} >Menu</Text>
+                    <View style={styles.menuOptions}>
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate('Matches')} style={styles.menuImgText}>
+                        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.menuCircle} />
+                        <Text style={styles.menuOptionsText} >Matches</Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={styles.menuOptions}>
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')} style={styles.menuImgText}>
+                        <Image source={require('../../images/human1-profile.jpeg')} style={styles.menuCircle} />
+                        <Text style={styles.menuOptionsText} >Jordan</Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View style={styles.menuOptionsBottom}>
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate('DogPack')} style={styles.menuImgText}>
+                        <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.menuCircle} />
+                        <Text style={styles.menuOptionsText} >Dog Pack</Text>
+                      </TouchableOpacity>
+                    </View>
                 </View>
-            </SafeAreaView>
         )
     }
 }
@@ -45,9 +55,59 @@ class MenuScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      flexDirection: 'column',
       backgroundColor: '#fff',
       alignItems: 'center',
-      marginTop: 90
+      justifyContent: 'space-between',
+      marginTop: '2%',
+      marginBottom: '2%'
+    },
+    menuOptions: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderBottomColor: 'rgba(0,0,0,0.57)',
+      borderBottomWidth: 1,
+      width: '75%',
+    },
+    menuOptionsBottom: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '75%',
+    },
+    menuImgText: {
+      flexDirection: 'column',
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      paddingTop: 10,
+      width: '100%',
+    },
+    menuOptionsText: {
+      fontSize: 25,
+      fontWeight: '300',
+      marginTop: 5,
+    }, 
+    menuOptionsTextSub: {
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 25,
+      fontWeight: '300',
+    },
+    componentTitle: {
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 30,
+      fontWeight: '300',
+    },
+    menuCircle: {
+      aspectRatio: 1/1,
+      height: '65%',
+      borderRadius: 100,
+      borderColor: 'black',
+      borderWidth: 2,
     },
     logo: {
         height: 40,
