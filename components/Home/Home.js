@@ -54,7 +54,7 @@ class HomeScreen extends React.Component {
               <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
             </Body>
           </CardItem>
-          <CardItem style={styles.imageCardContent}>
+          <CardItem style={styles.imageCardContentText}>
             <Body style={styles.infoBody}>
               <Text style={styles.infoTextName}>Rose</Text>
               <Text style={styles.infoText}>Golden Retriever</Text>
@@ -63,11 +63,12 @@ class HomeScreen extends React.Component {
               <Text style={styles.infoText}>Spayed? Yes</Text>
               <Text style={styles.infoText}>Vaccinated? Yes</Text>
               <Text style={styles.infoText}>Good with kids? Yes</Text>
-            {/* <Button rounded style={styles.roundBtn}> */}
-            <Ionicons name="md-paw" size={40} color="black" />
-            {/* </Button> */}
             </Body>
           </CardItem>
+            <View style={styles.pawBtn}>
+              <Ionicons name="ios-thumbs-down" size={40} color="black" />
+              <Ionicons name="md-paw" size={40} color="black"/>
+            </View>
         </Card>
       </Content>
     </Container>
@@ -87,11 +88,7 @@ const styles = StyleSheet.create({
   logo: {
     height: 40,
     width: 40,
-},
-  // image: {
-  //   height: 140,
-  //   width: 140,
-  // },
+  },
   title: {
     fontSize: 50,
   },
@@ -116,7 +113,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     height: 350,
-    
+  },
+
+  imageCardContentText: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: 250,
+    width: '80%'
   },
   buttonText: {
     color: '#fff',
@@ -156,10 +160,17 @@ leftNavIcon: {
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'center',
-    textAlign: 'left'
+    textAlign: 'left',
+    height: 50
   },
   roundBtn: {
     width: 40
+  },
+  pawBtn: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '90%',
   }
 });
 
