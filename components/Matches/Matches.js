@@ -29,11 +29,17 @@ class MatchesScreen extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <View>
-                    <Text>Here are all your Matches!</Text>
-                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
+              <ScrollView>
+                <View >
+                  <View style={styles.componentTitleHeader}>
+                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+                        <Text style={styles.backToMenuText} >Menu</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.componentTitle} >Matches</Text>
+                  </View>
                 </View>
+              </ScrollView>
             </SafeAreaView>
         )
     }
@@ -44,7 +50,6 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
-      marginTop: 90
     },
     logo: {
         height: 40,
@@ -57,6 +62,26 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
+    },
+    componentTitleHeader: {
+      marginTop: '2%',
+    },
+    backToMenu: {
+      flexDirection: 'row',
+      marginLeft: 5,
+      width: '25%',
+      position: 'absolute'
+    },
+    backToMenuText: {
+      fontSize: 25,
+      color: 'rgb(53, 129, 252)',
+      marginLeft: 5,
+    },
+    componentTitle: {
+      alignSelf: 'center',
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 30,
+      fontWeight: '300',
     },
     input: {
       height: 30,
