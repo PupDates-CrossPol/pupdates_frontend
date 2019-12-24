@@ -66,8 +66,12 @@ class HomeScreen extends React.Component {
             </Body>
           </CardItem>
             <View style={styles.pawBtn}>
-              <Ionicons name="ios-thumbs-down" size={40} color="black" />
-              <Ionicons name="md-paw" size={40} color="black"/>
+              <TouchableOpacity onPress={() => console.log('DISLIKE')}>
+                <Ionicons name="ios-thumbs-down" size={40} color="black" />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => console.log('LIKE')}>
+                <Ionicons name="md-paw" size={40} color="black"/>
+              </TouchableOpacity>
             </View>
         </Card>
       </Content>
