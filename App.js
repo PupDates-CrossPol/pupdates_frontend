@@ -7,10 +7,10 @@ import DogPackScreen from './components/DogPack/DogPack'
 import MatchesScreen from './components/Matches/Matches'
 import UserProfileScreen from './components/UserProfile/UserProfile'
 import React, { Component } from 'react';
-import firebase from 'firebase';
-import ApiKeys from './ApiKeys'
+// import firebase from 'firebase';
+// import ApiKeys from './ApiKeys'
 
-firebase.initializeApp(ApiKeys.firebaseConfig);
+// firebase.initializeApp(ApiKeys.firebaseConfig);
 
 const MainNavigator = createSwitchNavigator({
   Login: {screen: LoginScreen},
