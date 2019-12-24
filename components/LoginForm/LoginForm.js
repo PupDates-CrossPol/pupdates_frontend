@@ -8,7 +8,7 @@ import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
   state = {
