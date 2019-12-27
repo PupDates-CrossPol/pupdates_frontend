@@ -4,6 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
+import Match from '../Match/Match'
 
 class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
@@ -28,23 +29,49 @@ class MatchesScreen extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <View>
-                    <Text>Here are all your Matches!</Text>
-                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
+              <ScrollView>
+                <View >
+                  <View style={styles.componentTitleHeader}>
+                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+                        <Text style={styles.backToMenuText} >Menu</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.componentTitle} >Matches</Text>
+                  </View>
+                  <View style={styles.matches}>
+                    <Match matches={sampleMatches} />
+                  </View>
                 </View>
-            </SafeAreaView>
+              </ScrollView>
         )
     }
 }
+const sampleMatches = [
+  {
+    userName: 'Jordan',
+    userImage: 'https://lightroom.adobe.com/v2c/spaces/ee22bd2ae491408888e3e5ffb99696e4/assets/1b122fb0d190431db1d313f7c4221516/revisions/504f331b6a34459abad9c60b5af884c1/renditions/5e6818b84dd3757eac8988c6928b7d92',
+    pack: ['https://lightroom.adobe.com/v2c/spaces/997de26b6efb4e14869d673f387e8d76/assets/338b49ac421a43e7a2426fdf6c597b56/revisions/d05d5655a0b9440d91b9fcd0f2062f46/renditions/fdb85e2ae7c2b1811296dedfb5376e30']
+  },
+  {
+    userName: 'Tyler',
+    userImage: 'https://lightroom.adobe.com/v2c/spaces/ee22bd2ae491408888e3e5ffb99696e4/assets/1b122fb0d190431db1d313f7c4221516/revisions/504f331b6a34459abad9c60b5af884c1/renditions/5e6818b84dd3757eac8988c6928b7d92',
+    pack: ['https://lightroom.adobe.com/v2c/spaces/c393e3c850474b189f1065187d688a5c/assets/8e2864cbc2d6404caed72b42e6af8a9d/revisions/c430388e3268b503d43f0f3563b0cfaa/renditions/2c2b7f3832532454edbf44d4e984aa97', 'https://lightroom.adobe.com/v2c/spaces/f6e527e0e02d47ce8a1c06a03b7e7d98/assets/10f0ca254e4e4cd4a991446088be4cfc/revisions/368a48abcbc89120a875a853dd6f1619/renditions/aa44d8688c748a3c0bb32565a4a687f4']
+  },
+  {
+    userName: 'Sara(h)',
+    userImage: 'https://lightroom.adobe.com/v2c/spaces/9b26d61cec7340ff9fcce8cf84bbf59b/assets/fbd5c280a5b84ba2bd19178b904ce419/revisions/c80ba2fa1b2b427faad57e47bfdfd606/renditions/ae57249d984d4515c3d5a1b71c740fbb',
+    pack: ['https://lightroom.adobe.com/v2c/spaces/c393e3c850474b189f1065187d688a5c/assets/8e2864cbc2d6404caed72b42e6af8a9d/revisions/c430388e3268b503d43f0f3563b0cfaa/renditions/2c2b7f3832532454edbf44d4e984aa97', 'https://lightroom.adobe.com/v2c/spaces/8e4779e58dac4ccbb7e10436df96677d/assets/b3a698c42adf48be93943f14b25d8760/revisions/03bcf2de31048faa936635b5d0eecc52/renditions/c9a6a4dd33dd308f4f91a75366c78b7c',  'https://lightroom.adobe.com/v2c/spaces/997de26b6efb4e14869d673f387e8d76/assets/338b49ac421a43e7a2426fdf6c597b56/revisions/d05d5655a0b9440d91b9fcd0f2062f46/renditions/fdb85e2ae7c2b1811296dedfb5376e30']
+  }
+]
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+    },
+    matches: {
+      flex: 1,
+      flexDirection: 'column',
       alignItems: 'center',
-      marginTop: 90
     },
     logo: {
         height: 40,
@@ -57,6 +84,26 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
+    },
+    componentTitleHeader: {
+      marginTop: '2%',
+    },
+    backToMenu: {
+      flexDirection: 'row',
+      marginLeft: 5,
+      width: '25%',
+      position: 'absolute'
+    },
+    backToMenuText: {
+      fontSize: 25,
+      color: 'rgb(53, 129, 252)',
+      marginLeft: 5,
+    },
+    componentTitle: {
+      alignSelf: 'center',
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 30,
+      fontWeight: '300',
     },
     input: {
       height: 30,
