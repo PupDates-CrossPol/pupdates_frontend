@@ -47,6 +47,7 @@ class ImageUpload extends React.Component {
         )
       }
     })
+      .catch(error => console.log(error))
   }
 
   takeImg() {
@@ -62,6 +63,7 @@ class ImageUpload extends React.Component {
         )
       }
     })
+      .catch(error => console.log(error))
   }
 
   uploadImg = async (uri, imageId) => {
@@ -73,6 +75,7 @@ class ImageUpload extends React.Component {
   }
 
   addImg = async () => {
+    this.setState({ image: null });
     const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
     this.setState({ images: [...this.state.images, url]});
   }
