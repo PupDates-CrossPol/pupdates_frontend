@@ -7,7 +7,9 @@ import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Scr
 
 class ImageUpload extends React.Component {
 	state = {
-    image: null
+    id: '',
+    image: null,
+    images: []
   }
 
   render() {
@@ -22,6 +24,10 @@ class ImageUpload extends React.Component {
           onPress={() => this.takeImg()}
           title="Camera"
         />
+        <Button 
+          onPress={() => this.addImg()}
+          title="Submit"
+        />
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
   		</SafeAreaView>
@@ -29,13 +35,14 @@ class ImageUpload extends React.Component {
   }
 
   selectImg() {
+    this.setState({ id: '' + Math.random().toString(36).substr(2, 9) });
     ImagePicker.requestCameraRollPermissionsAsync()
       .then(response => {
         if (response.granted === true) {
           ImagePicker.launchImageLibraryAsync()
             .then(response => {
-            	this.uploadImg(response.uri, "Selected-Image");
-            	this.setState({ image: response });
+            	this.uploadImg(response.uri, `${this.state.id}`);
+            	this.setState({ image: response.uri });
             }
         )
       }
@@ -43,25 +50,31 @@ class ImageUpload extends React.Component {
   }
 
   takeImg() {
+    this.setState({ id: '' + Math.random().toString(36).substr(2, 9) });
     Camera.requestPermissionsAsync()
       .then(response => {
         if (response.granted === true) {
           ImagePicker.launchCameraAsync()
             .then(response => {
-            	this.uploadImg(response.uri, "Taken-Image");
-            	this.setState({ image: response });
+            	this.uploadImg(response.uri, `${this.state.id}`);
+            	this.setState({ image: response.uri });
             }
         )
       }
     })
   }
 
-  uploadImg = async (uri, imageName) => {
+  uploadImg = async (uri, imageId) => {
     const response = await fetch(uri);
     const blob = await response.blob();
 
-    let ref = firebase.storage().ref().child(`images/${imageName}`);
+    let ref = firebase.storage().ref().child(`images/${imageId}`);
     return ref.put(blob)
+  }
+
+  addImg = async () => {
+    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
+    this.setState({ images: [...this.state.images, url]});
   }
 }
 
