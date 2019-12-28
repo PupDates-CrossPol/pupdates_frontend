@@ -7,11 +7,35 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
 class LoginScreen extends React.Component {
+  state = {
+    id: '',
+    email: '',
+    password: ''
+  }
 
   async componentDidMount() {
     await Font.loadAsync({
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
+  }
+
+  updateEmail(email) {
+    this.setState({ email })
+  }
+
+  updatePassword(password) {
+    this.setState({ password })
+  }
+
+  confirmPassword = async () => {
+    const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
+    const users = await response.json();
+    const currentUser = users.find(user => user.email === this.state.email)
+    console.log(currentUser)
+    if (currentUser.password === this.state.password) {
+      this.setState({ id: currentUser.id });
+      this.props.navigation.navigate('Home');
+    }
   }
 
   render() {
@@ -20,9 +44,9 @@ class LoginScreen extends React.Component {
       <ScrollView style={styles.contentContainer}>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} />
-        <TextInput placeholder="Password" style={styles.input}/>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Home')}>
+        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
+        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
+        <TouchableOpacity style={styles.button} onPress={() => this.confirmPassword()}>
         <LinearGradient
           colors={['orange', '#c32525']}
           style={styles.linearGradient}
