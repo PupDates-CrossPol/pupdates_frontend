@@ -55,4 +55,69 @@ export const getDogImagesById = async (dogId) => {
   return dogPics
 }
 
+export const loginUser = async (email, password) => {
+  const response = await fetch('https://node-pupdates-backend.herokuapp.com/api/v1/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  })
+  if (!response.ok) {
+    throw Error('Failed to login')
+  }
+  const user = await response.json()
+  return user
+}
+
+
+export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed, vaccinated, good_with_kids) => {
+  const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${user_id}/dogs`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      user_id,
+      name,
+      sex,
+      breed,
+      size,
+      age,
+      fixed,
+      vaccinated,
+      good_with_kids
+    })
+  })
+  if (!response.ok) {
+    throw Error('Failed to add dog')
+  }
+  const newDog = await response.json()
+  return newDog
+}
+
+
+
+
+
+export const postPalette = async (project_id, palette_name, color_1, color_2, color_3, color_4, color_5) => {
+  const response = await fetch(process.env.REACT_APP_BACKEND + '/api/v1/palettes', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(
+      {
+        project_id,
+        palette_name,
+        color_1,
+        color_2,
+        color_3,
+        color_4,
+        color_5,
+      },
+    ),
+  });
+  if (!response.ok) {
+    throw Error('Failed to POST palette');
+  }
+  const message = await response.json();
+  return message;
+};
+
+
 
