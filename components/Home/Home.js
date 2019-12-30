@@ -11,10 +11,13 @@ import {createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Container, Header, Content, Card, CardItem, Text, Body, Button } from 'native-base';
 import { Entypo } from '@expo/vector-icons';
+import { SliderBox } from "react-native-image-slider-box";
+import { getDogImagesById } from '../../apiCalls'
 
 class HomeScreen extends React.Component {
   state = {
-    image: null
+    image: null,
+    dogImages: []
   }
 
   static navigationOptions = ({navigation}) => ({
@@ -22,7 +25,7 @@ class HomeScreen extends React.Component {
     headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)'/>
+        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)' />
       </TouchableOpacity>
     ),
     headerStyle: {
@@ -40,6 +43,8 @@ class HomeScreen extends React.Component {
    await Font.loadAsync({
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
+    const dogImages = await getDogImagesById(4)
+    this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
 
   render() {
@@ -51,7 +56,7 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-              <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
+            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
@@ -149,7 +154,8 @@ leftNavIcon: {
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 3.5,
-    borderRadius: 50
+    borderRadius: 50,
+    alignSelf: 'center'
   },
   infoText: {
     textAlign: 'left',
