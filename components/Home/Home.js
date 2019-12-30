@@ -56,8 +56,8 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={this.state.dogImages} />
-              <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} />
+            <SliderBox images={this.state.dogImages} style={styles.image} />
+              {/* <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} /> */}
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
@@ -155,7 +155,8 @@ leftNavIcon: {
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 3.5,
-    borderRadius: 50
+    borderRadius: 50,
+    alignSelf: 'center'
   },
   infoText: {
     textAlign: 'left',
