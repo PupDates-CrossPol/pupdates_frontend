@@ -44,7 +44,7 @@ class HomeScreen extends React.Component {
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
     const dogImages = await getDogImagesById(4)
-    this.setState({dogImages: dogImages.map( dog => dog.image_url)}, () =>  console.log(this.state.dogImages));
+    this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
 
   render() {
@@ -56,7 +56,7 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={this.state.dogImages} style={styles.image} />
+            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)'/>
               {/* <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} /> */}
             </Body>
           </CardItem>
