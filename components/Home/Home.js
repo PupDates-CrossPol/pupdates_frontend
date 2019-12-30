@@ -25,7 +25,7 @@ class HomeScreen extends React.Component {
     headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
     headerRight: () => (
       <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
-        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)'/>
+        <Ionicons name="ios-menu" size={50} color='rgb(21, 112, 125)' />
       </TouchableOpacity>
     ),
     headerStyle: {
@@ -56,8 +56,7 @@ class HomeScreen extends React.Component {
           <Text style={styles.packName}> Jordan's Pack </Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)'/>
-              {/* <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.image} /> */}
+            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
