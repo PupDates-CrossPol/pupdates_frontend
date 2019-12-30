@@ -1,19 +1,12 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
-import * as Camera from 'expo-camera';
-import * as Constants from 'expo-constants';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-// import firebase from 'firebase';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 class LoginScreen extends React.Component {
-  state = {
-    image: null
-  }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -22,7 +15,6 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    let { image } = this.state
     return (
       <SafeAreaView>
       <ScrollView style={styles.contentContainer}>
@@ -39,50 +31,10 @@ class LoginScreen extends React.Component {
             <Text style={styles.buttonText}>Login</Text>
         </LinearGradient>
           </TouchableOpacity>
-        <Text>PupDates</Text>
-        <Button 
-          onPress={() => this.selectImg()}
-          title="Add Photo"
-        />
-        <Button 
-          onPress={() => this.takeImg()}
-          title="Camera"
-        />
-        {image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        <ImageUpload />
       </ScrollView>
       </SafeAreaView>
     );
-  }
-
-  selectImg() {
-    ImagePicker.requestCameraRollPermissionsAsync()
-      .then(response => {
-        if (response.granted === true) {
-          ImagePicker.launchImageLibraryAsync()
-            .then(response => this.uploadImg(response.uri, "Test-Image")
-        )
-      }
-    })
-  }
-
-  takeImg() {
-    Camera.requestPermissionsAsync()
-      .then(response => {
-        if (response.granted === true) {
-          ImagePicker.launchCameraAsync()
-            .then(response => this.uploadImg(response.uri, "Test-Image")
-        )
-      }
-    })
-  }
-
-  uploadImg = async (uri, imageName) => {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-
-    let ref = firebase.storage().ref().child(`images/${imageName}`);
-    return ref.put(blob)
   }
 }
 
