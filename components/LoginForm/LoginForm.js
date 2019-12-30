@@ -31,7 +31,6 @@ class LoginScreen extends React.Component {
     const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
     const users = await response.json();
     const currentUser = users.find(user => user.email === this.state.email)
-    console.log(currentUser)
     if (currentUser.password === this.state.password) {
       this.setState({ id: currentUser.id });
       this.props.navigation.navigate('Home');
