@@ -27,7 +27,6 @@ class MenuScreen extends React.Component {
       })
 
     render() {
-      console.log('props', this.props.user)
         return (
                 <View style={styles.container}>
                     <Text style={styles.componentTitle} >Menu</Text>
@@ -39,7 +38,7 @@ class MenuScreen extends React.Component {
                     </View>
                     <View style={styles.menuOptions}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')} style={styles.menuImgText}>
-                        <Image source={require('../../images/human1-profile.jpeg')} style={styles.menuCircle} />
+                        <Image source={{uri: this.props.user.photo}} style={styles.menuCircle} />
                         <Text style={styles.menuOptionsText} >{this.props.user.first_name}</Text>
                       </TouchableOpacity>
                     </View>
