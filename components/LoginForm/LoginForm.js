@@ -5,8 +5,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
-import * as api from '../../apiCalls';
+import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
+import { setUserInfo } from '../../actions'
 
 
 export class LoginScreen extends React.Component {
@@ -30,14 +31,17 @@ export class LoginScreen extends React.Component {
     this.setState({ password })
   }
 
-  handleSubmit = async (e) => {
+  handleSubmit = async () => {
     const { email, password } = this.state
-    e.preventDefault();
-    const loginResponse = await apiCalls.loginUser({email, password})
+    // e.preventDefault();
+    const loginResponse = await apiCalls.loginUser(email, password)
+    console.log('login response', loginResponse)
     if (loginResponse.error) {
       //handle error response
     } else {
+      console.log('did we make it', loginResponse, this.props.setUserInfo)
       this.props.setUserInfo(loginResponse)
+      this.props.navigation.navigate('Home');
     }
 
 
@@ -61,7 +65,7 @@ export class LoginScreen extends React.Component {
         <Text style={styles.title}>PupDates</Text>
         <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
         <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
-        <TouchableOpacity style={styles.button} onPress={() => this.confirmPassword()}>
+        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
         <LinearGradient
           colors={['orange', '#c32525']}
           style={styles.linearGradient}
@@ -142,10 +146,10 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-  setUserInfo: (userInfo) => dispatch(actions.setUserInfo(userInfo))
+  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo))
 
 })
 
-export default LoginScreen
+export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
 
 // export default createAppContainer(AppNavigator)
