@@ -6,9 +6,10 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import * as api from '../../apiCalls';
+import { connect } from 'react-redux'
 
 
-class LoginScreen extends React.Component {
+export class LoginScreen extends React.Component {
   state = {
     id: '',
     email: '',
@@ -130,10 +131,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppNavigator = createSwitchNavigator({
-  Login: {
-    screen: LoginScreen,
-  },
-});
+// const AppNavigator = createSwitchNavigator({
+//   Login: {
+//     screen: LoginScreen,
+//   },
+// });
 
-export default createAppContainer(AppNavigator)
+export const mapStateToProps = state => ({
+  user: state.user
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setUserInfo: (userInfo) => dispatch(actions.setUserInfo(userInfo))
+
+})
+
+export default LoginScreen
+
+// export default createAppContainer(AppNavigator)

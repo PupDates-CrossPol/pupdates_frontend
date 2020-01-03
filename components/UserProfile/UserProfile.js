@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 
-class UserProfileScreen extends React.Component {
+export default class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -101,9 +101,9 @@ const styles = StyleSheet.create({
     },
     leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
-const AppNavigator = createStackNavigator({
-    UserProfile: {
-        screen: UserProfileScreen,
-    },
-});
-  export default createAppContainer(AppNavigator)
+// const AppNavigator = createStackNavigator({
+//     UserProfile: {
+//         screen: UserProfileScreen,
+//     },
+// });
+//   export default createAppContainer(AppNavigator)

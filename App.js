@@ -10,18 +10,20 @@ import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import { rootReducer } from './reducers/index.js'
 import { Provider, connect } from 'react-redux'
+import { logger } from 'redux-logger'
 
 // import firebase from 'firebase';
 // import ApiKeys from './ApiKeys'
 
 // firebase.initializeApp(ApiKeys.firebaseConfig);
 
+// const store = createStore(rootReducer, applyMiddleware(logger))
 const store = createStore(rootReducer)
 
-let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
+// let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
 
-const MainNavigator = createSwitchNavigator({
-  Login: {screen: LoginFormContainer},
+const MainNavigator = createStackNavigator({
+  Login: {screen: LoginScreen},
   Home: {screen: HomeScreen},
   Menu: {screen: MenuScreen},
   DogPack: {screen: DogPackScreen},

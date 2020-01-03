@@ -6,7 +6,7 @@ import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 import Match from '../Match/Match'
 
-class MatchesScreen extends React.Component {
+export default class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -149,9 +149,11 @@ const styles = StyleSheet.create({
     },
     leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
-const AppNavigator = createStackNavigator({
-    Matches: {
-        screen: MatchesScreen,
-    },
-});
-  export default createAppContainer(AppNavigator)
+// const AppNavigator = createStackNavigator({
+//     Matches: {
+//         screen: MatchesScreen,
+//     },
+// });
+//   export default createAppContainer(AppNavigator)
+
+// export default MatchesScreen;
