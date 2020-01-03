@@ -5,6 +5,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
+import * as api from '../../apiCalls';
+
 
 class LoginScreen extends React.Component {
   state = {
@@ -25,6 +27,19 @@ class LoginScreen extends React.Component {
 
   updatePassword(password) {
     this.setState({ password })
+  }
+
+  handleSubmit = async (e) => {
+    const { email, password } = this.state
+    e.preventDefault();
+    const loginResponse = await apiCalls.loginUser({email, password})
+    if (loginResponse.error) {
+      //handle error response
+    } else {
+      this.props.setUserInfo(loginResponse)
+    }
+
+
   }
 
   confirmPassword = async () => {
