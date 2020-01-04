@@ -38,18 +38,14 @@ export class LoginScreen extends React.Component {
 
   handleSubmit = async () => {
     const { email, password } = this.state
-    // e.preventDefault();
     const loginResponse = await apiCalls.loginUser(email, password)
-    console.log('login response', loginResponse)
     if (loginResponse.error) {
       //handle error response
     } else {
-      console.log('did we make it', loginResponse, this.props.setUserInfo)
       this.props.setUserInfo(loginResponse)
+      this.getPackInfo(loginResponse.id)
       this.props.navigation.navigate('Home');
     }
-
-
   }
 
   confirmPassword = async () => {
