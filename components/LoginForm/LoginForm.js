@@ -9,7 +9,6 @@ import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
 import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
 
-
 export class LoginScreen extends React.Component {
   state = {
     id: '',
@@ -36,8 +35,6 @@ export class LoginScreen extends React.Component {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
       this.props.setPackPhotos(dogImages)
     })
-    // console.log('ln39- dogPackPictures', Promise.resolve( await dogPackPictures));
-    // this.props.setPackPhotos(dogPackPictures)
   }
 
   getPackInfo = async userId => {
