@@ -32,7 +32,7 @@ export class LoginScreen extends React.Component {
   }
 
   getPackImages = async pack => {
-    const dogPackWithPictures = pack.map( async dog => {
+    const dogPackPictures = pack.map( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
       return dogImages
     })
@@ -158,12 +158,14 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = state => ({
   user: state.user,
-  pack: state.pack
+  pack: state.pack,
+  packPhotos: state.packPhotos
 })
 
 export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
-  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack))
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
