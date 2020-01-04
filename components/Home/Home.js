@@ -14,7 +14,7 @@ import { Entypo } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
   state = {
     image: null,
     dogImages: []
@@ -185,12 +185,12 @@ leftNavIcon: {
 });
 
 
-const AppNavigator = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-  },
-});
+// const AppNavigator = createStackNavigator({
+//   Home: {
+//     screen: HomeScreen,
+//   },
+// });
 
 
 
-export default createAppContainer(AppNavigator)
+// export default createAppContainer(AppNavigator)

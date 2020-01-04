@@ -4,6 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux'
 
 class MenuScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
@@ -37,8 +38,8 @@ class MenuScreen extends React.Component {
                     </View>
                     <View style={styles.menuOptions}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')} style={styles.menuImgText}>
-                        <Image source={require('../../images/human1-profile.jpeg')} style={styles.menuCircle} />
-                        <Text style={styles.menuOptionsText} >Jordan</Text>
+                        <Image source={{uri: this.props.user.photo}} style={styles.menuCircle} />
+                        <Text style={styles.menuOptionsText} >{this.props.user.first_name}</Text>
                       </TouchableOpacity>
                     </View>
                     <View style={styles.menuOptionsBottom}>
@@ -165,9 +166,18 @@ const styles = StyleSheet.create({
     },
     leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
-const AppNavigator = createStackNavigator({
-    Menu: {
-        screen: MenuScreen,
-    },
-});
-  export default createAppContainer(AppNavigator)
+
+
+  export const mapStateToProps = state => ({
+    user: state.user
+  })
+
+  export default connect (mapStateToProps)(MenuScreen)
+// const AppNavigator = createStackNavigator({
+//     Menu: {
+//         screen: MenuScreen,
+//     },
+// });
+//   export default createAppContainer(AppNavigator)
+
+// export default MenuScreen;

@@ -7,12 +7,22 @@ import DogPackScreen from './components/DogPack/DogPack'
 import MatchesScreen from './components/Matches/Matches'
 import UserProfileScreen from './components/UserProfile/UserProfile'
 import React, { Component } from 'react';
+import { createStore, applyMiddleware } from 'redux'
+import { rootReducer } from './reducers/index.js'
+import { Provider, connect } from 'react-redux'
+import { logger } from 'redux-logger'
+
 // import firebase from 'firebase';
 // import ApiKeys from './ApiKeys'
 
 // firebase.initializeApp(ApiKeys.firebaseConfig);
 
-const MainNavigator = createSwitchNavigator({
+// const store = createStore(rootReducer, applyMiddleware(logger))
+const store = createStore(rootReducer)
+
+// let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
+
+const MainNavigator = createStackNavigator({
   Login: {screen: LoginScreen},
   Home: {screen: HomeScreen},
   Menu: {screen: MenuScreen},
@@ -25,7 +35,11 @@ const AppContainer = createAppContainer(MainNavigator)
 
 class App extends Component {
   render() {
-    return <AppContainer />
+    return (
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+    )
   }
 }
 

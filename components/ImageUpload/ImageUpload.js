@@ -5,7 +5,7 @@ import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 
-class ImageUpload extends React.Component {
+export default class ImageUpload extends React.Component {
 	state = {
     id: '',
     image: null,
@@ -81,4 +81,4 @@ class ImageUpload extends React.Component {
   }
 }
 
-export default ImageUpload; 
+// export default ImageUpload; 
