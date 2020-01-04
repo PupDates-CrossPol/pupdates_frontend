@@ -33,7 +33,14 @@ export class LoginScreen extends React.Component {
 
   getPackInfo = async userId => {
     const dogPackResponse = await apiCalls.getDogsForUser(userId)
-    this.props.setPackInfo(dogPackResponse)
+    const dogPackWithPictures = dogPackResponse.map( async dog => {
+      dog.images = await apiCalls.getDogImagesById(dog.id)
+       console.log('ln30 - dog', dog);
+      return dog
+    })
+    console.log('ln41-dogPackWithPictures', dogPackWithPictures);
+    
+    this.props.setPackInfo(dogPackWithPictures)
   }
 
   handleSubmit = async () => {
