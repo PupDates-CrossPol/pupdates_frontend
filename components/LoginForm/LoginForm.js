@@ -31,6 +31,13 @@ export class LoginScreen extends React.Component {
     this.setState({ password })
   }
 
+  getPackImages = async pack => {
+    const dogPackWithPictures = pack.map( async dog => {
+      const dogImages = await apiCalls.getDogImagesById(dog.id)
+      return dogImages
+    })
+  }
+
   getPackInfo = async userId => {
     const dogPackResponse = await apiCalls.getDogsForUser(userId)
     const dogPackWithPictures = dogPackResponse.map( async dog => {
