@@ -7,7 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo, setPackInfo } from '../../actions'
+import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
 
 
 export class LoginScreen extends React.Component {
@@ -32,10 +32,12 @@ export class LoginScreen extends React.Component {
   }
 
   getPackImages = async pack => {
-    const dogPackPictures = pack.map( async dog => {
+    pack.forEach( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
-      return dogImages
+      this.props.setPackPhotos(dogImages)
     })
+    // console.log('ln39- dogPackPictures', Promise.resolve( await dogPackPictures));
+    // this.props.setPackPhotos(dogPackPictures)
   }
 
   getPackInfo = async userId => {
