@@ -7,7 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo } from '../../actions'
+import { setUserInfo, setPackInfo } from '../../actions'
 
 
 export class LoginScreen extends React.Component {
@@ -142,12 +142,13 @@ const styles = StyleSheet.create({
 // });
 
 export const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  pack: state.pack
 })
 
 export const mapDispatchToProps = dispatch => ({
-  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo))
-
+  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
