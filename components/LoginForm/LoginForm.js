@@ -31,6 +31,11 @@ export class LoginScreen extends React.Component {
     this.setState({ password })
   }
 
+  getPackInfo = async userId => {
+    const dogPackResponse = await apiCalls.getDogsForUser(userId)
+    this.props.setPackInfo(dogPackResponse)
+  }
+
   handleSubmit = async () => {
     const { email, password } = this.state
     // e.preventDefault();
