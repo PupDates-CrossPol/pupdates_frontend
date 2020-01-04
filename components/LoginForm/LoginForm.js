@@ -7,8 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo } from '../../actions'
-
+import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
 
 export class LoginScreen extends React.Component {
   state = {
@@ -31,20 +30,29 @@ export class LoginScreen extends React.Component {
     this.setState({ password })
   }
 
+  getPackImages = async pack => {
+    pack.forEach( async dog => {
+      const dogImages = await apiCalls.getDogImagesById(dog.id)
+      this.props.setPackPhotos(dogImages)
+    })
+  }
+
+  getPackInfo = async userId => {
+    const dogPackResponse = await apiCalls.getDogsForUser(userId)
+    this.getPackImages(dogPackResponse)
+    this.props.setPackInfo(dogPackResponse)
+  }
+
   handleSubmit = async () => {
     const { email, password } = this.state
-    // e.preventDefault();
     const loginResponse = await apiCalls.loginUser(email, password)
-    console.log('login response', loginResponse)
     if (loginResponse.error) {
       //handle error response
     } else {
-      console.log('did we make it', loginResponse, this.props.setUserInfo)
       this.props.setUserInfo(loginResponse)
+      this.getPackInfo(loginResponse.id)
       this.props.navigation.navigate('Home');
     }
-
-
   }
 
   confirmPassword = async () => {
@@ -142,12 +150,15 @@ const styles = StyleSheet.create({
 // });
 
 export const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  pack: state.pack,
+  packPhotos: state.packPhotos
 })
 
 export const mapDispatchToProps = dispatch => ({
-  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo))
-
+  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
