@@ -4,8 +4,10 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
+import ImageUpload from '../ImageUpload/ImageUpload';
+import { connect } from 'react-redux';
 
-export default class UserProfileScreen extends React.Component {
+class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -26,12 +28,25 @@ export default class UserProfileScreen extends React.Component {
       })
 
     render() {
+      console.log(this.props.user)
         return (
             <SafeAreaView>
                 <View>
-                    <Text>This is the user's profile!</Text>
-                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
+                  <View style={styles.componentTitleHeader}>
+                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+                        <Text style={styles.backToMenuText} >Menu</Text>
+                      </TouchableOpacity>
+                      <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
+                      <Image source={{uri: this.props.user.photo}} style={{ width: 200, height: 200 }}/>
+                      <Text>About Me:</Text>
+                      <Text>First Name: {this.props.user.first_name}</Text>
+                      <Text>Last Name: {this.props.user.last_name}</Text>
+                      <Text>Email: {this.props.user.email}</Text>
+                      <Text>Description:</Text>
+                      <Text>{this.props.user.description}</Text>
+                  </View>
+                <ImageUpload />
                 </View>
             </SafeAreaView>
         )
@@ -56,6 +71,23 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
+    },
+    backToMenu: {
+      flexDirection: 'row',
+      marginLeft: 5,
+      width: '25%',
+      position: 'absolute'
+    },
+    backToMenuText: {
+      fontSize: 25,
+      color: 'rgb(53, 129, 252)',
+      marginLeft: 5,
+    },
+    componentTitle: {
+      alignSelf: 'center',
+      color: 'rgba(0,0,0,0.57)',
+      fontSize: 30,
+      fontWeight: '300',
     },
     input: {
       height: 30,
@@ -101,6 +133,13 @@ const styles = StyleSheet.create({
     },
     leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
+
+  export const mapStateToProps = state => ({
+    user: state.user,
+    packPhotos: state.packPhotos
+  })
+
+  export default connect (mapStateToProps)(UserProfileScreen)
 // const AppNavigator = createStackNavigator({
 //     UserProfile: {
 //         screen: UserProfileScreen,

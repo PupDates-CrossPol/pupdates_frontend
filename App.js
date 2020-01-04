@@ -14,12 +14,14 @@ import { logger } from 'redux-logger'
 import firebase from 'firebase';
 import ApiKeys from './ApiKeys'
 
+import firebase from 'firebase';
+import ApiKeys from './ApiKeys';
+
 firebase.initializeApp(ApiKeys.firebaseConfig);
 
-// const store = createStore(rootReducer, applyMiddleware(logger))
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 
-// let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
+let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
 
 const MainNavigator = createStackNavigator({
   Login: {screen: LoginScreen},

@@ -80,5 +80,3 @@ export default class ImageUpload extends React.Component {
     this.setState({ images: [...this.state.images, url]});
   }
 }
-
-// export default ImageUpload; 
