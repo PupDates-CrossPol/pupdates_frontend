@@ -13,9 +13,10 @@ import { Container, Header, Content, Card, CardItem, Text, Body, Button } from '
 import { Entypo } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
-import { setSwipeUser } from '../../actions'
+import { setSwipeUser, setOtherUsers } from '../../actions'
+import { connect } from 'react-redux'
 
-export default class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   state = {
     image: null,
     dogImages: []
@@ -45,8 +46,19 @@ export default class HomeScreen extends React.Component {
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
     const dogImages = await getDogImagesById(4)
+    this.getRandomUser()
     this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
+
+ getRandomUser = () => {
+   let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
+   let selectedUser = this.props.otherUsers[randomIndex]
+   console.log('selecteduser', selectedUser)
+   this.props.setSwipeUser(selectedUser)
+   this.props.otherUsers.splice(randomIndex, 1)
+   console.log('other users now', this.props.otherUsers)
+
+ }
 
   render() {
     return (
@@ -184,6 +196,19 @@ leftNavIcon: {
     width: '90%',
   }
 });
+
+export const mapStateToProps = state => ({
+  swipeUser: state.swipeUser,
+  user: state.user,
+  otherUsers: state.otherUsers
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setSwipeUser: (swipeUser) => dispatch(setSwipeUser(swipeUser)),
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 
 // const AppNavigator = createStackNavigator({
