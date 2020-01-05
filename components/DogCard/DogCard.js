@@ -4,11 +4,27 @@ import { connect } from 'react-redux'
 import { setPackInfo, setPackPhotos } from '../../actions'
 
 const DogCard = (props) => {
-    console.log('props', props.pack);
+    const dogPackCards = props.pack.map( (dog, i) => {
+        console.log('dog-line 9', dog);
+        
+        return (
+        <View key={i}>
+            <Text>Name: {dog.name}</Text>
+            <Text>Sex: {dog.sex}</Text>
+            <Text>Breed: {dog.breed}</Text>
+            <Text>Size: {dog.size}</Text>
+            <Text>Age:  {dog.age}</Text>
+            <Text>Fixed: {dog.fixed ? 'true' : 'false'}</Text>
+            <Text>Vaccinated: {dog.vaccinated ? 'true' : 'false'}</Text>
+            <Text>Good With Kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
+        </View>
+        )
+
+    })
     
     return (
-        <View> 
-            <Text>THIS IS WHERE THE DOGS GO!!</Text>
+        <View><Text>THIS IS WHERE THE DOGS GO!!</Text>
+       {dogPackCards}
         </View>
         )
 
