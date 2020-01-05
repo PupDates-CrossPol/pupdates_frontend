@@ -64,24 +64,23 @@ const DogCard = (props) => {
 
         return (
         <View key={i} style={styles.container}>
-            <Text>{dog.name}</Text>
+            <Text style={styles.dogTextName}>{dog.name}</Text>
             {createImagesAndButtonsForGrid()}
             <View style={styles.imageContainer}>
             </View>
-            {/* {dogImages} */}
-            <Text>Sex: {dog.sex}</Text>
-            <Text>Breed: {dog.breed}</Text>
-            <Text>Size: {dog.size}</Text>
-            <Text>Age:  {dog.age}</Text>
-            <Text>Fixed: {dog.fixed ? 'true' : 'false'}</Text>
-            <Text>Vaccinated: {dog.vaccinated ? 'true' : 'false'}</Text>
-            <Text>Good With Kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
+            <Text style={styles.infoText}>Sex: {dog.sex}</Text>
+            <Text style={styles.infoText}>Breed: {dog.breed}</Text>
+            <Text style={styles.infoText}>Size: {dog.size}</Text>
+            <Text style={styles.infoText}>Age:  {dog.age}</Text>
+            <Text style={styles.infoText}>Fixed: {dog.fixed ? 'true' : 'false'}</Text>
+            <Text style={styles.infoText}>Vaccinated: {dog.vaccinated ? 'true' : 'false'}</Text>
+            <Text style={styles.infoTextBottom}>Good With Kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
         </View>
         )
     })
     
     return (
-        <View><Text>THIS IS WHERE THE DOGS GO!!</Text>
+        <View>
        {dogPackCards}
         </View>
         )
@@ -91,7 +90,10 @@ const DogCard = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        width: '100%'
+        width: '100%',
+        marginBottom: '5%',
+        borderBottomColor: 'rgba(0,0,0,0.2)',
+        borderBottomWidth: 1
       },
     menuCircle: {
       aspectRatio: 1/1,
@@ -107,10 +109,11 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         borderColor: 'rgba(0,0,0,0.2)',
         borderWidth: 2,
+        marginBottom: '3%',
     },
     row: {
         justifyContent: "center",
-        margin: '10%'
+        margin: '8%'
     },
     userCircle: {
         aspectRatio: 1/1,
@@ -131,11 +134,31 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    dogTextName: {
+        fontSize: 30,
+        marginBottom: '2%',
+        marginLeft: '7%'
+    },
+    infoText: {
+        textAlign: 'left',
+        fontSize: 20,
+        color: 'grey',
+        alignSelf: 'stretch',
+        marginLeft: '7%'
+
+    },
+    infoTextBottom: {
+        textAlign: 'left',
+        fontSize: 20,
+        color: 'grey',
+        alignSelf: 'stretch',
+        marginBottom: '5%',
+        marginLeft: '7%'
+    },
   });
 
 export const mapStateToProps = state => ({
-    user: state.user,
     pack: state.pack,
     packPhotos: state.packPhotos
   })

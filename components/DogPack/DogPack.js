@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { connect } from 'react-redux'
+import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
 import DogCard from '../DogCard/DogCard'
 
-export default class DogPackScreen extends React.Component {
+class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -31,7 +33,7 @@ export default class DogPackScreen extends React.Component {
                   <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
                   <Text style={styles.backToMenuText} >Menu</Text>
                 </TouchableOpacity>
-                <Text style={styles.componentTitle} >Dog Pack</Text>
+        <Text style={styles.componentTitle} >{this.props.user.first_name}'s Dog Pack</Text>
             </View>
             <ScrollView>
             <View >
@@ -134,9 +136,14 @@ const styles = StyleSheet.create({
   },
   leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
 });
-// const AppNavigator = createStackNavigator({
-//     DogPack: {
-//         screen: DogPackScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
+
+export const mapStateToProps = state => ({
+  user: state.user,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(DogPackScreen)
