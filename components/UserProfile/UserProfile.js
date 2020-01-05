@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
@@ -8,6 +9,10 @@ import ImageUpload from '../ImageUpload/ImageUpload';
 import { connect } from 'react-redux';
 
 class UserProfileScreen extends React.Component {
+    state = {
+      imageUpload: null
+    }
+
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -28,7 +33,6 @@ class UserProfileScreen extends React.Component {
       })
 
     render() {
-      console.log(this.props.user)
         return (
             <SafeAreaView>
                 <View>
@@ -38,15 +42,25 @@ class UserProfileScreen extends React.Component {
                         <Text style={styles.backToMenuText} >Menu</Text>
                       </TouchableOpacity>
                       <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
-                      <Image source={{uri: this.props.user.photo}} style={{ width: 200, height: 200 }}/>
-                      <Text>About Me:</Text>
-                      <Text>First Name: {this.props.user.first_name}</Text>
-                      <Text>Last Name: {this.props.user.last_name}</Text>
-                      <Text>Email: {this.props.user.email}</Text>
-                      <Text>Description:</Text>
-                      <Text>{this.props.user.description}</Text>
+                      <Image source={{uri: this.props.user.photo}} style={styles.menuCircle}/>
+                      <TouchableOpacity style={styles.button} onPress={() => {  this.setState({ imageUpload: <ImageUpload /> })
+                      }}>
+                        <LinearGradient
+                          colors={['gray', 'black']}
+                          style={styles.linearGradient}
+                          onPress={() => console.log('does this work?')}
+                        >
+                        <Text style={styles.buttonText}>Edit</Text>
+                        </LinearGradient>
+                      </TouchableOpacity>
+                      {this.state.imageUpload && <View>{this.state.imageUpload}</View>}
+                      <Text style={styles.backToMenuText}>About Me:</Text>
+                      <Text style={styles.menuOptionsText}>First Name: {this.props.user.first_name}</Text>
+                      <Text style={styles.menuOptionsText}>Last Name: {this.props.user.last_name}</Text>
+                      <Text style={styles.menuOptionsText}>Email: {this.props.user.email}</Text>
+                      <Text style={styles.backToMenuText}>Description:</Text>
+                      <Text style={styles.menuOptionsText}>{this.props.user.description}</Text>
                   </View>
-                <ImageUpload />
                 </View>
             </SafeAreaView>
         )
@@ -89,6 +103,18 @@ const styles = StyleSheet.create({
       fontSize: 30,
       fontWeight: '300',
     },
+    menuCircle: {
+      aspectRatio: 1/1,
+      height: '42%',
+      borderRadius: 100,
+      borderColor: 'black',
+      borderWidth: 2
+    },
+    menuOptionsText: {
+      fontSize: 15,
+      fontWeight: '300',
+      marginTop: 5,
+    },
     input: {
       height: 30,
       width: '70%',
@@ -102,7 +128,7 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     linearGradient: {
-      width: '70%',
+      width: '20%',
       borderRadius: 25,
       height: 50,
       alignItems: 'center',
@@ -120,7 +146,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
       color: '#fff',
-      fontSize: 25,
+      fontSize: 15,
     },
     navTitle: {
         width: 160,
