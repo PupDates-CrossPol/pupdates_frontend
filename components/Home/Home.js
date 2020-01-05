@@ -51,6 +51,20 @@ export class HomeScreen extends React.Component {
     this.getRandomUser()
     this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
+  
+  getSwipePackImages = async (swipePack) => {
+     swipePack.forEach( async dog => {
+      const swipePics = await apiCalls.getDogImagesById(dog.id)
+      this.props.setSwipePackPhotos(swipePics)
+      console.log('swipe photos', this.props.swipePackPhotos)
+     })
+  }
+
+  getSwipePack = async (selectedUserId) => {
+   const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
+   this.getSwipePackImages(swipePackResponse)
+   this.props.setSwipePack(swipePackResponse)
+  }
 
  getRandomUser = () => {
    let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
@@ -60,20 +74,6 @@ export class HomeScreen extends React.Component {
    this.getSwipePack(selectedUser.id)
  }
 
- getSwipePack = async (selectedUserId) => {
-  const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
-  this.getSwipePackImages(swipePackResponse)
-  this.props.setSwipePack(swipePackResponse)
-  console.log('swipe pack', this.props.swipePack)
- }
-
- getSwipePackImages = async (swipePack) => {
-    swipePack.forEach( async dog => {
-     const swipePics = await apiCalls.getDogImagesById(dog.id)
-     this.props.setSwipePackPhotos(swipePics)
-     console.log('swipe pack pics', this.props.swipePackPhotos)
-    })
- }
 
   render() {
     console.log('swipe pack', this.props.swipePack)

@@ -14,9 +14,6 @@ import { logger } from 'redux-logger'
 import firebase from 'firebase';
 import ApiKeys from './ApiKeys'
 
-import firebase from 'firebase';
-import ApiKeys from './ApiKeys'
-
 firebase.initializeApp(ApiKeys.firebaseConfig);
 
 const store = createStore(rootReducer, applyMiddleware(logger))
