@@ -69,13 +69,13 @@ export class HomeScreen extends React.Component {
  getSwipePackImages = async (swipePack) => {
     swipePack.forEach( async dog => {
      const swipePics = await apiCalls.getDogImagesById(dog.id)
+     console.log('swipe pics', swipePics)
      this.props.setSwipePackPhotos(swipePics)
-     console.log('swipe photos', this.props.swipePackPhotos)
+     console.log('stuck here', this.props.swipePackPhotos)
     })
  }
 
   render() {
-    console.log('swipe pack pics', this.props.swipePackPhotos)
     return (
       <ScrollView>
       <Container>
