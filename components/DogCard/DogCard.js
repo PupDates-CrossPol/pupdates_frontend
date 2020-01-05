@@ -6,45 +6,69 @@ import { connect } from 'react-redux'
 import { setPackInfo, setPackPhotos } from '../../actions'
 
 const DogCard = (props) => {
+
     const dogPackCards = props.pack.map( (dog, i) => {
+        const currentDogImages = props.packPhotos.filter( photo => photo.dog_id === dog.id);
+        console.log('currentDogImages', dog.id, currentDogImages);
         
-        const dogImages = props.packPhotos.map( (dogImage, i) =>  {
-            return <Image key={i} source={{uri: dogImage.image_url}} style={styles.userCircle}/>
+            
+        const dogImages = currentDogImages.map( (dogImage, i) =>  {
+            return (
+                <Row style={styles.row}>
+                    <Image key={i} source={{uri: dogImage.image_url}} style={styles.userCircle}/>
+                </Row>
+                    )
         });
-        
+
+        const createButtons = (num) => {
+            const addImageButton = (
+                <Row style={styles.row}>
+                    <TouchableOpacity style={styles.addPhoto}>
+                        <Ionicons name="ios-add" size={35} color='rgb(21, 112, 125)' />
+                    </TouchableOpacity>
+                </Row>
+            )
+            const  addImageButtons = [addImageButton, addImageButton, addImageButton, addImageButton, addImageButton, addImageButton]
+            addImageButtons.splice(num)
+            return addImageButtons
+        }
+
+        function createImagesAndButtonsForGrid() {
+            const dogImagesCount = 6 - currentDogImages.length
+            let correctDogImages = currentDogImages
+            if (dogImagesCount > 0) {
+                correctDogImages =  [...dogImages, ...createButtons(dogImagesCount)] 
+            } else {
+                correctDogImages = dogImages
+            }
+            return buildGrid(correctDogImages)
+        }
+
+        const buildGrid = (arryOfImagesAndButtons) => {
+            return (
+                <Grid style={styles.grid}>
+                    <Col>
+                        {arryOfImagesAndButtons[0]}
+                        {arryOfImagesAndButtons[3]}
+                    </Col>
+                    <Col>
+                        {arryOfImagesAndButtons[1]}
+                        {arryOfImagesAndButtons[4]}
+                    </Col>
+                    <Col>
+                        {arryOfImagesAndButtons[2]}
+                        {arryOfImagesAndButtons[5]}
+                    </Col>
+                </Grid>
+            )
+            
+        }
+
         return (
         <View key={i} style={styles.container}>
             <Text>{dog.name}</Text>
-            <Grid style={styles.grid}>
-                <Col>
-                    <Row style={styles.row}>
-                        <Image key={i} source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.userCircle}/>
-                    </Row>
-                    <Row style={styles.row}>
-                        <Image key={i} source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.userCircle}/>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row style={styles.row}>
-                        <Image key={i} source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.userCircle}/>
-                    </Row>
-                    <Row style={styles.row}>
-                        <Image key={i} source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.userCircle}/>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row style={styles.row}>
-                        <Image key={i} source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.userCircle}/>
-                    </Row>
-                    <Row style={styles.row}>
-                        <TouchableOpacity style={styles.addPhoto}>
-                        <Ionicons name="ios-add" size={50} color='rgb(21, 112, 125)' />
-                        </TouchableOpacity>
-                    </Row>
-                </Col>
-            </Grid>
+            {createImagesAndButtonsForGrid()}
             <View style={styles.imageContainer}>
-
             </View>
             {/* {dogImages} */}
             <Text>Sex: {dog.sex}</Text>
@@ -100,7 +124,6 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
         shadowRadius: 2,  
-        elevation: 5
     },
     addPhoto: {
         aspectRatio: 1/1,
