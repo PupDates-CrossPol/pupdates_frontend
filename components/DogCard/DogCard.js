@@ -9,8 +9,6 @@ const DogCard = (props) => {
 
     const dogPackCards = props.pack.map( (dog, i) => {
         const currentDogImages = props.packPhotos.filter( photo => photo.dog_id === dog.id);
-        console.log('currentDogImages', dog.id, currentDogImages);
-        
             
         const dogImages = currentDogImages.map( (dogImage, i) =>  {
             return (
@@ -33,7 +31,7 @@ const DogCard = (props) => {
             return addImageButtons
         }
 
-        function createImagesAndButtonsForGrid() {
+        const createImagesAndButtonsForGrid = () => {
             const dogImagesCount = 6 - currentDogImages.length
             let correctDogImages = currentDogImages
             if (dogImagesCount > 0) {
