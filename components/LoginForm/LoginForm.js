@@ -6,7 +6,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
+import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers } from '../../actions'
 
 export class LoginScreen extends React.Component {
   state = {
@@ -51,7 +51,7 @@ export class LoginScreen extends React.Component {
       this.props.setUserInfo(loginResponse)
       this.getPackInfo(loginResponse.id)
       const allUsers = await apiCalls.getAllUsers()
-      console.log('all users data', allUsers.data)
+      console.log('all users data', allUsers)
       this.props.navigation.navigate('Home');
     }
   }
@@ -153,13 +153,15 @@ const styles = StyleSheet.create({
 export const mapStateToProps = state => ({
   user: state.user,
   pack: state.pack,
-  packPhotos: state.packPhotos
+  packPhotos: state.packPhotos,
+  otherUsers: state.otherUsers
 })
 
 export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures)),
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
