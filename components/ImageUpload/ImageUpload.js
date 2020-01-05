@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
+import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 
 export default class ImageUpload extends React.Component {
@@ -16,18 +17,38 @@ export default class ImageUpload extends React.Component {
   	let { image } = this.state;
   	return (
   		<SafeAreaView>
-  			<Button 
-          onPress={() => this.selectImg()}
-          title="Add Photo"
-        />
-        <Button 
-          onPress={() => this.takeImg()}
-          title="Camera"
-        />
-        <Button 
-          onPress={() => this.addImg()}
-          title="Submit"
-        />
+        <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
+          <LinearGradient
+            colors={['orange', '#c32525']}
+            style={styles.linearGradient}
+          >
+              <Text style={styles.buttonText}>Choose From Library</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.takeImg()}>
+          <LinearGradient
+            colors={['orange', '#c32525']}
+            style={styles.linearGradient}
+          >
+              <Text style={styles.buttonText}>Take A Photo</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => this.addImg()}>
+          <LinearGradient
+            colors={['orange', '#c32525']}
+            style={styles.linearGradient}
+          >
+              <Text style={styles.buttonText}>Submit</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => console.log('cancel')}>
+          <LinearGradient
+            colors={['orange', '#c32525']}
+            style={styles.linearGradient}
+          >
+              <Text style={styles.buttonText}>Cancel</Text>
+          </LinearGradient>
+        </TouchableOpacity>
         {image &&
             <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
   		</SafeAreaView>
@@ -80,3 +101,27 @@ export default class ImageUpload extends React.Component {
     this.setState({ images: [...this.state.images, url]});
   }
 }
+
+const styles = StyleSheet.create({
+  linearGradient: {
+    width: '80%',
+    height: 40,
+    marginTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    // borderRadius: 50,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'black'
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 25,
+  }
+})

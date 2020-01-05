@@ -42,24 +42,17 @@ class UserProfileScreen extends React.Component {
                         <Text style={styles.backToMenuText} >Menu</Text>
                       </TouchableOpacity>
                       <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
-                      <Image source={{uri: this.props.user.photo}} style={styles.menuCircle}/>
-                      <TouchableOpacity style={styles.button} onPress={() => {  this.setState({ imageUpload: <ImageUpload /> })
+                      <TouchableOpacity style={styles.imageBtn} onPress={() => {  this.setState({ imageUpload: <ImageUpload /> })
                       }}>
-                        <LinearGradient
-                          colors={['gray', 'black']}
-                          style={styles.linearGradient}
-                          onPress={() => console.log('does this work?')}
-                        >
-                        <Text style={styles.buttonText}>Edit</Text>
-                        </LinearGradient>
+                      <Image source={{uri: this.props.user.photo}} style={styles.userImage} onPress={() => console.log('does this work?')}/>
                       </TouchableOpacity>
+                      <Text style={styles.infoHeader}>About Me:</Text>
+                      <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
+                      <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
+                      <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
+                      <Text style={styles.infoHeader}>Description:</Text>
+                      <Text style={styles.userInfoText}>{this.props.user.description}</Text>
                       {this.state.imageUpload && <View>{this.state.imageUpload}</View>}
-                      <Text style={styles.backToMenuText}>About Me:</Text>
-                      <Text style={styles.menuOptionsText}>First Name: {this.props.user.first_name}</Text>
-                      <Text style={styles.menuOptionsText}>Last Name: {this.props.user.last_name}</Text>
-                      <Text style={styles.menuOptionsText}>Email: {this.props.user.email}</Text>
-                      <Text style={styles.backToMenuText}>Description:</Text>
-                      <Text style={styles.menuOptionsText}>{this.props.user.description}</Text>
                   </View>
                 </View>
             </SafeAreaView>
@@ -90,7 +83,8 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       marginLeft: 5,
       width: '25%',
-      position: 'absolute'
+      position: 'absolute',
+      padding: 10
     },
     backToMenuText: {
       fontSize: 25,
@@ -102,18 +96,35 @@ const styles = StyleSheet.create({
       color: 'rgba(0,0,0,0.57)',
       fontSize: 30,
       fontWeight: '300',
+      padding: 10
     },
-    menuCircle: {
+    imageBtn: {
+      height: 265,
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    userImage: {
       aspectRatio: 1/1,
-      height: '42%',
+      height: 199,
       borderRadius: 100,
       borderColor: 'black',
-      borderWidth: 2
+      borderWidth: 2,
+      // marginLeft: 100,
+      // padding: 20
     },
-    menuOptionsText: {
-      fontSize: 15,
+    userInfoText: {
+      fontSize: 20,
       fontWeight: '300',
       marginTop: 5,
+      paddingLeft: 45
+    },
+    infoHeader: {
+      fontSize: 25,
+      color: 'rgb(53, 129, 252)',
+      marginLeft: 5,
+      paddingLeft: 10,
+      marginBottom: 20,
+      marginTop: 20,
     },
     input: {
       height: 30,
@@ -129,20 +140,20 @@ const styles = StyleSheet.create({
     },
     linearGradient: {
       width: '20%',
-      borderRadius: 25,
       height: 50,
       alignItems: 'center',
       justifyContent: 'center',
     },
     button: {
-      // borderRadius: 50,
-      borderTopRightRadius: 20,
-      borderBottomRightRadius: 20,
-      borderBottomLeftRadius: 20,
-      borderTopLeftRadius: 20,
+      borderRadius: 100,
+      // borderTopRightRadius: 20,
+      // borderBottomRightRadius: 20,
+      // borderBottomLeftRadius: 20,
+      // borderTopLeftRadius: 20,
       alignItems: 'center',
       justifyContent: 'center',
-      color: 'black'
+      color: 'black',
+      marginTop: 0
     },
     buttonText: {
       color: '#fff',
