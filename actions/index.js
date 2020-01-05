@@ -22,3 +22,13 @@ export const setSwipeUser = swipeUser => ({
   type: 'SET_SWIPE_USER',
   swipeUser
 })
+
+export const setSwipePack = swipePack => ({
+  type: 'SET_SWIPE_PACK',
+  swipePack
+})
+
+export const setSwipePackPhotos = swipePhotos => ({
+  type: 'SET_SWIPE_PACK_PHOTOS',
+  swipePhotos
+})

@@ -15,6 +15,7 @@ import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
 import { setSwipeUser, setOtherUsers } from '../../actions'
 import { connect } from 'react-redux'
+import * as apiCalls from '../../apiCalls'
 
 export class HomeScreen extends React.Component {
   state = {
@@ -57,6 +58,19 @@ export class HomeScreen extends React.Component {
    this.props.setSwipeUser(selectedUser)
    this.props.otherUsers.splice(randomIndex, 1)
    console.log('other users now', this.props.otherUsers)
+ }
+
+ getSwipePack = async (userId) => {
+  const swipePackResponse = await apiCalls.getDogsForUser(userId)
+  this.getSwipePackImages(swipePackResponse)
+
+ }
+
+ getSwipePackImages = async (swipePack) => {
+   swipePack.forEach( async dog => {
+     const swipePics = await apiCalls.getDogImagesById(dog.id)
+     this.props.setSwipePackPhotos(swipePics)
+   })
 
  }
 
@@ -205,7 +219,8 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   setSwipeUser: (swipeUser) => dispatch(setSwipeUser(swipeUser)),
-  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers))
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
+  setSwipePack: (swipePack) => dispatch(setSwipePack(swipePack))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(HomeScreen)
