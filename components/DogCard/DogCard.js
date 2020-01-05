@@ -13,6 +13,9 @@ const DogCard = (props) => {
         return (
         <View key={i}>
             <Text>Name: {dog.name}</Text>
+            <View style={styles.imageContainer}>
+            
+            </View>
             {dogImages}
             <Text>Sex: {dog.sex}</Text>
             <Text>Breed: {dog.breed}</Text>

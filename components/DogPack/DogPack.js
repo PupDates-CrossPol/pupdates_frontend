@@ -25,20 +25,22 @@ export default class DogPackScreen extends React.Component {
 
     render() {
         return (
-             <ScrollView>
-             <View >
-               <View style={styles.componentTitleHeader}>
-                   <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
-                     <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
-                     <Text style={styles.backToMenuText} >Menu</Text>
-                   </TouchableOpacity>
-                   <Text style={styles.componentTitle} >Dog Pack</Text>
-               </View>
-               <View style={styles.matches}>
-                 <DogCard  />
-               </View>
-             </View>
-           </ScrollView>
+          <SafeAreaView>
+            <View style={styles.componentTitleHeader} >
+                <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                  <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+                  <Text style={styles.backToMenuText} >Menu</Text>
+                </TouchableOpacity>
+                <Text style={styles.componentTitle} >Dog Pack</Text>
+            </View>
+            <ScrollView>
+            <View >
+              <View style={styles.matches}>
+                <DogCard  />
+              </View>
+            </View>
+            </ScrollView>
+          </SafeAreaView>
         )
     }
 }
@@ -62,27 +64,31 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 50,
+    backgroundColor: 'transparent'
     // fontFamily: 'major-mono-display'
   },
   componentTitleHeader: {
-    marginTop: '2%',
+    backgroundColor: 'transparent'
   },
   backToMenu: {
     flexDirection: 'row',
     marginLeft: 5,
     width: '25%',
-    position: 'absolute'
+    position: 'absolute',
+    backgroundColor: 'transparent'
   },
   backToMenuText: {
     fontSize: 25,
     color: 'rgb(53, 129, 252)',
     marginLeft: 5,
+    backgroundColor: 'transparent'
   },
   componentTitle: {
     alignSelf: 'center',
     color: 'rgba(0,0,0,0.57)',
     fontSize: 30,
     fontWeight: '300',
+    backgroundColor: 'transparent'
   },
   input: {
     height: 30,
