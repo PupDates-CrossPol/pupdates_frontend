@@ -3,10 +3,12 @@ import { user } from './user'
 import { pack } from './pack'
 import { packPhotos } from './packPhotos'
 import { otherUsers } from './otherUsers'
+import { swipeUser } from './swipeUser'
 
 export const rootReducer = combineReducers({
   user,
   pack,
   packPhotos,
-  otherUsers
+  otherUsers,
+  swipeUser
 })

@@ -13,6 +13,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body, Button } from '
 import { Entypo } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
+import { setSwipeUser } from '../../actions'
 
 export default class HomeScreen extends React.Component {
   state = {

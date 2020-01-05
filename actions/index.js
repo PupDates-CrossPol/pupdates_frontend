@@ -17,3 +17,8 @@ export const setOtherUsers = otherUsers => ({
   type: 'SET_OTHER_USERS',
   otherUsers
 })
+
+export const setSwipeUser = swipeUser => ({
+  type: 'SET_SWIPE_USER',
+  swipeUser
+})

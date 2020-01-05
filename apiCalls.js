@@ -33,6 +33,7 @@ export const getDogsForUser = async (userId) => {
     throw Error(`Failed to retrieve user's dogs`)
   }
   const userDogs = await response.json()
+  console.log('user dogs', userDogs)
   return userDogs
 }
 
@@ -42,6 +43,7 @@ export const getAllDogImages = async () => {
     throw Error('Failed to fetch images')
   }
   const dogImages = await response.json()
+  console.log('dog images', dogImages)
   return dogImages
 }
 
