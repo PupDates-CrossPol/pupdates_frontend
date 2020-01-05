@@ -1,9 +1,10 @@
 export const getAllUsers = async () => {
-  const response = await fetch('https://node-pupdates-backend.herokuapp.com/api/v1/users');
+  const response = await fetch('https://backend-pupdates.herokuapp.com/api/v1/users');
   if (!response.ok) {
     throw Error('Failed to fetch users');
   }
   const users = await response.json();
+  console.log('api calls users', users)
   return users;
 };
 

@@ -50,6 +50,8 @@ export class LoginScreen extends React.Component {
     } else {
       this.props.setUserInfo(loginResponse)
       this.getPackInfo(loginResponse.id)
+      const allUsers = await apiCalls.getAllUsers()
+      console.log('all users data', allUsers.data)
       this.props.navigation.navigate('Home');
     }
   }
@@ -70,8 +72,8 @@ export class LoginScreen extends React.Component {
       <ScrollView style={styles.contentContainer}>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
-        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
+        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
+        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
         <LinearGradient
           colors={['orange', '#c32525']}

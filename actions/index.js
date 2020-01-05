@@ -12,3 +12,8 @@ export const setPackPhotos = packPhotos => ({
   type: 'SET_PACK_PHOTOS',
   packPhotos
 })
+
+export const setOthersUsers = otherUsers => ({
+  type: 'SET_OTHER_USERS',
+  otherUsers
+})
