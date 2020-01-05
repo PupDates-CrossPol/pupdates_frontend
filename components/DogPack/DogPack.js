@@ -4,6 +4,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
+import DogCard from '../DogCard/DogCard'
 
 export default class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
@@ -32,6 +33,7 @@ export default class DogPackScreen extends React.Component {
                     <Text>This is the DogPack!</Text>
                     <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
                     <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
+                    <DogCard />
                 </View>
             </SafeAreaView>
         )
