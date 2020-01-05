@@ -52,6 +52,10 @@ export class LoginScreen extends React.Component {
       this.getPackInfo(loginResponse.id)
       const allUsers = await apiCalls.getAllUsers()
       console.log('all users data', allUsers)
+      const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.id)
+      console.log('other users', otherUsers)
+      this.props.setOtherUsers(otherUsers)
+      console.log('set other users', this.props.otherUsers)
       this.props.navigation.navigate('Home');
     }
   }

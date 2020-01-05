@@ -4,7 +4,6 @@ export const getAllUsers = async () => {
     throw Error('Failed to fetch users');
   }
   const users = await response.json();
-  console.log('api calls users', users.data)
   return users.data;
 };
 
