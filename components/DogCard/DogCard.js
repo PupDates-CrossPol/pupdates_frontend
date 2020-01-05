@@ -5,11 +5,15 @@ import { setPackInfo, setPackPhotos } from '../../actions'
 
 const DogCard = (props) => {
     const dogPackCards = props.pack.map( (dog, i) => {
-        console.log('dog-line 9', dog);
+        
+        const dogImages = props.packPhotos.map( (dogImage, i) =>  {
+            return <Image key={i} source={{uri: dogImage.image_url}} style={styles.menuCircle}/>
+        });
         
         return (
         <View key={i}>
             <Text>Name: {dog.name}</Text>
+            {dogImages}
             <Text>Sex: {dog.sex}</Text>
             <Text>Breed: {dog.breed}</Text>
             <Text>Size: {dog.size}</Text>
@@ -19,7 +23,6 @@ const DogCard = (props) => {
             <Text>Good With Kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
         </View>
         )
-
     })
     
     return (
@@ -29,6 +32,18 @@ const DogCard = (props) => {
         )
 
 }
+
+const styles = StyleSheet.create({
+    menuCircle: {
+      aspectRatio: 1/1,
+      height: 300,
+      width: 300,
+      borderRadius: 100,
+      borderColor: 'black',
+      borderWidth: 2,
+    },
+   
+  });
 
 export const mapStateToProps = state => ({
     user: state.user,

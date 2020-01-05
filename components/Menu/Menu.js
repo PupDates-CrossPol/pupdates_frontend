@@ -38,7 +38,7 @@ class MenuScreen extends React.Component {
                     </View>
                     <View style={styles.menuOptions}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')} style={styles.menuImgText}>
-                        <Image source={{uri: this.props.user.photo}} style={styles.menuCircle} />
+                        <Image source={{uri: 'https://images.pexels.com/photos/752383/pexels-photo-752383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'}} style={styles.menuCircle} />
                         <Text style={styles.menuOptionsText} >{this.props.user.first_name}</Text>
                       </TouchableOpacity>
                     </View>
