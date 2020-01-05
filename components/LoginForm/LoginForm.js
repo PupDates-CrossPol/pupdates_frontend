@@ -51,24 +51,11 @@ export class LoginScreen extends React.Component {
       this.props.setUserInfo(loginResponse)
       this.getPackInfo(loginResponse.id)
       const allUsers = await apiCalls.getAllUsers()
-      console.log('all users data', allUsers)
       const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.id)
-      console.log('other users', otherUsers)
       this.props.setOtherUsers(otherUsers)
-      console.log('set other users', this.props.otherUsers)
       this.props.navigation.navigate('Home');
     }
   }
-
-  // confirmPassword = async () => {
-  //   const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
-  //   const users = await response.json();
-  //   const currentUser = users.find(user => user.email === this.state.email)
-  //   if (currentUser.password === this.state.password) {
-  //     this.setState({ id: currentUser.id });
-  //     this.props.navigation.navigate('Home');
-  //   }
-  // }
 
   render() {
     return (
@@ -148,11 +135,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// const AppNavigator = createSwitchNavigator({
-//   Login: {
-//     screen: LoginScreen,
-//   },
-// });
 
 export const mapStateToProps = state => ({
   user: state.user,
@@ -170,4 +152,3 @@ export const mapDispatchToProps = dispatch => ({
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
 
-// export default createAppContainer(AppNavigator)
