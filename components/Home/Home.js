@@ -54,33 +54,28 @@ export class HomeScreen extends React.Component {
  getRandomUser = () => {
    let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
    let selectedUser = this.props.otherUsers[randomIndex]
-  //  console.log('selecteduser', selectedUser)
    this.props.setSwipeUser(selectedUser)
    this.props.otherUsers.splice(randomIndex, 1)
-  //  console.log('other user id', selectedUser.id)
    this.getSwipePack(selectedUser.id)
-  //  console.log('other users now', this.props.otherUsers)
    
  }
 
- getSwipePack = async (userId) => {
-  const swipePackResponse = await apiCalls.getDogsForUser(userId)
+ getSwipePack = async (selectedUserId) => {
+  const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
   this.getSwipePackImages(swipePackResponse)
   this.props.setSwipePack(swipePackResponse)
-  console.log('swipe pack', this.props.swipePack)
-
  }
 
  getSwipePackImages = async (swipePack) => {
-   swipePack.forEach( async dog => {
+    swipePack.forEach( async dog => {
      const swipePics = await apiCalls.getDogImagesById(dog.id)
      this.props.setSwipePackPhotos(swipePics)
-   })
-   console.log('swipe pack photos', this.props.swipePackPhotos)
-
+     console.log('swipe photos', this.props.swipePackPhotos)
+    })
  }
 
   render() {
+    console.log('swipe pack pics', this.props.swipePackPhotos)
     return (
       <ScrollView>
       <Container>
