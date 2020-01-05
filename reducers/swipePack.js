@@ -1,7 +1,7 @@
-export const swipePack = (state = [], action) => {
+export const swipePack = (state = null, action) => {
   switch (action.type) {
     case 'SET_SWIPE_PACK':
-      return [...state, action.swipePack]
+      return action.swipePack
     default:
       return state;
   }

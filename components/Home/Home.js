@@ -13,7 +13,7 @@ import { Container, Header, Content, Card, CardItem, Text, Body, Button } from '
 import { Entypo } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
-import { setSwipeUser, setOtherUsers } from '../../actions'
+import { setSwipeUser, setOtherUsers, setSwipePack, setSwipePackPhotos } from '../../actions'
 import { connect } from 'react-redux'
 import * as apiCalls from '../../apiCalls'
 
@@ -54,15 +54,20 @@ export class HomeScreen extends React.Component {
  getRandomUser = () => {
    let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
    let selectedUser = this.props.otherUsers[randomIndex]
-   console.log('selecteduser', selectedUser)
+  //  console.log('selecteduser', selectedUser)
    this.props.setSwipeUser(selectedUser)
    this.props.otherUsers.splice(randomIndex, 1)
-   console.log('other users now', this.props.otherUsers)
+  //  console.log('other user id', selectedUser.id)
+   this.getSwipePack(selectedUser.id)
+  //  console.log('other users now', this.props.otherUsers)
+   
  }
 
  getSwipePack = async (userId) => {
   const swipePackResponse = await apiCalls.getDogsForUser(userId)
   this.getSwipePackImages(swipePackResponse)
+  this.props.setSwipePack(swipePackResponse)
+  console.log('swipe pack', this.props.swipePack)
 
  }
 
@@ -71,6 +76,7 @@ export class HomeScreen extends React.Component {
      const swipePics = await apiCalls.getDogImagesById(dog.id)
      this.props.setSwipePackPhotos(swipePics)
    })
+   console.log('swipe pack photos', this.props.swipePackPhotos)
 
  }
 
@@ -214,13 +220,16 @@ leftNavIcon: {
 export const mapStateToProps = state => ({
   swipeUser: state.swipeUser,
   user: state.user,
-  otherUsers: state.otherUsers
+  otherUsers: state.otherUsers,
+  swipePack: state.swipePack,
+  swipePackPhotos: state.swipePackPhotos
 })
 
 export const mapDispatchToProps = dispatch => ({
   setSwipeUser: (swipeUser) => dispatch(setSwipeUser(swipeUser)),
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
-  setSwipePack: (swipePack) => dispatch(setSwipePack(swipePack))
+  setSwipePack: (swipePack) => dispatch(setSwipePack(swipePack)),
+  setSwipePackPhotos: (swipePackPhotos) => dispatch(setSwipePackPhotos(swipePackPhotos))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(HomeScreen)
