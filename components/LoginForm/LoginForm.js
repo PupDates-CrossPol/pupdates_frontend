@@ -54,19 +54,19 @@ export class LoginScreen extends React.Component {
     }
   }
 
-  confirmPassword = async () => {
-    const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
-    const users = await response.json();
-    const currentUser = users.find(user => user.email === this.state.email)
-    if (currentUser.password === this.state.password) {
-      this.setState({ id: currentUser.id });
-      this.props.navigation.navigate('Home');
-    }
-  }
+  // confirmPassword = async () => {
+  //   const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
+  //   const users = await response.json();
+  //   const currentUser = users.find(user => user.email === this.state.email)
+  //   if (currentUser.password === this.state.password) {
+  //     this.setState({ id: currentUser.id });
+  //     this.props.navigation.navigate('Home');
+  //   }
+  // }
 
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
       <ScrollView style={styles.contentContainer}>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
@@ -89,7 +89,8 @@ export class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 20
+    paddingVertical: 20,
+  //   alignItems: 'center'
   },
 
   container: {
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 30,
-    width: '70%',
+    width: '90%',
     borderColor: 'lightgrey',
     borderRadius: 50,
     // borderColor: 'rgba(33,33,33,0.81)',
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   linearGradient: {
-    width: '70%',
+    width: '100%',
     borderRadius: 25,
     height: 50,
     alignItems: 'center',
