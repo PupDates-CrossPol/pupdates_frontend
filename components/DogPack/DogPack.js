@@ -25,7 +25,7 @@ export default class DogPackScreen extends React.Component {
 
     render() {
         return (
-          <SafeAreaView>
+          <SafeAreaView style={styles.container}>
             <View style={styles.componentTitleHeader} >
                 <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
                   <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
