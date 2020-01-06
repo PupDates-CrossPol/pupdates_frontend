@@ -16,6 +16,7 @@ import { getDogImagesById } from '../../apiCalls'
 import { setSwipeUser, setOtherUsers, setSwipePack, setSwipePackPhotos } from '../../actions'
 import { connect } from 'react-redux'
 import * as apiCalls from '../../apiCalls'
+import { SwipeDogCard } from '../SwipeDogCard/SwipeDogCard'
 
 export class HomeScreen extends React.Component {
   state = {
@@ -63,30 +64,34 @@ export class HomeScreen extends React.Component {
   const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
   this.getSwipePackImages(swipePackResponse)
   this.props.setSwipePack(swipePackResponse)
+  console.log('swipe pack', this.props.swipePack)
  }
 
  getSwipePackImages = async (swipePack) => {
     swipePack.forEach( async dog => {
      const swipePics = await apiCalls.getDogImagesById(dog.id)
      this.props.setSwipePackPhotos(swipePics)
+     console.log('swipe pack pics', this.props.swipePackPhotos)
     })
  }
 
   render() {
-    if (!this.props.swipeUser.attributes || !this.props.swipePackPhotos) {
+    console.log('swipe pack', this.props.swipePack)
+    console.log('hi', this.props.swipePackPhotos)
+    if (!this.props.swipeUser.attributes || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
       return null
     }
-    console.log('swipe user', this.props.swipeUser.attributes)
-    console.log('swipe pack pics', this.props.swipePackPhotos)
+    const packPics = this.props.swipePackPhotos.map(dog => dog.image_url)
+    console.log('pack pics', packPics)
     return (
       <ScrollView>
       <Container>
       <Content>
-        <Card style={styles.imageCard}>
+        {/* <Card style={styles.imageCard}>
         <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={this.props.swipePackPhotos} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
+            <SliderBox images={packPics} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
@@ -108,7 +113,10 @@ export class HomeScreen extends React.Component {
                 <Ionicons name="md-paw" size={40} color="black"/>
               </TouchableOpacity>
             </View>
-        </Card>
+        </Card> */}
+        <SwipeDogCard
+        swipePack={this.props.swipePack}
+        swipePackPhotos={this.props.swipePackPhotos} />
       </Content>
     </Container>
     </ScrollView>
