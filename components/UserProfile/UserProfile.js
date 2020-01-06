@@ -46,13 +46,13 @@ class UserProfileScreen extends React.Component {
                       }}>
                       <Image source={{uri: this.props.user.photo}} style={styles.userImage} onPress={() => console.log('does this work?')}/>
                       </TouchableOpacity>
+                      {this.state.imageUpload && <View>{this.state.imageUpload}</View>}
                       <Text style={styles.infoHeader}>About Me:</Text>
                       <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
                       <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
                       <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
                       <Text style={styles.infoHeader}>Description:</Text>
                       <Text style={styles.userInfoText}>{this.props.user.description}</Text>
-                      {this.state.imageUpload && <View>{this.state.imageUpload}</View>}
                   </View>
                 </View>
             </SafeAreaView>
