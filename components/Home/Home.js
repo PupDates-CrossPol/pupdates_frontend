@@ -78,7 +78,8 @@ export class HomeScreen extends React.Component {
   render() {
     console.log('swipe pack', this.props.swipePack)
     console.log('hi', this.props.swipePackPhotos)
-    if (!this.props.swipeUser.attributes || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
+    console.log('swipe user', this.props.swipeUser)
+    if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
       return null
     }
     const packPics = this.props.swipePackPhotos.map(dog => dog.image_url)
@@ -87,36 +88,10 @@ export class HomeScreen extends React.Component {
       <ScrollView>
       <Container>
       <Content>
-        {/* <Card style={styles.imageCard}>
-        <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
-          <CardItem style={styles.imageCardContent}>
-            <Body>
-            <SliderBox images={packPics} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
-            </Body>
-          </CardItem>
-          <CardItem style={styles.imageCardContentText}>
-            <Body style={styles.infoBody}>
-              <Text style={styles.infoTextName}>Rose</Text>
-              <Text style={styles.infoText}>Golden Retriever</Text>
-              <Text style={styles.infoText}>3 Years Old</Text>
-              <Text style={styles.infoText}>Female</Text>
-              <Text style={styles.infoText}>Spayed? Yes</Text>
-              <Text style={styles.infoText}>Vaccinated? Yes</Text>
-              <Text style={styles.infoText}>Good with kids? Yes</Text>
-            </Body>
-          </CardItem>
-            <View style={styles.pawBtn}>
-              <TouchableOpacity onPress={() => console.log('DISLIKE')}>
-                <Ionicons name="ios-thumbs-down" size={40} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => console.log('LIKE')}>
-                <Ionicons name="md-paw" size={40} color="black"/>
-              </TouchableOpacity>
-            </View>
-        </Card> */}
         <SwipeDogCard
         swipePack={this.props.swipePack}
-        swipePackPhotos={this.props.swipePackPhotos} />
+        swipePackPhotos={this.props.swipePackPhotos}
+        swipeUser={this.props.swipeUser} />
       </Content>
     </Container>
     </ScrollView>
