@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -68,11 +68,12 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-      <ScrollView style={styles.contentContainer}>
+      {/* <ScrollView style={styles.contentContainer}> */}
+        <KeyboardAvoidingView style={styles.contentContainer} behavior="padding" enabled>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
-        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
+          <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
+          <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
         <LinearGradient
           colors={['orange', '#c32525']}
@@ -82,8 +83,9 @@ export class LoginScreen extends React.Component {
             <Text style={styles.buttonText}>Login</Text>
         </LinearGradient>
           </TouchableOpacity>
-        <ImageUpload />
-      </ScrollView>
+        {/* <ImageUpload /> */}
+      {/* </ScrollView> */}
+          </KeyboardAvoidingView>
       </SafeAreaView>
     );
   }
