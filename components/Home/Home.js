@@ -57,7 +57,6 @@ export class HomeScreen extends React.Component {
    this.props.setSwipeUser(selectedUser)
    this.props.otherUsers.splice(randomIndex, 1)
    this.getSwipePack(selectedUser.id)
-   
  }
 
  getSwipePack = async (selectedUserId) => {
@@ -74,15 +73,20 @@ export class HomeScreen extends React.Component {
  }
 
   render() {
+    if (!this.props.swipeUser.attributes || !this.props.swipePackPhotos) {
+      return null
+    }
+    console.log('swipe user', this.props.swipeUser.attributes)
+    console.log('swipe pack pics', this.props.swipePackPhotos)
     return (
       <ScrollView>
       <Container>
       <Content>
         <Card style={styles.imageCard}>
-          <Text style={styles.packName}> Jordan's Pack </Text>
+        <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
+            <SliderBox images={this.props.swipePackPhotos} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
