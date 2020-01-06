@@ -21,7 +21,7 @@ export const SwipeDogCard = (props) => {
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
             <Body style={styles.infoBody}>
-              <Text style={styles.infoTextName}>Name: {dog.name}</Text>
+              <Text style={styles.infoTextName}>{dog.name}</Text>
               <Text style={styles.infoText}>Breed: {dog.breed}</Text>
               <Text style={styles.infoText}>Age: {dog.age}</Text>
               <Text style={styles.infoText}>Gender: {dog.sex}</Text>
@@ -120,10 +120,11 @@ export const SwipeDogCard = (props) => {
       alignSelf: 'stretch'
     },
     infoTextName: {
-      fontSize: 30
+      fontSize: 30,
+      textAlign: 'left'
     },
     infoBody: {
-      alignItems: 'center',
+      // alignItems: 'center',
       flexDirection: 'column',
       justifyContent: 'center',
       textAlign: 'left',

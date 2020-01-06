@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     width: '80%'
   },
   packName: {
-    fontSize: 25
+    fontSize: 25,
+    textAlign: 'center'
   },
   imageCardContent: {
     alignItems: 'center',
