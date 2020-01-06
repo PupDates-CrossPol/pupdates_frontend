@@ -101,7 +101,7 @@ class ImageUpload extends React.Component {
   addImg = async () => {
     const { id, email, first_name, last_name, description } = this.props.user
     this.setState({ image: null });
-    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL()
+    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
     this.setState({ images: [...this.state.images, url]});
     this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
     const user = await apiCalls.patchUserPhoto(url, id)
