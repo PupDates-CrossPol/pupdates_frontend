@@ -4,7 +4,6 @@ import * as Font from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
 import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
@@ -82,7 +81,6 @@ export class LoginScreen extends React.Component {
             <Text style={styles.buttonText}>Login</Text>
         </LinearGradient>
           </TouchableOpacity>
-        <ImageUpload />
       </ScrollView>
       </SafeAreaView>
     );
