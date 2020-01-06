@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from '../Home/Home'
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { connect } from 'react-redux'
+import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
+import DogCard from '../DogCard/DogCard'
 
-export default class DogPackScreen extends React.Component {
+class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -27,83 +27,123 @@ export default class DogPackScreen extends React.Component {
 
     render() {
         return (
-            <SafeAreaView>
-                <View>
-                    <Text>This is the DogPack!</Text>
-                    <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image} onPress={() => console.log('wooooof')} />
-                    <Button onPress={() => this.props.navigation.navigate('Home')} title="Go Home" />
-                </View>
-            </SafeAreaView>
+          <SafeAreaView style={styles.container}>
+            <View style={styles.componentTitleHeader} >
+                <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                  <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+                  <Text style={styles.backToMenuText} >Menu</Text>
+                </TouchableOpacity>
+        <Text style={styles.componentTitle} >{this.props.user.first_name}'s Dog Pack</Text>
+            </View>
+            <ScrollView>
+            <View >
+              <View style={styles.matches}>
+                <DogCard  />
+              </View>
+            </View>
+            </ScrollView>
+          </SafeAreaView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      marginTop: 90
-    },
-    logo: {
-        height: 40,
-        width: 40,
-    }, 
-    image: {
-      height: 140,
-      width: 140,
-    },
-    title: {
-      fontSize: 50,
-      // fontFamily: 'major-mono-display'
-    },
-    input: {
-      height: 30,
-      width: '70%',
-      borderColor: 'lightgrey',
-      borderRadius: 50,
-      // borderColor: 'rgba(33,33,33,0.81)',
-      borderWidth: 1.5,
-      padding: 10,
-      height: 60,
-      margin: 20,
-      alignItems: 'center'
-    },
-    linearGradient: {
-      width: '70%',
-      borderRadius: 25,
-      height: 50,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    button: {
-      // borderRadius: 50,
-      borderTopRightRadius: 20,
-      borderBottomRightRadius: 20,
-      borderBottomLeftRadius: 20,
-      borderTopLeftRadius: 20,
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: 'black'
-    },
-    buttonText: {
-      color: '#fff',
-      fontSize: 25,
-    },
-    navTitle: {
-        width: 160,
-        height: 40,
-        marginBottom: 5,
-    },
-    rightNavIcon: { 
-        marginRight: 20,  
-        marginBottom: 10, 
-    },
-    leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
-  });
-// const AppNavigator = createStackNavigator({
-//     DogPack: {
-//         screen: DogPackScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
+  container: {
+    flex: 1,
+  },
+  matches: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  logo: {
+      height: 40,
+      width: 40,
+  }, 
+  image: {
+    height: 140,
+    width: 140,
+  },
+  title: {
+    fontSize: 50,
+    backgroundColor: 'transparent'
+    // fontFamily: 'major-mono-display'
+  },
+  componentTitleHeader: {
+    backgroundColor: 'transparent'
+  },
+  backToMenu: {
+    flexDirection: 'row',
+    marginLeft: 5,
+    width: '25%',
+    position: 'absolute',
+    backgroundColor: 'transparent'
+  },
+  backToMenuText: {
+    fontSize: 25,
+    color: 'rgb(53, 129, 252)',
+    marginLeft: 5,
+    backgroundColor: 'transparent'
+  },
+  componentTitle: {
+    alignSelf: 'center',
+    color: 'rgba(0,0,0,0.57)',
+    fontSize: 30,
+    fontWeight: '300',
+    backgroundColor: 'transparent'
+  },
+  input: {
+    height: 30,
+    width: '70%',
+    borderColor: 'lightgrey',
+    borderRadius: 50,
+    // borderColor: 'rgba(33,33,33,0.81)',
+    borderWidth: 1.5,
+    padding: 10,
+    height: 60,
+    margin: 20,
+    alignItems: 'center'
+  },
+  linearGradient: {
+    width: '70%',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    // borderRadius: 50,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'black'
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 25,
+  },
+  navTitle: {
+      width: 160,
+      height: 40,
+      marginBottom: 5,
+  },
+  rightNavIcon: { 
+      marginRight: 20,  
+      marginBottom: 10, 
+  },
+  leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
+});
+
+export const mapStateToProps = state => ({
+  user: state.user,
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(DogPackScreen)
