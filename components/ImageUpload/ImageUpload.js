@@ -5,8 +5,11 @@ import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import * as apiCalls from '../../apiCalls';
+import { connect } from 'react-redux';
+import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions';
 
-export default class ImageUpload extends React.Component {
+class ImageUpload extends React.Component {
 	state = {
     id: '',
     image: null,
@@ -43,7 +46,7 @@ export default class ImageUpload extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => console.log('cancel')}>
           <LinearGradient
-            colors={['orange', '#c32525']}
+            colors={['gray', 'black']}
             style={styles.linearGradient}
           >
               <Text style={styles.buttonText}>Cancel</Text>
@@ -96,9 +99,12 @@ export default class ImageUpload extends React.Component {
   }
 
   addImg = async () => {
+    const { id, email, first_name, last_name, description } = this.props.user
     this.setState({ image: null });
-    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
+    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL()
     this.setState({ images: [...this.state.images, url]});
+    this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
+    const user = await apiCalls.patchUserPhoto(url, id)
   }
 }
 
@@ -125,3 +131,17 @@ const styles = StyleSheet.create({
     fontSize: 25,
   }
 })
+
+export const mapStateToProps = state => ({
+  user: state.user,
+  pack: state.pack,
+  packPhotos: state.packPhotos
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)

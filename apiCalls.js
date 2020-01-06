@@ -92,32 +92,16 @@ export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed,
   return newDog
 }
 
+export const patchUserPhoto = async (photo, id) => {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify(photo),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
-
-
-
-export const postPalette = async (project_id, palette_name, color_1, color_2, color_3, color_4, color_5) => {
-  const response = await fetch(process.env.REACT_APP_BACKEND + '/api/v1/palettes', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(
-      {
-        project_id,
-        palette_name,
-        color_1,
-        color_2,
-        color_3,
-        color_4,
-        color_5,
-      },
-    ),
-  });
-  if (!response.ok) {
-    throw Error('Failed to POST palette');
-  }
-  const message = await response.json();
-  return message;
+  const resp = await fetch(`https://pupdates-be.herokuapp.com/api/v1/users/${id}`, options)
+  const data = await resp.json();
+  return data
 };
-
-
-
