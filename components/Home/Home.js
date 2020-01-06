@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView, SafeAreaView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -52,20 +52,7 @@ export class HomeScreen extends React.Component {
     this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
   
-  getSwipePackImages = async (swipePack) => {
-     swipePack.forEach( async dog => {
-      const swipePics = await apiCalls.getDogImagesById(dog.id)
-      this.props.setSwipePackPhotos(swipePics)
-      console.log('swipe photos', this.props.swipePackPhotos)
-     })
-  }
-
-  getSwipePack = async (selectedUserId) => {
-   const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
-   this.getSwipePackImages(swipePackResponse)
-   this.props.setSwipePack(swipePackResponse)
-  }
-
+ 
  getRandomUser = () => {
    let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
    let selectedUser = this.props.otherUsers[randomIndex]
@@ -75,19 +62,31 @@ export class HomeScreen extends React.Component {
  }
 
 
-  render() {
-    console.log('swipe pack', this.props.swipePack)
-    console.log('hi', this.props.swipePackPhotos)
-    console.log('swipe user', this.props.swipeUser)
+ getSwipePack = async (selectedUserId) => {
+  const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
+  this.getSwipePackImages(swipePackResponse)
+  this.props.setSwipePack(swipePackResponse)
+ 
+ }
+
+ getSwipePackImages = async (swipePack) => {
+    swipePack.forEach( async dog => {
+     const swipePics = await apiCalls.getDogImagesById(dog.id)
+     this.props.setSwipePackPhotos(swipePics)
+     
+    })
+ }
+
+render() {
     if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
       return null
     }
-    const packPics = this.props.swipePackPhotos.map(dog => dog.image_url)
-    console.log('pack pics', packPics)
     return (
+      <SafeAreaView>
       <ScrollView>
       <Container>
       <Content>
+      <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
         <SwipeDogCard
         swipePack={this.props.swipePack}
         swipePackPhotos={this.props.swipePackPhotos}
@@ -95,6 +94,16 @@ export class HomeScreen extends React.Component {
       </Content>
     </Container>
     </ScrollView>
+    <View style={styles.pawBtn}>
+              <TouchableOpacity style={styles.button} onPress={() => console.log('DISLIKE')}>
+                <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => console.log('LIKE')}>
+                <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
+              </TouchableOpacity>
+     </View>
+
+      </SafeAreaView>
 
     );
   }
@@ -192,9 +201,13 @@ leftNavIcon: {
   pawBtn: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '90%',
-  }
+    position: 'absolute',
+    bottom: 10,
+    alignSelf: 'center'
+    // marginBottom: '5%'
+  },
 });
 
 export const mapStateToProps = state => ({
