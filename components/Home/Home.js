@@ -47,9 +47,9 @@ export class HomeScreen extends React.Component {
    await Font.loadAsync({
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
-    const dogImages = await getDogImagesById(4)
+    // const dogImages = await getDogImagesById(4)
     this.getRandomUser()
-    this.setState({dogImages: dogImages.map( dog => dog.image_url)});
+    // this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
   
  

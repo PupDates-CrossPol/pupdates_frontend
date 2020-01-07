@@ -13,6 +13,10 @@ import { rootReducer } from './reducers/index.js'
 import { Provider, connect } from 'react-redux'
 import { logger } from 'redux-logger'
 
+
+
+firebase.initializeApp(ApiKeys.firebaseConfig);
+
 const store = createStore(rootReducer)
 
 let LoginFormContainer = connect(state => ({ user: state.user })(LoginForm))
