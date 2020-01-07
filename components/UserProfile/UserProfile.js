@@ -127,14 +127,14 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: '300',
       marginTop: 5,
-      paddingLeft: 45,
+      paddingLeft: 65,
       color: 'rgba(0,0,0,0.57)',
     },
     infoHeader: {
       fontSize: 25,
       color: 'rgb(21, 112, 125)',
       marginLeft: 5,
-      paddingLeft: 10,
+      paddingLeft: 15,
       marginBottom: 20,
 
       marginTop: 20,
