@@ -8,16 +8,21 @@ import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, Scr
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import ApiKeys from '../../ApiKeys';
+
+firebase.initializeApp(ApiKeys.firebaseConfig);
 
 class ImageUpload extends React.Component {
 	state = {
     id: '',
-    images: []
+    images: [],
+    loading: false
   }
 
   render() {
   	return (
   		<SafeAreaView>
+      {this.state.loading && <Text>Loading</Text>}
         <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
           <LinearGradient
             colors={['orange', '#c32525']}
@@ -54,6 +59,8 @@ class ImageUpload extends React.Component {
   	)
   }
 
+setTimeout
+
   selectImg() {
     this.setState({ id: '' + Math.random().toString(36).substr(2, 9) });
     ImagePicker.requestCameraRollPermissionsAsync()
@@ -63,6 +70,7 @@ class ImageUpload extends React.Component {
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
             	this.props.setTempUserImage(response.uri);
+              setTimeout(this.addImg, 10000)
             }
         )
       }
@@ -79,6 +87,7 @@ class ImageUpload extends React.Component {
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
             	this.props.setTempUserImage(response.uri);
+              setTimeout(this.addImg, 10000)
             }
         )
       }
@@ -87,6 +96,7 @@ class ImageUpload extends React.Component {
   }
 
   uploadImg = async (uri, imageId) => {
+    this.setState({loading: true})
     const response = await fetch(uri);
     const blob = await response.blob();
 
@@ -102,6 +112,7 @@ class ImageUpload extends React.Component {
     this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
     const user = await apiCalls.patchUserPhoto(url, id)
     this.props.setImageUpload(null);
+    this.setState({loading: false})
   }
 }
 
