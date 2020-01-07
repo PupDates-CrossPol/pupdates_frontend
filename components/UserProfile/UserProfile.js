@@ -31,7 +31,6 @@ class UserProfileScreen extends React.Component {
       })
 
     render() {
-      console.log('user', this.props.user)
         return (
             <SafeAreaView>
                 <View>
@@ -97,7 +96,6 @@ const styles = StyleSheet.create({
     },
     componentTitle: {
       alignSelf: 'center',
-      color: 'rgba(0,0,0,0.57)',
       fontSize: 30,
       fontWeight: '300',
       padding: 10
@@ -129,14 +127,16 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: '300',
       marginTop: 5,
-      paddingLeft: 45
+      paddingLeft: 45,
+      color: 'rgba(0,0,0,0.57)',
     },
     infoHeader: {
       fontSize: 25,
-      color: 'rgb(53, 129, 252)',
+      color: 'rgb(21, 112, 125)',
       marginLeft: 5,
       paddingLeft: 10,
       marginBottom: 20,
+
       marginTop: 20,
     },
     input: {
