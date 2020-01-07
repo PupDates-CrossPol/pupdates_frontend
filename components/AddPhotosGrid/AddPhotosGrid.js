@@ -6,7 +6,6 @@ import ImageUpload from '../ImageUpload/ImageUpload'
 
 class AddDogPhotosGrid extends React.Component {
     state = {
-        modalVisible: false,
         uploadedPhotos: this.props.uploadedPhotos,
       };
 
@@ -74,11 +73,11 @@ class AddDogPhotosGrid extends React.Component {
                  <Modal
                     animationType="slide"
                     transparent={true}
-                    visible={this.state.modalVisible}
+                    visible={this.props.modalState}
                     onRequestClose={() => {
                         this.setModalVisible(!this.state.modalVisible);
                     }}>
-                <ImageUpload modalStatus={this.state.modalVisible} />
+                <ImageUpload />
               </Modal>
                 {this.createImagesAndButtonsForGrid()}
             </View>
@@ -161,14 +160,11 @@ const styles = StyleSheet.create({
 
 
   export const mapStateToProps = state => ({
-    pack: state.pack,
-    packPhotos: state.packPhotos
+    modalState: state.modalState
   })
   
   export const mapDispatchToProps = dispatch => ({
-    setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-    setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
-    
+    setModalState: (modalState) => dispatch(setModalState(modalState))
   })
   
   export default connect (mapStateToProps, mapDispatchToProps)(AddDogPhotosGrid)
