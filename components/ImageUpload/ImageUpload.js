@@ -12,7 +12,6 @@ import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUplo
 class ImageUpload extends React.Component {
 	state = {
     id: '',
-    tempUserImage: null,
     images: []
   }
 

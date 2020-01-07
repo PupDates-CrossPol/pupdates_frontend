@@ -35,15 +35,19 @@ class UserProfileScreen extends React.Component {
             <SafeAreaView>
                 <View>
                   <View style={styles.componentTitleHeader}>
-                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
+                      <TouchableOpacity style={styles.backToMenu} onPress={() => {
+                            this.props.navigation.navigate('Menu')
+                            this.props.setImageUpload(null)
+                          }
+                        }>
                         <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
                         <Text style={styles.backToMenuText} >Menu</Text>
                       </TouchableOpacity>
                       <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
                       <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
                       }>
-                      {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                      {!this.props.tempUserImage && <Image source={{uri: this.props.user.photo}} style={styles.userImage}/>}
+                        {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                        {!this.props.tempUserImage && <Image source={{uri: this.props.user.photo}} style={styles.userImage}/>}
                       </TouchableOpacity>
                       {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
                       <Text style={styles.infoHeader}>About Me:</Text>
@@ -100,7 +104,16 @@ const styles = StyleSheet.create({
     imageBtn: {
       height: 265,
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      borderBottomColor: 'rgba(0,0,0,0.57)',
+      borderBottomWidth: 1,
+      shadowColor: "#000", 
+      shadowOffset: { width: 0, height: 2, }, 
+      shadowOpacity: 0.25, 
+      shadowRadius: 3.84, 
+      elevation: 5,
+      marginLeft: 55,
+      marginRight: 55
     },
     userImage: {
       aspectRatio: 1/1,
