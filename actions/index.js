@@ -1,7 +1,7 @@
 export const setUserInfo = (user) => ({
   type: 'SET_USER_INFO',
   user,
-});
+})
 
 export const setPackInfo = pack => ({
   type: 'SET_PACK_INFO',
@@ -31,4 +31,14 @@ export const setSwipePack = swipePack => ({
 export const setSwipePackPhotos = swipePhotos => ({
   type: 'SET_SWIPE_PACK_PHOTOS',
   swipePhotos
+})
+
+export const setTempUserImage = tempUserImage => ({
+	type: 'SET_TEMP_USER_IMAGE',
+	tempUserImage
+})
+
+export const setImageUpload = imageUpload => ({
+	type: 'SET_IMAGE_UPLOAD',
+	imageUpload
 })

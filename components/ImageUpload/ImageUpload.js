@@ -7,17 +7,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
 
 class ImageUpload extends React.Component {
 	state = {
     id: '',
-    image: null,
+    tempUserImage: null,
     images: []
   }
 
   render() {
-  	let { image } = this.state;
   	return (
   		<SafeAreaView>
         <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
@@ -44,7 +43,7 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Submit</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('cancel')}>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.setImageUpload(null)}>
           <LinearGradient
             colors={['gray', 'black']}
             style={styles.linearGradient}
@@ -52,8 +51,6 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Cancel</Text>
           </LinearGradient>
         </TouchableOpacity>
-        {image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
   		</SafeAreaView>
   	)
   }
@@ -66,7 +63,7 @@ class ImageUpload extends React.Component {
           ImagePicker.launchImageLibraryAsync()
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
-            	this.setState({ image: response.uri });
+            	this.props.setTempUserImage(response.uri);
             }
         )
       }
@@ -82,7 +79,7 @@ class ImageUpload extends React.Component {
           ImagePicker.launchCameraAsync()
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
-            	this.setState({ image: response.uri });
+            	this.props.setTempUserImage(response.uri);
             }
         )
       }
@@ -100,11 +97,12 @@ class ImageUpload extends React.Component {
 
   addImg = async () => {
     const { id, email, first_name, last_name, description } = this.props.user
-    this.setState({ image: null });
+    this.props.setTempUserImage(null);
     const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
     this.setState({ images: [...this.state.images, url]});
     this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
     const user = await apiCalls.patchUserPhoto(url, id)
+    this.props.setImageUpload(null);
   }
 }
 
@@ -135,13 +133,17 @@ const styles = StyleSheet.create({
 export const mapStateToProps = state => ({
   user: state.user,
   pack: state.pack,
-  packPhotos: state.packPhotos
+  packPhotos: state.packPhotos,
+  tempUserImage: state.tempUserImage,
+  imageUpload: state.imageUpload
 })
 
 export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
+  setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)

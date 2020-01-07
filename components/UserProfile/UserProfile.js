@@ -6,13 +6,11 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 import ImageUpload from '../ImageUpload/ImageUpload';
+import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
 
 class UserProfileScreen extends React.Component {
-    state = {
-      imageUpload: null
-    }
-
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
@@ -42,11 +40,12 @@ class UserProfileScreen extends React.Component {
                         <Text style={styles.backToMenuText} >Menu</Text>
                       </TouchableOpacity>
                       <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
-                      <TouchableOpacity style={styles.imageBtn} onPress={() => {  this.setState({ imageUpload: <ImageUpload /> })
-                      }}>
-                      <Image source={{uri: this.props.user.photo}} style={styles.userImage} onPress={() => console.log('does this work?')}/>
+                      <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
+                      }>
+                      {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                      {!this.props.tempUserImage && <Image source={{uri: this.props.user.photo}} style={styles.userImage}/>}
                       </TouchableOpacity>
-                      {this.state.imageUpload && <View>{this.state.imageUpload}</View>}
+                      {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
                       <Text style={styles.infoHeader}>About Me:</Text>
                       <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
                       <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
@@ -171,12 +170,23 @@ const styles = StyleSheet.create({
     leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
   });
 
-  export const mapStateToProps = state => ({
-    user: state.user,
-    packPhotos: state.packPhotos
-  })
+export const mapStateToProps = state => ({
+  user: state.user,
+  pack: state.pack,
+  packPhotos: state.packPhotos,
+  tempUserImage: state.tempUserImage,
+  imageUpload: state.imageUpload
+})
 
-  export default connect (mapStateToProps)(UserProfileScreen)
+export const mapDispatchToProps = dispatch => ({
+  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
+  setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
+  setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(UserProfileScreen)
 // const AppNavigator = createStackNavigator({
 //     UserProfile: {
 //         screen: UserProfileScreen,

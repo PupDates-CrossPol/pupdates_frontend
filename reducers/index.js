@@ -6,6 +6,8 @@ import { otherUsers } from './otherUsers'
 import { swipeUser } from './swipeUser'
 import { swipePack } from './swipePack'
 import { swipePackPhotos } from './swipePackPhotos'
+import { tempUserImage } from './tempUserImage'
+import { imageUpload } from './imageUpload'
 
 export const rootReducer = combineReducers({
   user,
@@ -14,5 +16,7 @@ export const rootReducer = combineReducers({
   otherUsers,
   swipeUser,
   swipePack,
-  swipePackPhotos
+  swipePackPhotos,
+  tempUserImage,
+  imageUpload
 })
