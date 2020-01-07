@@ -45,7 +45,6 @@ export class LoginScreen extends React.Component {
   handleSubmit = async () => {
     const { email, password } = this.state
     const loginResponse = await apiCalls.loginUser(email, password)
-    console.log('login response', loginResponse)
     if (loginResponse.error) {
       //handle error response
     } else {
