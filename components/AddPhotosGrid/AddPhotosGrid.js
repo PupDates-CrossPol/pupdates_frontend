@@ -4,13 +4,13 @@ import { Col, Row, Grid } from "react-native-easy-grid";
 import { Ionicons } from '@expo/vector-icons';
 
 const AddDogPhotosGrid = (props) => {
-    const currentPhotos = props.uploadedPhotos
+    const uploadedPhotos = props.uploadedPhotos
 
-    // const dogPackCards = props.pack.map( (dog, i) => {
-    const dogImages = currentPhotos.map( (dogImage, i) =>  {
+    const dogImages = uploadedPhotos.map( (dogImage, i) =>  {
+        
         return (
-            <Row style={styles.row}>
-                <Image key={i} source={{uri: dogImage.image_url}} style={styles.userCircle}/>
+            <Row key={i} style={styles.row}>
+                <Image source={{uri: dogImage.image_url}} style={styles.userCircle}/>
             </Row>
                 )
     });
@@ -29,10 +29,10 @@ const AddDogPhotosGrid = (props) => {
     }
 
     const createImagesAndButtonsForGrid = () => {
-        const currentPhotos = 6 - currentDogImages.length
-        let correctDogImages = currentDogImages
-        if (currentPhotos > 0) {
-            correctDogImages =  [...dogImages, ...createButtons(currentPhotos)] 
+        const amountOfCurrentPhotos = 6 - uploadedPhotos.length
+        let correctDogImages = uploadedPhotos
+        if (amountOfCurrentPhotos > 0) {
+            correctDogImages =  [...dogImages, ...createButtons(amountOfCurrentPhotos)] 
         } else {
             correctDogImages = dogImages
         }
@@ -60,17 +60,10 @@ const AddDogPhotosGrid = (props) => {
     }
 
     return (
-    <View key={i} style={styles.container}>
+    <View style={styles.container}>
         {createImagesAndButtonsForGrid()}
     </View>
     )
-    // })
-    
-    // return (
-    //     <>
-    //     {dogPackCards}
-    //     </>
-    //     )
 
 }
 
@@ -79,8 +72,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         marginBottom: '5%',
-        borderBottomColor: 'rgba(0,0,0,0.2)',
-        borderBottomWidth: 1
+        marginTop: 15,
       },
     menuCircle: {
       aspectRatio: 1/1,
@@ -97,6 +89,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.2)',
         borderWidth: 2,
         marginBottom: '3%',
+        alignSelf: 'center'
     },
     row: {
         justifyContent: "center",

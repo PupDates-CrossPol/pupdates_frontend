@@ -103,6 +103,5 @@ export const patchUserPhoto = async (photo, id) => {
 
   const resp = await fetch(`https://pupdates-be.herokuapp.com/api/v1/users/${id}`, options)
   const data = await resp.text();
-  console.log(data)
   return data
 };

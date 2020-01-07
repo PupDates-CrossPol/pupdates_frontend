@@ -13,7 +13,11 @@ class DogPackScreen extends React.Component {
         </TouchableOpacity>
         ),
         headerTitle: () => <Image source={require('../../assets/DogPackSpread.png')} style={styles.navTitle}/>,
-        headerRight: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
+        headerRight: () => (
+          <TouchableOpacity onPress={() => navigation.navigate('AddDog')}>
+            <Image source={require('../../assets/AddDog.png')} style={styles.logo} />
+          </TouchableOpacity>
+        ),
         headerStyle: {
           backgroundColor: '#fff',
         },

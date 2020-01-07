@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         marginBottom: '5%',
         borderBottomColor: 'rgba(0,0,0,0.2)',
         borderBottomWidth: 1
-      },
+    },
     menuCircle: {
       aspectRatio: 1/1,
       height: 300,
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
         color: 'grey',
         alignSelf: 'stretch',
         marginLeft: '7%'
-
     },
     infoTextBottom: {
         textAlign: 'left',
