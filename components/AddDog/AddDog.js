@@ -9,13 +9,13 @@ import AddDogPhotosGrid from '../AddPhotosGrid/AddPhotosGrid'
 
 class AddDogScreen extends React.Component {
     state = {
-        name: '',
-        sex: '',
-        size: '',
-        age: '',
-        fixed: false,
-        vaccinated: false,
-        goodWithKids: false,
+        name: null,
+        sex: null,
+        size: null,
+        age: null,
+        fixed: null,
+        vaccinated: null,
+        goodWithKids: null,
         uploadedPhotos: []
       }
 
@@ -27,20 +27,14 @@ class AddDogScreen extends React.Component {
         ),
         headerTitle: () => <Image source={require('../../assets/AddDogSpread.png')} style={styles.navTitle}/>,
         headerRight: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        // headerStyle: {
-        //   backgroundColor: '#fff',
-        // },
-        // headerTintColor: '#fff',
-        // headerTitleStyle: {
-        //   fontWeight: 'bold',
-        // },
         headerLeftContainerStyle: styles.leftNavIcon,
         headerRightContainerStyle: styles.rightNavIcon,
       })
 
-      updateEmail(email) {
-        this.setState({ email })
-      }
+      handleChange = stateLocation => {
+        this.setState({ stateLocation });
+      };
+
 
     render() {
         return (
@@ -48,13 +42,13 @@ class AddDogScreen extends React.Component {
                 <ScrollView>
                     <View style={styles.addDogCard}>
                         <AddDogPhotosGrid uploadedPhotos={this.state.uploadedPhotos}/>
-                        <TextInput placeholder='name' style={styles.input} onChangeText={name => this.updateEmail(name)} value={this.state.name}/>
-                        <TextInput placeholder='sex' style={styles.input} onChangeText={sex => this.updateEmail(sex)} value={this.state.sex}/>
-                        <TextInput placeholder='size' style={styles.input} onChangeText={size => this.updateEmail(size)} value={this.state.size}/>
-                        <TextInput placeholder='age' style={styles.input} onChangeText={age => this.updateEmail(age)} value={this.state.age}/>
-                        <TextInput placeholder='fixed' style={styles.input} onChangeText={fixed => this.updateEmail(fixed)} value={this.state.fixed}/>
-                        <TextInput placeholder='vaccinated' style={styles.input} onChangeText={vaccinated => this.updateEmail(vaccinated)} value={this.state.vaccinated}/>
-                        <TextInput placeholder='goodWithKids' style={styles.input} onChangeText={goodWithKids => this.updateEmail(goodWithKids)} value={this.state.goodWithKids}/>
+                        <TextInput placeholder='name' style={styles.input} onChangeText={ name => this.handleChange(name)} value={this.state.name}/>
+                        <TextInput placeholder='sex' style={styles.input} onChangeText={ sex => this.handleChange(sex)} value={this.state.sex}/>
+                        <TextInput placeholder='size' style={styles.input} onChangeText={ size => this.handleChange(size)} value={this.state.size}/>
+                        <TextInput placeholder='age' style={styles.input} onChangeText={ age => this.handleChange(age)} value={this.state.age}/>
+                        <TextInput placeholder='fixed' style={styles.input} onChangeText={ fixed => this.handleChange(fixed)} value={this.state.fixed}/>
+                        <TextInput placeholder='vaccinated' style={styles.input} onChangeText={ vaccinated => this.handleChange(vaccinated)} value={this.state.vaccinated}/>
+                        <TextInput placeholder='goodWithKids' style={styles.input} onChangeText={ goodWithKids => this.handleChange(goodWithKids)} value={this.state.goodWithKids}/>
                         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
                             <LinearGradient
                                 colors={['orange', '#c32525']}
@@ -109,7 +103,7 @@ const styles = StyleSheet.create({
         borderWidth: 1.5,
         padding: 10,
         marginBottom: 15,
-        // height: 60,
+        height: 40,
         // margin: 20,
         alignItems: 'center'
       },
