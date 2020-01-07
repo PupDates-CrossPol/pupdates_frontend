@@ -31,6 +31,7 @@ class UserProfileScreen extends React.Component {
       })
 
     render() {
+      console.log('user', this.props.user)
         return (
             <SafeAreaView>
                 <View>

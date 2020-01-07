@@ -50,7 +50,7 @@ export class LoginScreen extends React.Component {
       //handle error response
     } else {
       this.props.setUserInfo(loginResponse.attributes)
-      this.getPackInfo(loginResponse.attributes.idid)
+      this.getPackInfo(loginResponse.attributes.id)
       const allUsers = await apiCalls.getAllUsers()
       const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.attributes.id)
       this.props.setOtherUsers(otherUsers)
