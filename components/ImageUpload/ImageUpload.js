@@ -40,7 +40,7 @@ class ImageUpload extends React.Component {
           </LinearGradient>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => {
-          this.props.modalStatus = false
+          this.props.setModalState(this.props.modalState)
           this.props.setImageUpload(null)
           }}>
           <LinearGradient
@@ -145,7 +145,8 @@ export const mapStateToProps = state => ({
   pack: state.pack,
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
-  imageUpload: state.imageUpload
+  imageUpload: state.imageUpload,
+  modalState: state.modalState
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -153,7 +154,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
-  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
+  setModalState: (modalState) => dispatch(setModalState(modalState))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)
