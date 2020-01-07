@@ -7,12 +7,16 @@ import DogCard from '../DogCard/DogCard'
 
 class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
-        headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
+        headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+        </TouchableOpacity>
+        ),
+        headerTitle: () => <Image source={require('../../assets/DogPackSpread.png')} style={styles.navTitle}/>,
         headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('AddDog')}>
+            <Image source={require('../../assets/AddDog.png')} style={styles.logo} />
+          </TouchableOpacity>
         ),
         headerStyle: {
           backgroundColor: '#fff',
@@ -28,13 +32,6 @@ class DogPackScreen extends React.Component {
     render() {
         return (
           <SafeAreaView style={styles.container}>
-            <View style={styles.componentTitleHeader} >
-                <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
-                  <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
-                  <Text style={styles.backToMenuText} >Menu</Text>
-                </TouchableOpacity>
-        <Text style={styles.componentTitle} >{this.props.user.first_name}'s Dog Pack</Text>
-            </View>
             <ScrollView>
             <View >
               <View style={styles.matches}>
@@ -72,13 +69,13 @@ const styles = StyleSheet.create({
   componentTitleHeader: {
     backgroundColor: 'transparent'
   },
-  backToMenu: {
-    flexDirection: 'row',
-    marginLeft: 5,
-    width: '25%',
-    position: 'absolute',
-    backgroundColor: 'transparent'
-  },
+  // backToMenu: {
+  //   flexDirection: 'row',
+  //   marginLeft: 5,
+  //   width: '25%',
+  //   position: 'absolute',
+  //   backgroundColor: 'transparent'
+  // },
   backToMenuText: {
     fontSize: 25,
     color: 'rgb(53, 129, 252)',
