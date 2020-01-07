@@ -39,14 +39,6 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Take A Photo</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.addImg()}>
-          <LinearGradient
-            colors={['orange', '#c32525']}
-            style={styles.linearGradient}
-          >
-              <Text style={styles.buttonText}>Submit</Text>
-          </LinearGradient>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => this.props.setImageUpload(null)}>
           <LinearGradient
             colors={['gray', 'black']}
@@ -70,7 +62,7 @@ setTimeout
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
             	this.props.setTempUserImage(response.uri);
-              setTimeout(this.addImg, 10000)
+              setTimeout(this.addImg, 5000)
             }
         )
       }
@@ -87,7 +79,7 @@ setTimeout
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
             	this.props.setTempUserImage(response.uri);
-              setTimeout(this.addImg, 10000)
+              setTimeout(this.addImg, 5000)
             }
         )
       }
