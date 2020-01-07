@@ -31,6 +31,7 @@ class UserProfileScreen extends React.Component {
       })
 
     render() {
+      console.log('user', this.props.user)
         return (
             <SafeAreaView>
                 <View>
@@ -47,7 +48,7 @@ class UserProfileScreen extends React.Component {
                       <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
                       }>
                         {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                        {!this.props.tempUserImage && <Image source={{uri: this.props.user.photo}} style={styles.userImage}/>}
+                        {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
                       </TouchableOpacity>
                       {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
                       <Text style={styles.infoHeader}>About Me:</Text>
