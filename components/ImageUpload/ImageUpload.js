@@ -7,19 +7,22 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import ApiKeys from '../../ApiKeys';
+
+firebase.initializeApp(ApiKeys.firebaseConfig);
 
 class ImageUpload extends React.Component {
 	state = {
     id: '',
-    image: null,
-    images: []
+    images: [],
+    loading: false
   }
 
   render() {
-  	let { image } = this.state;
   	return (
   		<SafeAreaView>
+      {this.state.loading && <Text>Loading</Text>}
         <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
           <LinearGradient
             colors={['orange', '#c32525']}
@@ -36,15 +39,7 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Take A Photo</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.addImg()}>
-          <LinearGradient
-            colors={['orange', '#c32525']}
-            style={styles.linearGradient}
-          >
-              <Text style={styles.buttonText}>Submit</Text>
-          </LinearGradient>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => console.log('cancel')}>
+        <TouchableOpacity style={styles.button} onPress={() => this.props.setImageUpload(null)}>
           <LinearGradient
             colors={['gray', 'black']}
             style={styles.linearGradient}
@@ -52,11 +47,11 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Cancel</Text>
           </LinearGradient>
         </TouchableOpacity>
-        {image &&
-            <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
   		</SafeAreaView>
   	)
   }
+
+setTimeout
 
   selectImg() {
     this.setState({ id: '' + Math.random().toString(36).substr(2, 9) });
@@ -66,7 +61,8 @@ class ImageUpload extends React.Component {
           ImagePicker.launchImageLibraryAsync()
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
-            	this.setState({ image: response.uri });
+            	this.props.setTempUserImage(response.uri);
+              setTimeout(this.addImg, 5000)
             }
         )
       }
@@ -82,7 +78,8 @@ class ImageUpload extends React.Component {
           ImagePicker.launchCameraAsync()
             .then(response => {
             	this.uploadImg(response.uri, `${this.state.id}`);
-            	this.setState({ image: response.uri });
+            	this.props.setTempUserImage(response.uri);
+              setTimeout(this.addImg, 5000)
             }
         )
       }
@@ -91,6 +88,7 @@ class ImageUpload extends React.Component {
   }
 
   uploadImg = async (uri, imageId) => {
+    this.setState({loading: true})
     const response = await fetch(uri);
     const blob = await response.blob();
 
@@ -100,11 +98,13 @@ class ImageUpload extends React.Component {
 
   addImg = async () => {
     const { id, email, first_name, last_name, description } = this.props.user
-    this.setState({ image: null });
-    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL()
+    this.props.setTempUserImage(null);
+    const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
     this.setState({ images: [...this.state.images, url]});
     this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
     const user = await apiCalls.patchUserPhoto(url, id)
+    this.props.setImageUpload(null);
+    this.setState({loading: false})
   }
 }
 
@@ -135,13 +135,17 @@ const styles = StyleSheet.create({
 export const mapStateToProps = state => ({
   user: state.user,
   pack: state.pack,
-  packPhotos: state.packPhotos
+  packPhotos: state.packPhotos,
+  tempUserImage: state.tempUserImage,
+  imageUpload: state.imageUpload
 })
 
 export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
+  setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)

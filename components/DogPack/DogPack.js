@@ -143,7 +143,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(DogPackScreen)

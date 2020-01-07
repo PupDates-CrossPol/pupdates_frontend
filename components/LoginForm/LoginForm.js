@@ -69,7 +69,6 @@ export class LoginScreen extends React.Component {
         <LinearGradient
           colors={['orange', '#c32525']}
           style={styles.linearGradient}
-          onPress={() => console.log('does this work?')}
         >
             <Text style={styles.buttonText}>Login</Text>
         </LinearGradient>
@@ -147,7 +146,8 @@ export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures)),
-  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers))
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
+  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)

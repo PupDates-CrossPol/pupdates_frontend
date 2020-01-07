@@ -95,14 +95,13 @@ export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed,
 export const patchUserPhoto = async (photo, id) => {
   const options = {
     method: 'PATCH',
-    body: JSON.stringify(photo),
+    body: JSON.stringify({ photo }),
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
-  const resp = await fetch(`https://pupdates-be.herokuapp.com/api/v1/users/${id}`, options)
+  const resp = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${id}`, options)
   const data = await resp.text();
-  console.log(data)
   return data
 };
