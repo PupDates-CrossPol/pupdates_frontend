@@ -21,7 +21,7 @@ class ImageUpload extends React.Component {
 
   render() {
   	return (
-  		<SafeAreaView>
+  		<SafeAreaView style={styles.addImagesContainer}>
       {this.state.loading && <Text>Loading</Text>}
         <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
           <LinearGradient
@@ -39,7 +39,10 @@ class ImageUpload extends React.Component {
               <Text style={styles.buttonText}>Take A Photo</Text>
           </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.setImageUpload(null)}>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          this.props.modalStatus = false
+          this.props.setImageUpload(null)
+          }}>
           <LinearGradient
             colors={['gray', 'black']}
             style={styles.linearGradient}
@@ -109,6 +112,11 @@ setTimeout
 }
 
 const styles = StyleSheet.create({
+  addImagesContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  },
   linearGradient: {
     width: '80%',
     height: 40,

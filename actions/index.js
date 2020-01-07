@@ -42,3 +42,8 @@ export const setImageUpload = imageUpload => ({
 	type: 'SET_IMAGE_UPLOAD',
 	imageUpload
 })
+
+export const setModalState = modalState => ({
+	type: 'SET_MODAL_STATE',
+	modalState
+})

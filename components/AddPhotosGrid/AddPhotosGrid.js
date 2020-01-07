@@ -1,12 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Modal} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Ionicons } from '@expo/vector-icons';
+import ImageUpload from '../ImageUpload/ImageUpload'
 
-const AddDogPhotosGrid = (props) => {
-    const uploadedPhotos = props.uploadedPhotos
+class AddDogPhotosGrid extends React.Component {
+    state = {
+        modalVisible: false,
+        uploadedPhotos: this.props.uploadedPhotos,
+      };
 
-    const dogImages = uploadedPhotos.map( (dogImage, i) =>  {
+
+    dogImages = this.state.uploadedPhotos.map( (dogImage, i) =>  {
         
         return (
             <Row key={i} style={styles.row}>
@@ -15,10 +20,15 @@ const AddDogPhotosGrid = (props) => {
                 )
     });
 
-    const createButtons = (num) => {
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
+      }
+
+    createButtons = (num) => {
         const addImageButton = (
             <Row style={styles.row}>
-                <TouchableOpacity style={styles.addPhoto}>
+                <TouchableOpacity style={styles.addPhoto} onPress={() => {
+                  this.setModalVisible(!this.state.modalVisible);}} >
                     <Ionicons name="ios-add" size={35} color='rgb(21, 112, 125)' />
                 </TouchableOpacity>
             </Row>
@@ -28,18 +38,18 @@ const AddDogPhotosGrid = (props) => {
         return addImageButtons
     }
 
-    const createImagesAndButtonsForGrid = () => {
-        const amountOfCurrentPhotos = 6 - uploadedPhotos.length
-        let correctDogImages = uploadedPhotos
+    createImagesAndButtonsForGrid = () => {
+        const amountOfCurrentPhotos = 6 - this.state.uploadedPhotos.length
+        let correctDogImages = this.state.uploadedPhotos
         if (amountOfCurrentPhotos > 0) {
-            correctDogImages =  [...dogImages, ...createButtons(amountOfCurrentPhotos)] 
+            correctDogImages =  [...this.dogImages, ...this.createButtons(amountOfCurrentPhotos)] 
         } else {
-            correctDogImages = dogImages
+            correctDogImages = this.dogImages
         }
-        return buildGrid(correctDogImages)
+        return this.buildGrid(correctDogImages)
     }
 
-    const buildGrid = (arryOfImagesAndButtons) => {
+    buildGrid = (arryOfImagesAndButtons) => {
         return (
             <Grid style={styles.grid}>
                 <Col>
@@ -58,12 +68,23 @@ const AddDogPhotosGrid = (props) => {
         )
         
     }
-
-    return (
-    <View style={styles.container}>
-        {createImagesAndButtonsForGrid()}
-    </View>
-    )
+    render() {
+        return (
+            <View style={styles.container}>
+                 <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {
+                        this.setModalVisible(!this.state.modalVisible);
+                    }}>
+                <ImageUpload modalStatus={this.state.modalVisible} />
+              </Modal>
+                {this.createImagesAndButtonsForGrid()}
+            </View>
+            )
+    }
+   
 
 }
 
