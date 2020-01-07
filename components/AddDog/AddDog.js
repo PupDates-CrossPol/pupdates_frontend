@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView,
 import { connect } from 'react-redux'
 import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
+import { AddDogPhotosGrid } from '../AddPhotosGrid/AddPhotosGrid'
 
 class AddDogScreen extends React.Component {
     state = {
@@ -12,7 +13,8 @@ class AddDogScreen extends React.Component {
         age: '',
         fixed: false,
         vaccinated: false,
-        goodWithKids: false
+        goodWithKids: false,
+        uploadedPhotos: []
       }
 
       static navigationOptions = ({navigation}) => ({        
@@ -41,6 +43,7 @@ class AddDogScreen extends React.Component {
     render() {
         return (
             <SafeAreaView style={styles.contentContainer}>
+                <AddDogPhotosGrid uploadedPhotos={this.state.uploadedPhotos}/>
                 <TextInput placeholder='name' style={styles.input} onChangeText={name => this.updateEmail(name)} value={this.state.name}/>
                 <TextInput placeholder='sex' style={styles.input} onChangeText={sex => this.updateEmail(sex)} value={this.state.sex}/>
                 <TextInput placeholder='size' style={styles.input} onChangeText={size => this.updateEmail(size)} value={this.state.size}/>

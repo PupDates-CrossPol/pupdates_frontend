@@ -6,6 +6,7 @@ import MenuScreen from './components/Menu/Menu'
 import DogPackScreen from './components/DogPack/DogPack'
 import MatchesScreen from './components/Matches/Matches'
 import UserProfileScreen from './components/UserProfile/UserProfile'
+import AddDogScreen from './components/AddPhotosGrid/AddPhotosGrid'
 import React, { Component } from 'react';
 import { createStore, applyMiddleware } from 'redux'
 import { rootReducer } from './reducers/index.js'
@@ -26,7 +27,8 @@ const MainNavigator = createStackNavigator({
   Menu: {screen: MenuScreen},
   DogPack: {screen: DogPackScreen},
   Matches: {screen: MatchesScreen},
-  UserProfile: {screen: UserProfileScreen}
+  UserProfile: {screen: UserProfileScreen},
+  AddDog: {screen: AddDogScreen}
 })
 
 const AppContainer = createAppContainer(MainNavigator)
