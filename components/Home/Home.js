@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { StyleSheet,  View, TextInput, TouchableOpacity, Image, ScrollView, SafeAreaView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import * as Camera from 'expo-camera';
@@ -13,8 +13,12 @@ import { Container, Header, Content, Card, CardItem, Text, Body, Button } from '
 import { Entypo } from '@expo/vector-icons';
 import { SliderBox } from "react-native-image-slider-box";
 import { getDogImagesById } from '../../apiCalls'
+import { setSwipeUser, setOtherUsers, setSwipePack, setSwipePackPhotos } from '../../actions'
+import { connect } from 'react-redux'
+import * as apiCalls from '../../apiCalls'
+import { SwipeDogCard } from '../SwipeDogCard/SwipeDogCard'
 
-export default class HomeScreen extends React.Component {
+export class HomeScreen extends React.Component {
   state = {
     image: null,
     dogImages: []
@@ -44,44 +48,62 @@ export default class HomeScreen extends React.Component {
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
     const dogImages = await getDogImagesById(4)
+    this.getRandomUser()
     this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
+  
+ 
+ getRandomUser = () => {
+   let randomIndex = Math.floor(Math.random() * this.props.otherUsers.length)
+   let selectedUser = this.props.otherUsers[randomIndex]
+   this.props.setSwipeUser(selectedUser)
+   this.props.otherUsers.splice(randomIndex, 1)
+   this.getSwipePack(selectedUser.id)
+ }
 
-  render() {
+
+ getSwipePack = async (selectedUserId) => {
+  const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
+  this.getSwipePackImages(swipePackResponse)
+  this.props.setSwipePack(swipePackResponse)
+ 
+ }
+
+ getSwipePackImages = async (swipePack) => {
+    swipePack.forEach( async dog => {
+     const swipePics = await apiCalls.getDogImagesById(dog.id)
+     this.props.setSwipePackPhotos(swipePics)
+     
+    })
+ }
+
+render() {
+    if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
+      return null
+    }
     return (
+      <SafeAreaView>
       <ScrollView>
       <Container>
       <Content>
-        <Card style={styles.imageCard}>
-          <Text style={styles.packName}> Jordan's Pack </Text>
-          <CardItem style={styles.imageCardContent}>
-            <Body>
-            <SliderBox images={this.state.dogImages} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
-            </Body>
-          </CardItem>
-          <CardItem style={styles.imageCardContentText}>
-            <Body style={styles.infoBody}>
-              <Text style={styles.infoTextName}>Rose</Text>
-              <Text style={styles.infoText}>Golden Retriever</Text>
-              <Text style={styles.infoText}>3 Years Old</Text>
-              <Text style={styles.infoText}>Female</Text>
-              <Text style={styles.infoText}>Spayed? Yes</Text>
-              <Text style={styles.infoText}>Vaccinated? Yes</Text>
-              <Text style={styles.infoText}>Good with kids? Yes</Text>
-            </Body>
-          </CardItem>
-            <View style={styles.pawBtn}>
-              <TouchableOpacity onPress={() => console.log('DISLIKE')}>
-                <Ionicons name="ios-thumbs-down" size={40} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => console.log('LIKE')}>
-                <Ionicons name="md-paw" size={40} color="black"/>
-              </TouchableOpacity>
-            </View>
-        </Card>
+      <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
+        <SwipeDogCard
+        swipePack={this.props.swipePack}
+        swipePackPhotos={this.props.swipePackPhotos}
+        swipeUser={this.props.swipeUser} />
       </Content>
     </Container>
     </ScrollView>
+    <View style={styles.pawBtn}>
+              <TouchableOpacity style={styles.button} onPress={() => console.log('DISLIKE')}>
+                <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={() => console.log('LIKE')}>
+                <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
+              </TouchableOpacity>
+     </View>
+
+      </SafeAreaView>
 
     );
   }
@@ -115,7 +137,8 @@ const styles = StyleSheet.create({
     width: '80%'
   },
   packName: {
-    fontSize: 25
+    fontSize: 25,
+    textAlign: 'center'
   },
   imageCardContent: {
     alignItems: 'center',
@@ -179,10 +202,31 @@ leftNavIcon: {
   pawBtn: {
     alignItems: 'flex-end',
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     width: '90%',
-  }
+    position: 'absolute',
+    bottom: 10,
+    alignSelf: 'center'
+    // marginBottom: '5%'
+  },
 });
+
+export const mapStateToProps = state => ({
+  swipeUser: state.swipeUser,
+  user: state.user,
+  otherUsers: state.otherUsers,
+  swipePack: state.swipePack,
+  swipePackPhotos: state.swipePackPhotos
+})
+
+export const mapDispatchToProps = dispatch => ({
+  setSwipeUser: (swipeUser) => dispatch(setSwipeUser(swipeUser)),
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
+  setSwipePack: (swipePack) => dispatch(setSwipePack(swipePack)),
+  setSwipePackPhotos: (swipePackPhotos) => dispatch(setSwipePackPhotos(swipePackPhotos))
+})
+
+export default connect (mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 
 // const AppNavigator = createStackNavigator({

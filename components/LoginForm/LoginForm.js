@@ -6,7 +6,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo, setPackInfo, setPackPhotos } from '../../actions'
+import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers } from '../../actions'
 
 export class LoginScreen extends React.Component {
   state = {
@@ -50,28 +50,21 @@ export class LoginScreen extends React.Component {
     } else {
       this.props.setUserInfo(loginResponse)
       this.getPackInfo(loginResponse.id)
-      this.props.navigation.navigate('Home');
-    }
-  }
-
-  confirmPassword = async () => {
-    const response = await fetch('http://node-pupdates-backend.herokuapp.com/api/v1/users')
-    const users = await response.json();
-    const currentUser = users.find(user => user.email === this.state.email)
-    if (currentUser.password === this.state.password) {
-      this.setState({ id: currentUser.id });
+      const allUsers = await apiCalls.getAllUsers()
+      const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.id)
+      this.props.setOtherUsers(otherUsers)
       this.props.navigation.navigate('Home');
     }
   }
 
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
       <ScrollView style={styles.contentContainer}>
         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
         <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email}/>
-        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password}/>
+        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
+        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
         <LinearGradient
           colors={['orange', '#c32525']}
@@ -89,7 +82,8 @@ export class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 20
+    paddingVertical: 20,
+  //   alignItems: 'center'
   },
 
   container: {
@@ -108,7 +102,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 30,
-    width: '70%',
+    width: '90%',
     borderColor: 'lightgrey',
     borderRadius: 50,
     // borderColor: 'rgba(33,33,33,0.81)',
@@ -119,7 +113,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   linearGradient: {
-    width: '70%',
+    width: '100%',
     borderRadius: 25,
     height: 50,
     alignItems: 'center',
@@ -141,24 +135,20 @@ const styles = StyleSheet.create({
   }
 });
 
-// const AppNavigator = createSwitchNavigator({
-//   Login: {
-//     screen: LoginScreen,
-//   },
-// });
 
 export const mapStateToProps = state => ({
   user: state.user,
   pack: state.pack,
-  packPhotos: state.packPhotos
+  packPhotos: state.packPhotos,
+  otherUsers: state.otherUsers
 })
 
 export const mapDispatchToProps = dispatch => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
-  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+  setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures)),
+  setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
 
-// export default createAppContainer(AppNavigator)
