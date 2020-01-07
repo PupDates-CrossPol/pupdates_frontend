@@ -159,4 +159,18 @@ const styles = StyleSheet.create({
     },
   });
 
-  export default AddDogPhotosGrid
+
+  export const mapStateToProps = state => ({
+    pack: state.pack,
+    packPhotos: state.packPhotos
+  })
+  
+  export const mapDispatchToProps = dispatch => ({
+    setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
+    setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures))
+    
+  })
+  
+  export default connect (mapStateToProps, mapDispatchToProps)(AddDogPhotosGrid)
+
+
