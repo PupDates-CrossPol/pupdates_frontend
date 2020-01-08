@@ -7,16 +7,18 @@ const Match = ({matches}) => {
     return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />} );
 
     const allMatches = matches.map( (match, i) => {
-        const {userImage, pack, userName} = match
+        const {userImage, pack, userName, userEmail} = match
         return (
             <View key={i} style={styles.matchViewIndividual}>
-                <TouchableOpacity style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
+                <View style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
+                    <Text style={styles.matchUserNameText}>{userName}'s Pack</Text>
+                    <Text style={styles.matchUserEmail}>{userEmail}</Text>
                     <View style={styles.matchesImages}>
                         <Image source={{uri: userImage}} style={styles.userCircle} />
                         {dogPackImages(pack)}
                     </View>
-                    <Text style={styles.matchUserNameText}>{userName}'s Pack</Text>
-                </TouchableOpacity>
+                </View>
+                <View style={styles.bottomLine}></View>
              </View>
         );
     });
@@ -28,8 +30,6 @@ const Match = ({matches}) => {
 
 const styles = StyleSheet.create({
     matchViewIndividual: {
-        borderBottomColor: 'rgba(0,0,0,0.57)',
-        borderBottomWidth: 1,
         flexDirection: 'column',
         width: '75%',
     },
@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     },
     userCircle: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
     },
     dogCircle1: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     dogCircle2: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     dogCircle3: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     },
     dogCircle4: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     dogCircle5: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     },
     dogCircle6: {
         aspectRatio: 1/1,
-        height: '75%',
+        height: '65%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -109,6 +109,14 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '300',
     },
+    matchUserEmail: {
+        fontSize: 20,
+        fontWeight: '200',
+    },
+    bottomLine: {
+        borderBottomColor: 'rgba(0,0,0,0.57)',
+        borderBottomWidth: 1,
+    }
 })
 
 export default Match
