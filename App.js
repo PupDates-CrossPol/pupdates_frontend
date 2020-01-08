@@ -18,7 +18,7 @@ const store = createStore(rootReducer)
 
 
 
-const MainNavigator = createStackNavigator({
+const MainNavigator = git({
   Login: {screen: LoginScreen, navigationOptions: {
     header: null,
   }},
