@@ -1,24 +1,20 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from '../Home/Home'
-import { Ionicons } from '@expo/vector-icons';
-import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
-        headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
-        headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
-            </TouchableOpacity>
-        ),
+        headerLeft: () => (
+          <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
+            <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+          </TouchableOpacity>
+          ),
+        headerTitle: () => <Image source={require('../../assets/ProfileSpread.png')} style={styles.navTitle}/>,
+        headerRight: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerStyle: {
           backgroundColor: '#fff',
         },
@@ -33,31 +29,20 @@ class UserProfileScreen extends React.Component {
     render() {
         return (
             <SafeAreaView>
-                <View>
-                  <View style={styles.componentTitleHeader}>
-                      <TouchableOpacity style={styles.backToMenu} onPress={() => {
-                            this.props.navigation.navigate('Menu')
-                            this.props.setImageUpload(null)
-                          }
-                        }>
-                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
-                        <Text style={styles.backToMenuText} >Menu</Text>
-                      </TouchableOpacity>
-                      <Text style={styles.componentTitle} >{this.props.user.first_name}</Text>
-                      <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
-                      }>
-                        {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                        {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
-                      </TouchableOpacity>
-                      {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
-                      <Text style={styles.infoHeader}>About Me:</Text>
-                      <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
-                      <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
-                      <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
-                      <Text style={styles.infoHeader}>Description:</Text>
-                      <Text style={styles.userInfoText}>{this.props.user.description}</Text>
-                  </View>
-                </View>
+              <View style={styles.componentTitleHeader}>
+                  <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
+                  }>
+                    {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                    {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
+                  </TouchableOpacity>
+                  {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
+                  <Text style={styles.infoHeader}>About Me:</Text>
+                  <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
+                  <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
+                  <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
+                  <Text style={styles.infoHeader}>Description:</Text>
+                  <Text style={styles.userInfoText}>{this.props.user.description}</Text>
+              </View>
             </SafeAreaView>
         )
     }
@@ -82,23 +67,8 @@ const styles = StyleSheet.create({
       fontSize: 50,
       // fontFamily: 'major-mono-display'
     },
-    backToMenu: {
-      flexDirection: 'row',
+    backArrow: {
       marginLeft: 5,
-      width: '25%',
-      position: 'absolute',
-      padding: 10
-    },
-    backToMenuText: {
-      fontSize: 25,
-      color: 'rgb(53, 129, 252)',
-      marginLeft: 5,
-    },
-    componentTitle: {
-      alignSelf: 'center',
-      fontSize: 30,
-      fontWeight: '300',
-      padding: 10
     },
     imageBtn: {
       height: 265,

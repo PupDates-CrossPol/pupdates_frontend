@@ -21,7 +21,7 @@ class AddDogScreen extends React.Component {
 
       static navigationOptions = ({navigation}) => ({        
         headerLeft: () =>  (
-            <TouchableOpacity onPress={() => navigation.navigate('DogPack')}>
+            <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('DogPack')}>
                 <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
             </TouchableOpacity>
         ),
@@ -89,6 +89,9 @@ const styles = StyleSheet.create({
     leftNavIcon: { 
         marginLeft: 10,  
         marginBottom: 5, 
+    },
+    backArrow: {
+      marginLeft: 5,
     },
     componentTitle: {
         color: 'rgba(0,0,0,0.57)',

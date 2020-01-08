@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 class MenuScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
+        headerTitle: () => <Image source={require('../../assets/MenuSpread.png')} style={styles.navTitle}/>,
         headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                 <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
@@ -29,7 +29,6 @@ class MenuScreen extends React.Component {
     render() {
         return (
                 <View style={styles.container}>
-                    <Text style={styles.componentTitle} >Menu</Text>
                     <View style={styles.menuOptions}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('Matches')} style={styles.menuImgText}>
                         <Image source={require('../../assets/PupDatesLogo.png')} style={styles.menuCircle} />
@@ -96,11 +95,6 @@ const styles = StyleSheet.create({
     menuOptionsTextSub: {
       color: 'rgba(0,0,0,0.57)',
       fontSize: 25,
-      fontWeight: '300',
-    },
-    componentTitle: {
-      color: 'rgba(0,0,0,0.57)',
-      fontSize: 30,
       fontWeight: '300',
     },
     menuCircle: {

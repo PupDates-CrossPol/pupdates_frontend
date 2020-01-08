@@ -8,13 +8,13 @@ import Match from '../Match/Match'
 
 export default class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
-        headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
-        headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
-            </TouchableOpacity>
-        ),
+        headerLeft: () => (
+          <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
+            <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
+          </TouchableOpacity>
+          ),
+        headerTitle: () => <Image source={require('../../assets/MatchesSpread.png')} style={styles.navTitle}/>,
+        headerRight: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerStyle: {
           backgroundColor: '#fff',
         },
@@ -31,13 +31,6 @@ export default class MatchesScreen extends React.Component {
         return (
               <ScrollView>
                 <View >
-                  <View style={styles.componentTitleHeader}>
-                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
-                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
-                        <Text style={styles.backToMenuText} >Menu</Text>
-                      </TouchableOpacity>
-                      <Text style={styles.componentTitle} >Matches</Text>
-                  </View>
                   <View style={styles.matches}>
                     <Match matches={sampleMatches} />
                   </View>
@@ -77,6 +70,9 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
     }, 
+    backArrow: {
+      marginLeft: 5,
+    },
     image: {
       height: 140,
       width: 140,
@@ -84,20 +80,6 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
-    },
-    componentTitleHeader: {
-      marginTop: '2%',
-    },
-    backToMenu: {
-      flexDirection: 'row',
-      marginLeft: 5,
-      width: '25%',
-      position: 'absolute'
-    },
-    backToMenuText: {
-      fontSize: 25,
-      color: 'rgb(53, 129, 252)',
-      marginLeft: 5,
     },
     componentTitle: {
       alignSelf: 'center',
