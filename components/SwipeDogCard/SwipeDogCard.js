@@ -13,7 +13,7 @@ export const SwipeDogCard = (props) => {
     console.log('props swipe pack photos', props.swipePackPhotos)
     const currentImages = props.swipePackPhotos.filter(pic => pic.attributes.dog_id === dog.attributes.id)
     console.log('current images', currentImages)
-    const boxPics = currentImages.map(image => image.image)
+    const boxPics = currentImages.map(image => image.attributes.image)
     console.log('box pics', boxPics)
     return (
       <Card key={index} style={styles.imageCard}>
