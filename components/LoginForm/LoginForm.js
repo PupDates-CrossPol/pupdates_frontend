@@ -44,6 +44,25 @@ export class LoginScreen extends React.Component {
     this.props.setPackInfo(dogPackResponse)
   }
 
+  getMatchesPackImages = async pack => {
+    pack.forEach( async dog => {
+      const dogImages = await apiCalls.getDogImagesById(dog.id)
+      this.props.setMatchesPackImages(dogImages)
+    })
+  }
+
+  getMatchesPackInfo = async matches => {
+    if (!matches.length) {
+      matches.forEach( match => {
+        const dogPackResponse = await apiCalls.getDogsForUser(match.id)
+        this.getMatchesPackImages(dogPackResponse)
+        this.props.setMatchesPack(dogPackResponse)
+      })
+    } else {
+      return
+    }
+  }
+
   handleSubmit = async () => {
     const { email, password } = this.state
     const loginResponse = await apiCalls.loginUser(email, password)
@@ -57,6 +76,7 @@ export class LoginScreen extends React.Component {
       this.props.setOtherUsers(otherUsers)
       const matches = await apiCalls.getMatchesForUser(loginResponse.attributes.id)
       this.props.setMatches(matches)
+      this.getMatchesPackInfo(matches)
       this.props.navigation.navigate('Home');
     }
   }
