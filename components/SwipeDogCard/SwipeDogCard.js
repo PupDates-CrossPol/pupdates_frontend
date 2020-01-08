@@ -9,12 +9,8 @@ import { Ionicons } from '@expo/vector-icons';
 
 export const SwipeDogCard = (props) => {
   const dogCards = props.swipePack.map((dog, index) => {
-    console.log('props swipe pack', props.swipePack)
-    console.log('props swipe pack photos', props.swipePackPhotos)
     const currentImages = props.swipePackPhotos.filter(pic => pic.attributes.dog_id === dog.attributes.id)
-    console.log('current images', currentImages)
     const boxPics = currentImages.map(image => image.attributes.image)
-    console.log('box pics', boxPics)
     return (
       <Card key={index} style={styles.imageCard}>
         {/* <Text style={styles.packName}>{props.swipeUser.attributes.first_name}'s Pack</Text> */}
