@@ -1,0 +1,214 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Menu /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "space-between",
+      "marginBottom": "2%",
+      "marginTop": "2%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "rgba(0,0,0,0.57)",
+        "fontSize": 30,
+        "fontWeight": "300",
+      }
+    }
+  >
+    Menu
+  </Text>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "borderBottomColor": "rgba(0,0,0,0.57)",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "width": "75%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flexDirection": "column",
+          "opacity": 1,
+          "paddingTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "aspectRatio": 1,
+            "borderColor": "black",
+            "borderRadius": 100,
+            "borderWidth": 2,
+            "height": "65%",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "fontSize": 25,
+            "fontWeight": "300",
+            "marginTop": 5,
+          }
+        }
+      >
+        Matches
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "borderBottomColor": "rgba(0,0,0,0.57)",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "width": "75%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flexDirection": "column",
+          "opacity": 1,
+          "paddingTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "uri": "an image url",
+          }
+        }
+        style={
+          Object {
+            "aspectRatio": 1,
+            "borderColor": "black",
+            "borderRadius": 100,
+            "borderWidth": 2,
+            "height": "65%",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "fontSize": 25,
+            "fontWeight": "300",
+            "marginTop": 5,
+          }
+        }
+      >
+        bob
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "width": "75%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      isTVSelectable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flexDirection": "column",
+          "opacity": 1,
+          "paddingTop": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <Image
+        source={1}
+        style={
+          Object {
+            "aspectRatio": 1,
+            "borderColor": "black",
+            "borderRadius": 100,
+            "borderWidth": 2,
+            "height": "65%",
+          }
+        }
+      />
+      <Text
+        style={
+          Object {
+            "fontSize": 25,
+            "fontWeight": "300",
+            "marginTop": 5,
+          }
+        }
+      >
+        Dog Pack
+      </Text>
+    </View>
+  </View>
+</View>
+`;

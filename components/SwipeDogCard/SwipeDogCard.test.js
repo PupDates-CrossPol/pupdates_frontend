@@ -4,7 +4,7 @@ import { SwipeDogCard, mapStateToProps } from './SwipeDogCard'
 import { Provider } from 'react-redux'
 
 describe('<SwipeDogCard />', () => {
-  it('has one child', () => {
+  it('has two children', () => {
     const mockSwipePack = [
       {
         id: 1,
