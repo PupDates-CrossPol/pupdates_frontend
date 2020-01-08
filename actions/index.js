@@ -47,3 +47,8 @@ export const setModalState = modalState => ({
 	type: 'SET_MODAL_STATE',
 	modalState
 })
+
+export const setMatches = matches => ({
+	type: 'SET_MATCHES',
+	matches
+})
