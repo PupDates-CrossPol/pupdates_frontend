@@ -13,9 +13,9 @@ class AddDogScreen extends React.Component {
         sex: null,
         size: null,
         age: null,
-        fixed: null,
-        vaccinated: null,
-        goodWithKids: null,
+        fixed: false,
+        vaccinated: false,
+        goodWithKids: false,
         uploadedPhotos: []
       }
 
