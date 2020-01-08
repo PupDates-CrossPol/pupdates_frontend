@@ -32,31 +32,33 @@ export class UserProfileScreen extends React.Component {
           };
         return (
             <SafeAreaView>
-              <View style={styles.componentTitleHeader}>
-                  <TouchableOpacity style={styles.imageBtn} onPress={() => {
-                    this.props.setImageUpload(<ImageUpload />)
-                    this.props.setModalState(this.props.modalState)
-                    }
-                  }>
-                    {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                    {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
-                  </TouchableOpacity>
-                  <Text style={styles.infoHeader}>About Me:</Text>
-                  <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
-                  <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
-                  <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
-                  <Text style={styles.infoHeader}>Description:</Text>
-                  <Text style={styles.userInfoText}>{this.props.user.description}</Text>
-                  <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={this.props.modalState}
-                        >
-                    <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                        <ImageUpload />
-                    </View>
-                </Modal>
-              </View>
+              <ScrollView>
+                <View style={styles.componentTitleHeader}>
+                    <TouchableOpacity style={styles.imageBtn} onPress={() => {
+                      this.props.setImageUpload(<ImageUpload />)
+                      this.props.setModalState(this.props.modalState)
+                      }
+                    }>
+                      {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                      {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
+                    </TouchableOpacity>
+                    <Text style={styles.infoHeader}>About Me:</Text>
+                    <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
+                    <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
+                    <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
+                    <Text style={styles.infoHeader}>Description:</Text>
+                    <Text style={styles.userInfoText}>{this.props.user.description}</Text>
+                    <Modal
+                          animationType="slide"
+                          transparent={true}
+                          visible={this.props.modalState}
+                          >
+                      <View style={[styles.modalContainer, modalBackgroundStyle]}>
+                          <ImageUpload />
+                      </View>
+                  </Modal>
+                </View>
+              </ScrollView>
             </SafeAreaView>
         )
     }
