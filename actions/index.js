@@ -47,3 +47,8 @@ export const setModalState = modalState => ({
 	type: 'SET_MODAL_STATE',
 	modalState
 })
+
+export const setNewDogAddImage = newDogNewImage => ({
+	type: 'SET_NEW_DOG_ADD_IMAGE',
+	newDogNewImage
+})
