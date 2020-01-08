@@ -52,3 +52,13 @@ export const setMatches = matches => ({
 	type: 'SET_MATCHES',
 	matches
 })
+
+export const setMatchesPack = pack => ({
+	type: 'SET_MATCHES_PACK',
+	pack
+})
+
+export const setMatchesPackImages = images => ({
+	type: 'SET_MATCHES_PACK_IMAGES',
+	images
+})
