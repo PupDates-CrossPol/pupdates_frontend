@@ -64,6 +64,7 @@ export class HomeScreen extends React.Component {
 
  getSwipePack = async (selectedUserId) => {
   const swipePackResponse = await apiCalls.getDogsForUser(selectedUserId)
+  console.log('swipe pack response', swipePackResponse)
   this.getSwipePackImages(swipePackResponse)
   this.props.setSwipePack(swipePackResponse)
  
@@ -71,8 +72,11 @@ export class HomeScreen extends React.Component {
 
  getSwipePackImages = async (swipePack) => {
     swipePack.forEach( async dog => {
-     const swipePics = await apiCalls.getDogImagesById(dog.id)
+      console.log('dog id', dog.attributes.id)
+     const swipePics = await apiCalls.getDogImagesById(dog.attributes.id)
+     console.log('swipe pics', swipePics)
      this.props.setSwipePackPhotos(swipePics)
+     console.log('props swipe pics', this.props.swipePackPhotos)
      
     })
  }

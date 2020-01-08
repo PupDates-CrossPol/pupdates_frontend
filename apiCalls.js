@@ -33,7 +33,6 @@ export const getDogsForUser = async (userId) => {
     throw Error(`Failed to retrieve user's dogs`)
   }
   const userDogs = await response.json()
-  console.log('user dogs api call', userDogs.data)
   return userDogs.data
 }
 
@@ -47,13 +46,13 @@ export const getAllDogImages = async () => {
 }
 
 export const getDogImagesById = async (dogId) => {
-  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/dog_images/${dogId}`)
+  const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/dog_images/${dogId}`)
 
   if (!response.ok) {
     throw Error('Failed to fetch images for this dog')
   }
   const dogPics = await response.json()
-  return dogPics.data
+  return dogPics
 }
 
 export const loginUser = async (email, password) => {
