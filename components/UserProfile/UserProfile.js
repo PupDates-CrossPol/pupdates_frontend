@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as apiCalls from '../../apiCalls';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload, setModalState } from '../../actions';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
 export class UserProfileScreen extends React.Component {
@@ -27,22 +27,38 @@ export class UserProfileScreen extends React.Component {
       })
 
     render() {
+      const modalBackgroundStyle = {
+            backgroundColor: 'rgba(0, 0, 0, 0.2)'
+          };
         return (
             <SafeAreaView>
-              <View style={styles.componentTitleHeader}>
-                  <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
-                  }>
-                    {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                    {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
-                  </TouchableOpacity>
-                  {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
-                  <Text style={styles.infoHeader}>About Me:</Text>
-                  <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
-                  <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
-                  <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
-                  <Text style={styles.infoHeader}>Description:</Text>
-                  <Text style={styles.userInfoText}>{this.props.user.description}</Text>
-              </View>
+              <ScrollView>
+                <View style={styles.componentTitleHeader}>
+                    <TouchableOpacity style={styles.imageBtn} onPress={() => {
+                      this.props.setImageUpload(<ImageUpload />)
+                      this.props.setModalState(this.props.modalState)
+                      }
+                    }>
+                      {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                      {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
+                    </TouchableOpacity>
+                    <Text style={styles.infoHeader}>About Me:</Text>
+                    <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
+                    <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
+                    <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
+                    <Text style={styles.infoHeader}>Description:</Text>
+                    <Text style={styles.userInfoText}>{this.props.user.description}</Text>
+                    <Modal
+                          animationType="slide"
+                          transparent={true}
+                          visible={this.props.modalState}
+                          >
+                      <View style={[styles.modalContainer, modalBackgroundStyle]}>
+                          <ImageUpload />
+                      </View>
+                  </Modal>
+                </View>
+              </ScrollView>
             </SafeAreaView>
         )
     }
@@ -109,6 +125,12 @@ const styles = StyleSheet.create({
 
       marginTop: 20,
     },
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ecf0f1',
+    },
     input: {
       height: 30,
       width: '70%',
@@ -159,7 +181,8 @@ export const mapStateToProps = state => ({
   pack: state.pack,
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
-  imageUpload: state.imageUpload
+  imageUpload: state.imageUpload,
+  modalState: state.modalState
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -167,7 +190,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
-  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
+  setModalState: (modalState) => dispatch(setModalState(modalState))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(UserProfileScreen)

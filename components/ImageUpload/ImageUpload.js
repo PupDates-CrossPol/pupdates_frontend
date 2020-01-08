@@ -41,8 +41,6 @@ class ImageUpload extends React.Component {
   	)
   }
 
-setTimeout
-
   selectImg() {
     this.setState({ id: '' + Math.random().toString(36).substr(2, 9) });
     ImagePicker.requestCameraRollPermissionsAsync()
