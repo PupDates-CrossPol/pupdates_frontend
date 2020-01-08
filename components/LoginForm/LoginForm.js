@@ -60,11 +60,16 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.contentContainer}>
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
-        <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
-        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
+      <ScrollView>
+        <View style={styles.logoTitle}>
+          <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
+          <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>
+        </View>
+        <View style={styles.loginCredentials}>
+          <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
+          <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
+          <Text style={styles.forgotPassowrdText}>Forgot Password?</Text>
+        </View>
         <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
         <LinearGradient
           colors={['orange', '#c32525']}
@@ -80,24 +85,25 @@ export class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    paddingVertical: 20,
-  //   alignItems: 'center'
-  },
-
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    marginTop: 90
+  },
+  logoTitle: {
+    alignItems: 'center',
   },
   image: {
     height: 140,
     width: 140,
   },
-  title: {
-    fontSize: 50,
-    // fontFamily: 'major-mono-display'
+  navTitle: {
+    width: 160,
+    height: 40,
+  },
+  loginCredentials: {
+    width: '100%',
+    alignItems: 'center',
+
   },
   input: {
     height: 30,
@@ -108,8 +114,11 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     padding: 10,
     height: 60,
-    margin: 20,
     alignItems: 'center'
+  },
+  forgotPassowrdText: {
+    color: 'rgba(0,0,0,0.57)',
+    fontSize: 15,
   },
   linearGradient: {
     width: '100%',

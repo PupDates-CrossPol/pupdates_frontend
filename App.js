@@ -19,7 +19,9 @@ const store = createStore(rootReducer)
 
 
 const MainNavigator = createStackNavigator({
-  Login: {screen: LoginScreen},
+  Login: {screen: LoginScreen, navigationOptions: {
+    header: null,
+  }},
   Home: {screen: HomeScreen},
   Menu: {screen: MenuScreen},
   DogPack: {screen: DogPackScreen},
