@@ -60,7 +60,6 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView>
         <View style={styles.logoTitle}>
           <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
           <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>
@@ -70,15 +69,16 @@ export class LoginScreen extends React.Component {
           <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
           <Text style={styles.forgotPassowrdText}>Forgot Password?</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
-        <LinearGradient
-          colors={['orange', '#c32525']}
-          style={styles.linearGradient}
-        >
-            <Text style={styles.buttonText}>Login</Text>
-        </LinearGradient>
-          </TouchableOpacity>
-      </ScrollView>
+        <View style={styles.loginContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
+              <LinearGradient
+                colors={['rgb(246, 146, 30)', 'rgb(246, 41, 123)']}
+                style={styles.linearGradient}>
+                  <Text style={styles.buttonText}>LOGIN</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          <Text style={styles.forgotPassowrdText}>Create Account</Text>
+        </View>
       </SafeAreaView>
     );
   }
@@ -88,6 +88,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    width: '100%',
+    justifyContent: 'space-around',
   },
   logoTitle: {
     alignItems: 'center',
@@ -103,31 +105,31 @@ const styles = StyleSheet.create({
   loginCredentials: {
     width: '100%',
     alignItems: 'center',
-
   },
   input: {
     height: 30,
-    width: '90%',
-    borderColor: 'lightgrey',
+    width: '80%',
+    borderColor: 'rgba(0,0,0,0.2)',
     borderRadius: 50,
-    // borderColor: 'rgba(33,33,33,0.81)',
     borderWidth: 1.5,
     padding: 10,
     height: 60,
-    alignItems: 'center'
+    marginBottom: 15,
+    alignItems: 'center',
+    fontSize: 25,
+    paddingLeft: 30,
   },
   forgotPassowrdText: {
-    color: 'rgba(0,0,0,0.57)',
-    fontSize: 15,
+    color: 'rgba(0,0,0,0.4)',
+    fontSize: 20,
+    marginBottom: 15,
   },
-  linearGradient: {
+  loginContainer: {
     width: '100%',
-    borderRadius: 25,
-    height: 50,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   button: {
+    width: '80%',
     // borderRadius: 50,
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
@@ -135,7 +137,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    color: 'black',
+    marginBottom: 15,
+  },
+  linearGradient: {
+    width: '100%',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     color: '#fff',
