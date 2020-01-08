@@ -1,0 +1,389 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DogCard /> renders correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "borderBottomColor": "rgba(0,0,0,0.2)",
+        "borderBottomWidth": 1,
+        "flex": 1,
+        "marginBottom": "5%",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 30,
+          "marginBottom": "2%",
+          "marginLeft": "7%",
+        }
+      }
+    >
+      fluffy
+    </Text>
+    <View
+      style={
+        Object {
+          "borderColor": "rgba(0,0,0,0.2)",
+          "borderRadius": 40,
+          "borderWidth": 2,
+          "flex": 1,
+          "flexDirection": "row",
+          "height": "50%",
+          "marginBottom": "3%",
+          "width": "90%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <Image
+            source={
+              Object {
+                "uri": "some string",
+              }
+            }
+            style={
+              Object {
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "shadowColor": "#000",
+                "shadowOffset": Object {
+                  "height": 2,
+                  "width": 0,
+                },
+                "shadowOpacity": 0.8,
+                "shadowRadius": 2,
+                "width": "90%",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "90%",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "90%",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "90%",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "90%",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "flexDirection": "row",
+              "justifyContent": "center",
+              "margin": "8%",
+            }
+          }
+        >
+          <View
+            accessible={true}
+            focusable={false}
+            isTVSelectable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "aspectRatio": 1,
+                "borderColor": "rgba(0,0,0,0.2)",
+                "borderRadius": 100,
+                "borderWidth": 2,
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "90%",
+              }
+            }
+          >
+            <Text />
+          </View>
+        </View>
+      </View>
+    </View>
+    <View />
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Sex: 
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Breed: 
+      lab
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Size: 
+      medium
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Age:  
+      7
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Fixed: 
+      true
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Vaccinated: 
+      true
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "color": "grey",
+          "fontSize": 20,
+          "marginBottom": "5%",
+          "marginLeft": "7%",
+          "textAlign": "left",
+        }
+      }
+    >
+      Good With Kids: 
+      true
+    </Text>
+  </View>
+</View>
+`;
