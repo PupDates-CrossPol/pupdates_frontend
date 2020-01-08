@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux'
 import { setPackInfo, setPackPhotos } from '../../actions'
 
-const DogCard = (props) => {
+export const DogCard = (props) => {
 
     const dogPackCards = props.pack.map( (dog, i) => {
         const currentDogImages = props.packPhotos.filter( photo => photo.dog_id === dog.id);

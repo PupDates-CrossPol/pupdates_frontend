@@ -5,7 +5,7 @@ import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
 import DogCard from '../DogCard/DogCard'
 
-class DogPackScreen extends React.Component {
+export class DogPackScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
