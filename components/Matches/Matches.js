@@ -31,13 +31,6 @@ export default class MatchesScreen extends React.Component {
         return (
               <ScrollView>
                 <View >
-                  <View style={styles.componentTitleHeader}>
-                      <TouchableOpacity style={styles.backToMenu} onPress={() => this.props.navigation.navigate('Menu')}>
-                        <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
-                        <Text style={styles.backToMenuText} >Menu</Text>
-                      </TouchableOpacity>
-                      <Text style={styles.componentTitle} >Matches</Text>
-                  </View>
                   <View style={styles.matches}>
                     <Match matches={sampleMatches} />
                   </View>
@@ -84,20 +77,6 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
-    },
-    componentTitleHeader: {
-      marginTop: '2%',
-    },
-    backToMenu: {
-      flexDirection: 'row',
-      marginLeft: 5,
-      width: '25%',
-      position: 'absolute'
-    },
-    backToMenuText: {
-      fontSize: 25,
-      color: 'rgb(53, 129, 252)',
-      marginLeft: 5,
     },
     componentTitle: {
       alignSelf: 'center',
