@@ -55,9 +55,7 @@ class AddDogScreen extends React.Component {
 
       handleSubmit = async () => {
         const { name, sex, breed, size, age, fixed, vaccinated, good_with_kids  } = this.state
-        console.log('userId:', this.props.user.id);
-        
-        // const newDogRequest = await apiCalls.addDogForUser( user_id: this.props.user.id, name, sex, breed, size, age, fixed, vaccinated, good_with_kids)
+        const newDogRequest = await apiCalls.addDogForUser( user_id= this.props.user.id, name, sex, breed, size, age, fixed, vaccinated, good_with_kids)
         resetState()
       }
 
