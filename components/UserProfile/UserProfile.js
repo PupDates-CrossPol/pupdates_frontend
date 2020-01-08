@@ -30,6 +30,7 @@ export class UserProfileScreen extends React.Component {
       const modalBackgroundStyle = {
             backgroundColor: 'rgba(0, 0, 0, 0.2)'
           };
+          console.log(this.props.user)
         return (
             <SafeAreaView>
               <ScrollView>
@@ -81,7 +82,6 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 50,
-      // fontFamily: 'major-mono-display'
     },
     backArrow: {
       marginLeft: 5,
@@ -106,8 +106,6 @@ const styles = StyleSheet.create({
       borderRadius: 100,
       borderColor: 'black',
       borderWidth: 2,
-      // marginLeft: 100,
-      // padding: 20
     },
     userInfoText: {
       fontSize: 20,
@@ -122,7 +120,6 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       paddingLeft: 15,
       marginBottom: 20,
-
       marginTop: 20,
     },
     modalContainer: {
@@ -136,7 +133,6 @@ const styles = StyleSheet.create({
       width: '70%',
       borderColor: 'lightgrey',
       borderRadius: 50,
-      // borderColor: 'rgba(33,33,33,0.81)',
       borderWidth: 1.5,
       padding: 10,
       height: 60,
@@ -151,10 +147,6 @@ const styles = StyleSheet.create({
     },
     button: {
       borderRadius: 100,
-      // borderTopRightRadius: 20,
-      // borderBottomRightRadius: 20,
-      // borderBottomLeftRadius: 20,
-      // borderTopLeftRadius: 20,
       alignItems: 'center',
       justifyContent: 'center',
       color: 'black',
@@ -195,9 +187,3 @@ export const mapDispatchToProps = dispatch => ({
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(UserProfileScreen)
-// const AppNavigator = createStackNavigator({
-//     UserProfile: {
-//         screen: UserProfileScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
