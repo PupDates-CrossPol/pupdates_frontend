@@ -47,9 +47,7 @@ export class HomeScreen extends React.Component {
    await Font.loadAsync({
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
-    // const dogImages = await getDogImagesById(4)
     this.getRandomUser()
-    // this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
   
  
@@ -73,7 +71,6 @@ export class HomeScreen extends React.Component {
     swipePack.forEach( async dog => {
      const swipePics = await apiCalls.getDogImagesById(dog.attributes.id)
      this.props.setSwipePackPhotos(swipePics)
-     console.log('props swipe pics', this.props.swipePackPhotos)
      
     })
  }

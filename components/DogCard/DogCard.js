@@ -8,16 +8,7 @@ import { setPackInfo, setPackPhotos } from '../../actions'
 export const DogCard = (props) => {
 
     const dogPackCards = props.pack.map( (dog, i) => {
-        console.log('props pack', props.pack)
-        console.log('dog in map', dog)
-        console.log('pack photos', props.packPhotos)
-        // console.log('dog in dogcard', dog.attributes)
         const currentDogImages = props.packPhotos.filter( photo => photo.dog_id === dog.attributes.id);
-        // const currentDogImages = props.packPhotos.filter(photo => {
-        //     console.log('photo', photo)
-        //     return photo.dog_id === dog.attributes.id
-        // })
-        console.log('current dog images', currentDogImages)
             
         const dogImages = currentDogImages.map( (dogImage, i) =>  {
             return (

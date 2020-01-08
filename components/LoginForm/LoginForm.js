@@ -31,26 +31,17 @@ export class LoginScreen extends React.Component {
   }
 
   getPackImages = async pack => {
-    // console.log('pack before for each', pack)
     pack.forEach( async dog => {
-      // console.log('pack in for each', pack)
-      // console.log('dog in pack for each', dog)
-      // console.log('dog ids', dog.attributes.id)
       const dogImages = await apiCalls.getDogImagesById(dog.attributes.id)
-      // console.log('dog images', dogImages)
-      // console.log('dog images', dogImages)
       this.props.setPackPhotos(dogImages)
-      // console.log('props pack photos', this.props.packPhotos)
     })
   }
 
   getPackInfo = async userId => {
     const dogPackResponse = await apiCalls.getDogsForUser(userId)
-    console.log('dog pack response', dogPackResponse)
     this.getPackImages(dogPackResponse)
     this.props.setPackInfo(dogPackResponse)
-    // console.log('pack props', this.props.pack)
-    // console.log('props pack info', this.props.pack)
+
   }
 
   handleSubmit = async () => {
