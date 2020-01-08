@@ -7,7 +7,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers } from '../../actions'
+import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers, setMatches} from '../../actions'
 import KeyboardShift from '../KeyboardShift/KeyboardShift'
 
 export class LoginScreen extends React.Component {
@@ -55,6 +55,8 @@ export class LoginScreen extends React.Component {
       const allUsers = await apiCalls.getAllUsers()
       const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.attributes.id)
       this.props.setOtherUsers(otherUsers)
+      const matches = await apiCalls.getMatchesForUser(loginResponse.attributes.id)
+      this.props.setMatches(matches)
       this.props.navigation.navigate('Home');
     }
   }
@@ -166,7 +168,8 @@ export const mapStateToProps = state => ({
   user: state.user,
   pack: state.pack,
   packPhotos: state.packPhotos,
-  otherUsers: state.otherUsers
+  otherUsers: state.otherUsers,
+  matches: state.matches
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -174,7 +177,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures)),
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
-  // setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures))
+  // setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
+  setMatches: (userMatches) => dispatch(setMatches(userMatches)),
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
