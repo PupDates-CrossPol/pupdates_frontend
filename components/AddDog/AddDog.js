@@ -6,6 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Font from 'expo-font';
 import AddDogPhotosGrid from '../AddPhotosGrid/AddPhotosGrid'
+import KeyboardShift from '../KeyboardShift/KeyboardShift'
+
 
 class AddDogScreen extends React.Component {
     state = {
@@ -38,6 +40,8 @@ class AddDogScreen extends React.Component {
 
     render() {
         return (
+          <KeyboardShift>
+          {() => (
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <View style={styles.addDogCard}>
@@ -60,6 +64,8 @@ class AddDogScreen extends React.Component {
                     </View>
                 </ScrollView>
       </SafeAreaView>
+    )}
+    </KeyboardShift>
         )
     }
 }
