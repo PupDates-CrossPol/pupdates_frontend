@@ -17,8 +17,8 @@ const Match = ({matches}) => {
                         <Image source={{uri: userImage}} style={styles.userCircle} />
                         {dogPackImages(pack)}
                     </View>
-                </View>
                 <View style={styles.bottomLine}></View>
+                </View>
              </View>
         );
     });
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     dogCircle1: {
         aspectRatio: 1/1,
-        height: '65%',
+        height: '68%',
         borderRadius: 100,
         borderColor: 'black',
         borderWidth: 2,
@@ -112,10 +112,12 @@ const styles = StyleSheet.create({
     matchUserEmail: {
         fontSize: 20,
         fontWeight: '200',
+        marginLeft: 10
     },
     bottomLine: {
         borderBottomColor: 'rgba(0,0,0,0.57)',
         borderBottomWidth: 1,
+        width: '100%'
     }
 })
 
