@@ -68,13 +68,11 @@ export class LoginScreen extends React.Component {
           <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
           <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>
         </View>
-
             <View style={styles.loginCredentials}>
-              <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
-              <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
+              <TextInput placeholder="Email" keyboardType={'email-address'} style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
+              <TextInput placeholder="Password" secureTextEntry={true} style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
               <Text style={styles.forgotPassowrdText}>Forgot Password?</Text>
             </View>
-
         <View style={styles.loginContainer}>
           <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
               <LinearGradient
