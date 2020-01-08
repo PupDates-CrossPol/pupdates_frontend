@@ -189,7 +189,7 @@ export const mapStateToProps = state => ({
   pack: state.pack,
   packPhotos: state.packPhotos,
   otherUsers: state.otherUsers,
-  matches: state.matches
+  matches: state.matches,
 })
 
 export const mapDispatchToProps = dispatch => ({
