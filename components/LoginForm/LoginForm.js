@@ -60,65 +60,76 @@ export class LoginScreen extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.contentContainer}>
-        <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
-        <Text style={styles.title}>PupDates</Text>
-        <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
-        <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
-        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
-        <LinearGradient
-          colors={['orange', '#c32525']}
-          style={styles.linearGradient}
-        >
-            <Text style={styles.buttonText}>Login</Text>
-        </LinearGradient>
-          </TouchableOpacity>
-      </ScrollView>
+        <View style={styles.logoTitle}>
+          <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
+          <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>
+        </View>
+        <View style={styles.loginCredentials}>
+          <TextInput placeholder="Email" style={styles.input} onChangeText={email => this.updateEmail(email)} value={this.state.email} autoCapitalize='none'/>
+          <TextInput placeholder="Password" style={styles.input} onChangeText={password => this.updatePassword(password)} value={this.state.password} autoCapitalize='none'/>
+          <Text style={styles.forgotPassowrdText}>Forgot Password?</Text>
+        </View>
+        <View style={styles.loginContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
+              <LinearGradient
+                colors={['rgb(246, 146, 30)', 'rgb(246, 41, 123)']}
+                style={styles.linearGradient}>
+                  <Text style={styles.buttonText}>LOGIN</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          <Text style={styles.forgotPassowrdText}>Create Account</Text>
+        </View>
       </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  contentContainer: {
-    paddingVertical: 20,
-  //   alignItems: 'center'
-  },
-
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    marginTop: 90
+    width: '100%',
+    justifyContent: 'space-around',
+  },
+  logoTitle: {
+    alignItems: 'center',
   },
   image: {
     height: 140,
     width: 140,
   },
-  title: {
-    fontSize: 50,
-    // fontFamily: 'major-mono-display'
+  navTitle: {
+    width: 160,
+    height: 40,
+  },
+  loginCredentials: {
+    width: '100%',
+    alignItems: 'center',
   },
   input: {
     height: 30,
-    width: '90%',
-    borderColor: 'lightgrey',
+    width: '80%',
+    borderColor: 'rgba(0,0,0,0.2)',
     borderRadius: 50,
-    // borderColor: 'rgba(33,33,33,0.81)',
     borderWidth: 1.5,
     padding: 10,
     height: 60,
-    margin: 20,
-    alignItems: 'center'
-  },
-  linearGradient: {
-    width: '100%',
-    borderRadius: 25,
-    height: 50,
+    marginBottom: 15,
     alignItems: 'center',
-    justifyContent: 'center',
+    fontSize: 25,
+    paddingLeft: 30,
+  },
+  forgotPassowrdText: {
+    color: 'rgba(0,0,0,0.4)',
+    fontSize: 20,
+    marginBottom: 15,
+  },
+  loginContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   button: {
+    width: '80%',
     // borderRadius: 50,
     borderTopRightRadius: 20,
     borderBottomRightRadius: 20,
@@ -126,7 +137,15 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    color: 'black',
+    marginBottom: 15,
+  },
+  linearGradient: {
+    width: '100%',
+    borderRadius: 25,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
     color: '#fff',
