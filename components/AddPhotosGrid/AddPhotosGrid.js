@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, Modal} from 'react-native';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { connect } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import ImageUpload from '../ImageUpload/ImageUpload'
+import { setModalState } from '../../actions/index'
 
 class AddDogPhotosGrid extends React.Component {
     state = {
@@ -27,7 +29,8 @@ class AddDogPhotosGrid extends React.Component {
         const addImageButton = (
             <Row style={styles.row}>
                 <TouchableOpacity style={styles.addPhoto} onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);}} >
+                  this.props.setModalState(this.props.modalState);
+                  }} >
                     <Ionicons name="ios-add" size={35} color='rgb(21, 112, 125)' />
                 </TouchableOpacity>
             </Row>
@@ -74,9 +77,7 @@ class AddDogPhotosGrid extends React.Component {
                     animationType="slide"
                     transparent={true}
                     visible={this.props.modalState}
-                    onRequestClose={() => {
-                        this.setModalVisible(!this.state.modalVisible);
-                    }}>
+                    >
                 <ImageUpload />
               </Modal>
                 {this.createImagesAndButtonsForGrid()}

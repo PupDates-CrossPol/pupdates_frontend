@@ -9,6 +9,8 @@ import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
 import ApiKeys from '../../ApiKeys';
+import { setModalState } from '../../actions/index'
+
 
 firebase.initializeApp(ApiKeys.firebaseConfig);
 
