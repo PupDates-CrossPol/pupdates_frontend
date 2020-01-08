@@ -82,7 +82,7 @@ class AddDogPhotosGrid extends React.Component {
                         visible={this.props.modalState}
                         >
                     <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                        <ImageUpload />
+                        <ImageUpload currentComponent={'Dog'}/>
                     </View>
                 </Modal>
                 {this.createImagesAndButtonsForGrid()}

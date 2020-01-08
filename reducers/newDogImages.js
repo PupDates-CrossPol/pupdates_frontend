@@ -1,9 +1,8 @@
 export const newDogImages = (state = [], action) => {
     switch (action.type) {
-        case 'SET_PACK_INFO':
-            return [...state, action.newDogNewImage];
+        case 'SET_NEW_DOG_ADD_IMAGE':
+            return [...state, action.newDogImages];
         default:
             return state;
     }
 }
-

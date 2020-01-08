@@ -48,7 +48,7 @@ export const setModalState = modalState => ({
 	modalState
 })
 
-export const setNewDogAddImage = newDogNewImage => ({
+export const setNewDogAddImage = newDogImages => ({
 	type: 'SET_NEW_DOG_ADD_IMAGE',
-	newDogNewImage
+	newDogImages
 })

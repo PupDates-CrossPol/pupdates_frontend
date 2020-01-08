@@ -35,10 +35,8 @@ export class UserProfileScreen extends React.Component {
             <SafeAreaView>
               <ScrollView>
                 <View style={styles.componentTitleHeader}>
-                    <TouchableOpacity style={styles.imageBtn} onPress={() => {
-                      this.props.setImageUpload(<ImageUpload />)
+                    <TouchableOpacity style={styles.imageBtn} onPress={() => 
                       this.props.setModalState(this.props.modalState)
-                      }
                     }>
                       {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
                       {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
@@ -55,7 +53,7 @@ export class UserProfileScreen extends React.Component {
                           visible={this.props.modalState}
                           >
                       <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                          <ImageUpload />
+                          <ImageUpload currentComponent = {'User'}/>
                       </View>
                   </Modal>
                 </View>

@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload, setModalState } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload, setModalState, setNewDogAddImage } from '../../actions';
 import ApiKeys from '../../ApiKeys';
 
 
@@ -83,13 +83,16 @@ class ImageUpload extends React.Component {
 
   addImg = async () => {
     const { id, email, first_name, last_name, description } = this.props.user
-    this.props.setTempUserImage(null);
     const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
-    this.setState({ dogImages: [...this.state.dogImages, url]});
-    this.props.setUserInfo({ description, email, first_name, id, last_name, image: url })
-    const user = await apiCalls.patchUserPhoto(url, id)
-    this.setState({loading: false})
-    this.props.setModalState(this.props.modalState)
+    if (this.props.currentComponent === 'User') {
+      this.props.setTempUserImage(null);
+      this.props.setUserInfo({ description, email, first_name, id, last_name, image: url })
+      const user = await apiCalls.patchUserPhoto(url, id)
+    } else {
+      this.props.setNewDogAddImage(url);
+      this.setState({loading: false})
+      this.props.setModalState(this.props.modalState)
+    }
   }
 }
 
@@ -159,7 +162,8 @@ export const mapStateToProps = state => ({
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
   imageUpload: state.imageUpload,
-  modalState: state.modalState
+  modalState: state.modalState,
+  newDogImages: state.newDogImages
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -168,7 +172,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
   setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
-  setModalState: (modalState) => dispatch(setModalState(modalState))
+  setModalState: (modalState) => dispatch(setModalState(modalState)),
+  setNewDogAddImage: (newDogImages) => dispatch(setNewDogAddImage(newDogImages))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)

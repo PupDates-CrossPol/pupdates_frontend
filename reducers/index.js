@@ -9,6 +9,7 @@ import { swipePackPhotos } from './swipePackPhotos'
 import { tempUserImage } from './tempUserImage'
 import { imageUpload } from './imageUpload'
 import { modalState } from './modalState'
+import { newDogImages } from './newDogImages'
 
 export const rootReducer = combineReducers({
   user,
@@ -20,5 +21,6 @@ export const rootReducer = combineReducers({
   swipePackPhotos,
   tempUserImage,
   imageUpload,
-  modalState
+  modalState,
+  newDogImages
 })
