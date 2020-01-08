@@ -47,13 +47,13 @@ export const getAllDogImages = async () => {
 }
 
 export const getDogImagesById = async (dogId) => {
-  const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/dog_images/${dogId}`)
+  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/dog_images/${dogId}`)
 
   if (!response.ok) {
     throw Error('Failed to fetch images for this dog')
   }
   const dogPics = await response.json()
-  return dogPics
+  return dogPics.data
 }
 
 export const loginUser = async (email, password) => {
