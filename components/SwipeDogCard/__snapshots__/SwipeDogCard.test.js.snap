@@ -1,0 +1,437 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SwipeDogCard /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomWidth": 0.5,
+        "borderColor": "#ccc",
+        "borderLeftWidth": 0.5,
+        "borderRadius": 2,
+        "borderRightWidth": 0.5,
+        "borderTopWidth": 0.5,
+        "elevation": 3,
+        "flexWrap": "nowrap",
+        "marginBottom": 5,
+        "marginLeft": 2,
+        "marginRight": 2,
+        "marginTop": 5,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.1,
+        "shadowRadius": 1.5,
+      },
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "marginTop": 15,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 2,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 15,
+          "paddingRight": 15,
+          "paddingTop": 10,
+        },
+        Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+          "height": 350,
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "alignSelf": "stretch",
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "borderRadius": 2,
+          }
+        }
+      >
+        <RCTScrollView
+          ImageComponent={[Function]}
+          activeAnimationOptions={null}
+          activeAnimationType="timing"
+          activeSlideAlignment="center"
+          activeSlideOffset={20}
+          apparitionDelay={0}
+          automaticallyAdjustContentInsets={false}
+          autoplay={false}
+          autoplayDelay={1000}
+          autoplayInterval={3000}
+          borderTopLeftRadius={2}
+          borderTopRightRadius={2}
+          callbackOffsetMargin={5}
+          circleLoop={true}
+          containerCustomStyle={Object {}}
+          contentContainerCustomStyle={Object {}}
+          contentContainerStyle={
+            Array [
+              Object {
+                "paddingLeft": 0,
+                "paddingRight": 0,
+              },
+              Object {},
+            ]
+          }
+          data={
+            Array [
+              "woof",
+            ]
+          }
+          decelerationRate="fast"
+          directionalLockEnabled={true}
+          disableVirtualization={false}
+          dotColor="rgb(21, 112, 125)"
+          enableMomentum={false}
+          enableSnap={true}
+          firstItem={0}
+          getItem={[Function]}
+          getItemCount={[Function]}
+          hasParallaxImages={false}
+          horizontal={true}
+          images={
+            Array [
+              "woof",
+            ]
+          }
+          inactiveSlideOpacity={0.7}
+          inactiveSlideScale={0.9}
+          inactiveSlideShift={0}
+          initialNumToRender={6}
+          invertStickyHeaders={false}
+          inverted={false}
+          itemWidth={750}
+          keyExtractor={[Function]}
+          layout="default"
+          lockScrollTimeoutDuration={1000}
+          lockScrollWhileSnapping={false}
+          loop={true}
+          loopClonesPerSide={5}
+          maxToRenderPerBatch={13}
+          numColumns={1}
+          onContentSizeChange={[Function]}
+          onEndReachedThreshold={2}
+          onLayout={[Function]}
+          onMomentumScrollEnd={[Function]}
+          onResponderRelease={[Function]}
+          onScroll={[Function]}
+          onScrollBeginDrag={[Function]}
+          onScrollEndDrag={[Function]}
+          onSnapToItem={[Function]}
+          onStartShouldSetResponderCapture={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+          overScrollMode="never"
+          pinchGestureEnabled={false}
+          removeClippedSubviews={true}
+          renderItem={[Function]}
+          scrollEnabled={true}
+          scrollEventThrottle={1}
+          scrollsToTop={false}
+          shouldOptimizeUpdates={true}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          slideStyle={Object {}}
+          sliderWidth={750}
+          stickyHeaderIndices={Array []}
+          style={
+            Object {
+              "flexDirection": "row",
+              "opacity": 0,
+              "width": 750,
+            }
+          }
+          swipeThreshold={20}
+          updateCellsBatchingPeriod={50}
+          useScrollView={false}
+          vertical={false}
+          viewabilityConfigCallbackPairs={Array []}
+          windowSize={13}
+        >
+          <View>
+            <View
+              onLayout={[Function]}
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                  },
+                  null,
+                ]
+              }
+            >
+              <View
+                pointerEvents="box-none"
+                style={
+                  Object {
+                    "opacity": 1,
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                    "width": 750,
+                  }
+                }
+              >
+                <View
+                  accessible={true}
+                  focusable={true}
+                  isTVSelectable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={null}
+                >
+                  <Image
+                    ImageComponent={[Function]}
+                    circleLoop={true}
+                    dotColor="rgb(21, 112, 125)"
+                    images={
+                      Array [
+                        "woof",
+                      ]
+                    }
+                    resizeMethod="resize"
+                    resizeMode="cover"
+                    source={
+                      Object {
+                        "uri": "woof",
+                      }
+                    }
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "alignSelf": "center",
+                        "borderColor": "black",
+                        "borderRadius": 50,
+                        "borderWidth": 3.5,
+                        "height": 325,
+                        "justifyContent": "center",
+                        "width": 275,
+                      }
+                    }
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </RCTScrollView>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "borderRadius": 2,
+          "flexDirection": "row",
+          "paddingBottom": 10,
+          "paddingLeft": 15,
+          "paddingRight": 15,
+          "paddingTop": 10,
+        },
+        Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+          "height": 250,
+          "justifyContent": "center",
+          "width": "80%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "flex-start",
+            "alignSelf": "stretch",
+            "flex": 1,
+          },
+          Object {
+            "flexDirection": "column",
+            "height": 50,
+            "justifyContent": "center",
+            "textAlign": "left",
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "fontSize": 30,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        fluffy
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Breed: 
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Age: 
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Gender: 
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Fixed: 
+        false
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Vaccinated: 
+        false
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 16,
+            },
+            Object {
+              "alignSelf": "stretch",
+              "color": "grey",
+              "fontSize": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+        uppercase={false}
+      >
+        Good with kids: 
+        false
+      </Text>
+    </View>
+  </View>
+</View>
+`;
