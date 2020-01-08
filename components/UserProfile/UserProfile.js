@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
-class UserProfileScreen extends React.Component {
+export class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
           <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>

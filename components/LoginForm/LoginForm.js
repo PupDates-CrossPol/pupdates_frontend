@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as Font from 'expo-font';
@@ -166,7 +167,7 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dopPackPictures) => dispatch(setPackPhotos(dopPackPictures)),
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
-  setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures))
+  // setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)

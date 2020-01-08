@@ -6,7 +6,7 @@ import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux'
 
-class MenuScreen extends React.Component {
+export class MenuScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
         headerTitle: () => <Image source={require('../../assets/MenuSpread.png')} style={styles.navTitle}/>,

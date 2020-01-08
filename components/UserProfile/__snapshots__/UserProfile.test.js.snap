@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserProfile /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <View>
+    <View>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginLeft": 5,
+            "opacity": 1,
+            "padding": 10,
+            "position": "absolute",
+            "width": "25%",
+          }
+        }
+      >
+        <Text />
+        <Text
+          style={
+            Object {
+              "color": "rgb(53, 129, 252)",
+              "fontSize": 25,
+              "marginLeft": 5,
+            }
+          }
+        >
+          Menu
+        </Text>
+      </View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "rgba(0,0,0,0.57)",
+            "fontSize": 30,
+            "fontWeight": "300",
+            "padding": 10,
+          }
+        }
+      >
+        sara
+      </Text>
+      <View
+        accessible={true}
+        focusable={true}
+        isTVSelectable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "borderBottomColor": "rgba(0,0,0,0.57)",
+            "borderBottomWidth": 1,
+            "elevation": 5,
+            "height": 265,
+            "justifyContent": "center",
+            "marginLeft": 55,
+            "marginRight": 55,
+            "opacity": 1,
+            "shadowColor": "#000",
+            "shadowOffset": Object {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.25,
+            "shadowRadius": 3.84,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
+          style={
+            Object {
+              "aspectRatio": 1,
+              "borderColor": "black",
+              "borderRadius": 100,
+              "borderWidth": 2,
+              "height": 199,
+            }
+          }
+        />
+      </View>
+      <Text
+        style={
+          Object {
+            "color": "rgb(53, 129, 252)",
+            "fontSize": 25,
+            "marginBottom": 20,
+            "marginLeft": 5,
+            "marginTop": 20,
+            "paddingLeft": 10,
+          }
+        }
+      >
+        About Me:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "fontWeight": "300",
+            "marginTop": 5,
+            "paddingLeft": 45,
+          }
+        }
+      >
+        First Name: 
+        sara
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "fontWeight": "300",
+            "marginTop": 5,
+            "paddingLeft": 45,
+          }
+        }
+      >
+        Last Name: 
+        karsh
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "fontWeight": "300",
+            "marginTop": 5,
+            "paddingLeft": 45,
+          }
+        }
+      >
+        Email: 
+        emailaddress
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "rgb(53, 129, 252)",
+            "fontSize": 25,
+            "marginBottom": 20,
+            "marginLeft": 5,
+            "marginTop": 20,
+            "paddingLeft": 10,
+          }
+        }
+      >
+        Description:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 20,
+            "fontWeight": "300",
+            "marginTop": 5,
+            "paddingLeft": 45,
+          }
+        }
+      >
+        a string of words
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

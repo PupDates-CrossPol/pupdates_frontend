@@ -11,6 +11,7 @@ web-build/
 web-report/
 ios/Pods
 ApiKeys.js
+coverage/**/*
 
 # macOS
 .DS_Store
