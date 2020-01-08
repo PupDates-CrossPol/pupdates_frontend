@@ -9,6 +9,8 @@ import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
 import ApiKeys from '../../ApiKeys';
+import { setModalState } from '../../actions/index'
+
 
 firebase.initializeApp(ApiKeys.firebaseConfig);
 
@@ -21,31 +23,19 @@ class ImageUpload extends React.Component {
 
   render() {
   	return (
-  		<SafeAreaView>
+  		<SafeAreaView style={styles.addImagesContainer}>
       {this.state.loading && <Text>Loading</Text>}
-        <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
-          <LinearGradient
-            colors={['orange', '#c32525']}
-            style={styles.linearGradient}
-          >
+        <TouchableOpacity style={styles.topButton} onPress={() => this.selectImg()}>
               <Text style={styles.buttonText}>Choose From Library</Text>
-          </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.takeImg()}>
-          <LinearGradient
-            colors={['orange', '#c32525']}
-            style={styles.linearGradient}
-          >
+        <TouchableOpacity style={styles.bottomButton} onPress={() => this.takeImg()}>
               <Text style={styles.buttonText}>Take A Photo</Text>
-          </LinearGradient>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.props.setImageUpload(null)}>
-          <LinearGradient
-            colors={['gray', 'black']}
-            style={styles.linearGradient}
-          >
+        <TouchableOpacity style={styles.cancelButton} onPress={() => {
+          this.props.setModalState(this.props.modalState)
+          this.props.setImageUpload(null)
+          }}>
               <Text style={styles.buttonText}>Cancel</Text>
-          </LinearGradient>
         </TouchableOpacity>
   		</SafeAreaView>
   	)
@@ -109,26 +99,56 @@ setTimeout
 }
 
 const styles = StyleSheet.create({
+  addImagesContainer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '95%',
+    alignSelf: 'center'
+  },
   linearGradient: {
-    width: '80%',
+    width: '100%',
     height: 40,
     marginTop: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-    // borderRadius: 50,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
+  topButton: {
+    height: 50,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    backgroundColor: '#fff',
+    color: 'black',
+    marginBottom: 0,
+    borderBottomColor: 'rgba(0, 0, 0, 0.2)',
+    borderBottomWidth: 1
+  },
+  bottomButton: {
+    height: 50,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    color: 'black',
+    marginTop: 0,
   },
   buttonText: {
-    color: '#fff',
+    color: '#000',
     fontSize: 25,
+  },
+  cancelButton: {
+    height: 50,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderTopLeftRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    marginBottom: 10,
+    marginTop: 5,
   }
 })
 
@@ -137,7 +157,8 @@ export const mapStateToProps = state => ({
   pack: state.pack,
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
-  imageUpload: state.imageUpload
+  imageUpload: state.imageUpload,
+  modalState: state.modalState
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -145,7 +166,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
-  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
+  setModalState: (modalState) => dispatch(setModalState(modalState))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)
