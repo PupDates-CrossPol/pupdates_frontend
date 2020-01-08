@@ -9,7 +9,7 @@ import Match from '../Match/Match'
 export default class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => <Image source={require('../../assets/PupDatesLogo.png')} style={styles.logo} />,
-        headerTitle: () => <Image source={require('../../assets/PupDatesTitleSpread.png')} style={styles.navTitle}/>,
+        headerTitle: () => <Image source={require('../../assets/MatchesSpread.png')} style={styles.navTitle}/>,
         headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                 <Ionicons name="ios-close" size={50} color='rgb(21, 112, 125)' />
