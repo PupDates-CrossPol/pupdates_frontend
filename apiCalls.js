@@ -106,12 +106,12 @@ export const patchUserPhoto = async (photo, id) => {
   return data
 };
 
-export const getMatchesForrUser = async (userId) => {
+export const getMatchesForUser = async (userId) => {
   const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${userId}/matches`)
 
   if (!response.ok) {
     throw Error(`Failed to retrieve user's dogs`)
   }
   const matches = await response.json()
-  return matches
+  return matches.data
 }
