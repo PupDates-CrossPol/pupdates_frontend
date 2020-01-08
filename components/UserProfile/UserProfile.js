@@ -1,19 +1,15 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from '../Home/Home'
-import { Ionicons } from '@expo/vector-icons';
-import ImageUpload from '../ImageUpload/ImageUpload';
 import * as apiCalls from '../../apiCalls';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import ImageUpload from '../ImageUpload/ImageUpload';
 
 class UserProfileScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
             <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
           </TouchableOpacity>
           ),
@@ -70,6 +66,9 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 50,
       // fontFamily: 'major-mono-display'
+    },
+    backArrow: {
+      marginLeft: 5,
     },
     imageBtn: {
       height: 265,

@@ -9,7 +9,7 @@ import Match from '../Match/Match'
 export default class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.navigate('Menu')}>
+          <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
             <Ionicons name="ios-arrow-back" size={30} color='rgb(53, 129, 252)' />
           </TouchableOpacity>
           ),
@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
         height: 40,
         width: 40,
     }, 
+    backArrow: {
+      marginLeft: 5,
+    },
     image: {
       height: 140,
       width: 140,
