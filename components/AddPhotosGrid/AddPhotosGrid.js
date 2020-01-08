@@ -71,15 +71,20 @@ class AddDogPhotosGrid extends React.Component {
         
     }
     render() {
+        const modalBackgroundStyle = {
+            backgroundColor: 'rgba(0, 0, 0, 0.2)'
+          };
         return (
             <View style={styles.container}>
-                 <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={this.props.modalState}
-                    >
-                <ImageUpload />
-              </Modal>
+                <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={this.props.modalState}
+                        >
+                    <View style={[styles.modalContainer, modalBackgroundStyle]}>
+                        <ImageUpload />
+                    </View>
+                </Modal>
                 {this.createImagesAndButtonsForGrid()}
             </View>
             )
@@ -94,7 +99,13 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: '5%',
         marginTop: 15,
-      },
+    },
+      modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ecf0f1',
+    },
     menuCircle: {
       aspectRatio: 1/1,
       height: 300,

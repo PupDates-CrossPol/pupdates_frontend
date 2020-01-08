@@ -26,31 +26,31 @@ class ImageUpload extends React.Component {
   		<SafeAreaView style={styles.addImagesContainer}>
       {this.state.loading && <Text>Loading</Text>}
         <TouchableOpacity style={styles.button} onPress={() => this.selectImg()}>
-          <LinearGradient
+          {/* <LinearGradient
             colors={['orange', '#c32525']}
             style={styles.linearGradient}
-          >
+          > */}
               <Text style={styles.buttonText}>Choose From Library</Text>
-          </LinearGradient>
+          {/* </LinearGradient> */}
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => this.takeImg()}>
-          <LinearGradient
+          {/* <LinearGradient
             colors={['orange', '#c32525']}
             style={styles.linearGradient}
-          >
+          > */}
               <Text style={styles.buttonText}>Take A Photo</Text>
-          </LinearGradient>
+          {/* </LinearGradient> */}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => {
+        <TouchableOpacity style={styles.cancdelButton} onPress={() => {
           this.props.setModalState(this.props.modalState)
           this.props.setImageUpload(null)
           }}>
-          <LinearGradient
+          {/* <LinearGradient
             colors={['gray', 'black']}
             style={styles.linearGradient}
-          >
+          > */}
               <Text style={styles.buttonText}>Cancel</Text>
-          </LinearGradient>
+          {/* </LinearGradient> */}
         </TouchableOpacity>
   		</SafeAreaView>
   	)
@@ -117,10 +117,11 @@ const styles = StyleSheet.create({
   addImagesContainer: {
     position: 'absolute',
     bottom: 0,
-    width: '100%'
+    width: '95%',
+    alignSelf: 'center'
   },
   linearGradient: {
-    width: '80%',
+    width: '100%',
     height: 40,
     marginTop: 5,
     alignItems: 'center',
@@ -128,17 +129,29 @@ const styles = StyleSheet.create({
   },
   button: {
     // borderRadius: 50,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderTopLeftRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     color: 'black'
   },
   buttonText: {
-    color: '#fff',
+    color: '#000',
     fontSize: 25,
+  },
+  cancdelButton: {
+    height: 40,
+    borderTopRightRadius: 50,
+    borderBottomRightRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderTopLeftRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    marginBottom: '1%',
+    marginTop: 5,
   }
 })
 
