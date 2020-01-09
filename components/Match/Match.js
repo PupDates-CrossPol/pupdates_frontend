@@ -4,13 +4,18 @@ import { connect } from 'react-redux'
 
 
 const Match = (props) => {
+    console.log('matches', props.matches);
+    console.log('matchesPack', props.matchesPack);
+    console.log('matchesPackImages', props.matchesPackImages);
+
+    
     const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
         const dogPlacement = `dogCircle${(i+1)}`
         return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />
     } );
 
     const dogPackImages = (dogIds) => {
-        return dogIds.map( id => props.matchesImages.find( photo => photo.dog_id === id))
+        return dogIds.map( id => props.matchesPackImages.find( photo => photo.dog_id === id))
     }
 
     const userDogPack = (userId) => {
@@ -19,10 +24,11 @@ const Match = (props) => {
         return dogPackImages(dogIds)
     }
 
-    const allMatches = props.matches.map( (match, i) => {
+    const allMatches = () => props.matches.map( (match, i) => {
         const {userImage, userName, userEmail} = match
-        const SelectedDogPackImages = userDogPack(match.id)
-
+        const SelectedDogPackImages = () => userDogPack(match.id)
+        console.log('maybe this tis going???', props);
+        
         return (
             <View key={i} style={styles.matchViewIndividual}>
                 <View style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
@@ -30,7 +36,7 @@ const Match = (props) => {
                     <Text style={styles.matchUserEmail}>{userEmail}</Text>
                     <View style={styles.matchesImages}>
                         <Image source={{uri: userImage}} style={styles.userCircle} />
-                        {dogPackImageCreator(SelectedDogPackImages )}
+                        {dogPackImageCreator(SelectedDogPackImages())}
                     </View>
                 <View style={styles.bottomLine}></View>
                 </View>
@@ -39,7 +45,9 @@ const Match = (props) => {
     });
 
     return (
-       allMatches
+        <>
+       {allMatches}
+       </>
     );
 };
 
@@ -138,7 +146,7 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = state => ({
     matches: state.matches,
-    matchesImages: state.matchesImages,
+    matchesPackImages: state.matchesPackImages,
     matchesPack: state.matchesPack
   })
   

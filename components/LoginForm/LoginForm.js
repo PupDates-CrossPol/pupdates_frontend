@@ -38,8 +38,10 @@ export class LoginScreen extends React.Component {
   }
 
   getPackImages = async pack => {
+    
     pack.forEach( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.attributes.id)
+
       this.props.setPackPhotos(dogImages)
     })
   }
@@ -52,15 +54,19 @@ export class LoginScreen extends React.Component {
   }
 
   getMatchesPackImages = pack => {
+    // console.log('getMatchesPackImages', pack);
     pack.forEach( async dog => {
+
       const dogImages = await apiCalls.getDogImagesById(dog.id)
-      const matchesPackPhotos = this.cleanResponse(dogImages)
-      this.props.setMatchesPackImages(matchesPackPhotos)
+      // const matchesPackPhotos = this.cleanResponse(dogImages) - need after we swtich backed
+      // console.log('dogImages', dogImages);
+      
+      this.props.setMatchesPackImages(dogImages)
     })
   }
 
   getMatchesPackInfo = matches => {
-    if (!matches.length) {
+    if (matches.length) {
       matches.forEach( async match => {
         const dogPackResponse = await apiCalls.getDogsForUser(match.id)
         const cleanedMatchesPackImagesResponse = this.cleanResponse(dogPackResponse)

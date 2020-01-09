@@ -137,7 +137,7 @@ export const postSwipeData = async (user_id, match_id, status) => {
   // console.log('id', id)
   const options = {
     method: 'POST',
-    body: JSON.stringify({ user_id, match_id, status }),
+    body: JSON.stringify({ match_id, status }),
     headers: {
       'Content-Type': 'application/json'
     }
