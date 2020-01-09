@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { connect } from 'react-redux'
+
 
 const Match = () => {
     const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
