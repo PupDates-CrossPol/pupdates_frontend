@@ -79,9 +79,13 @@ export class HomeScreen extends React.Component {
   const user_id = this.props.user.id
   const match_id = this.props.swipeUser.attributes.id
   const status = "like"
-  const swipeResponse = await apiCalls.postSwipeData(user_id, match_id, status)
-  // console.log('swipe response', swipeResponse)
-  return swipeResponse
+  // const swipeResponse = 
+  await apiCalls.postSwipeData(user_id, match_id, status)
+  // await this.props.setSwipeUser({})
+  this.getRandomUser()
+
+  
+  // return swipeResponse
  }
 
 // handleSwipeLike = () => {
