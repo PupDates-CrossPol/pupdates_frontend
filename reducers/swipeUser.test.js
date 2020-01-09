@@ -16,6 +16,6 @@ describe('swiperUser', () => {
 
     const result = swipeUser(undefined, mockSetSwipeUser)
 
-    expect(result).toEqual(expected)
+    expect(result).toEqual(swipeUserObj)
   })
 })
