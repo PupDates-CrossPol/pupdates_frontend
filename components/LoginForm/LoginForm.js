@@ -33,7 +33,7 @@ export class LoginScreen extends React.Component {
 
   getPackImages = async pack => {
     pack.forEach( async dog => {
-      const dogImages = await apiCalls.getDogImagesById(dog.id)
+      const dogImages = await apiCalls.getDogImagesById(dog.attributes.id)
       this.props.setPackPhotos(dogImages)
     })
   }
@@ -42,6 +42,7 @@ export class LoginScreen extends React.Component {
     const dogPackResponse = await apiCalls.getDogsForUser(userId)
     this.getPackImages(dogPackResponse)
     this.props.setPackInfo(dogPackResponse)
+
   }
 
   handleSubmit = async () => {
