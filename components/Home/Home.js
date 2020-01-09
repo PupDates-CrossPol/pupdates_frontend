@@ -75,7 +75,24 @@ export class HomeScreen extends React.Component {
     })
  }
 
+ handleSwipeLike = async () => {
+   const user_id = this.props.user.id
+   console.log('current user id', user_id)
+   const match_id = this.props.swipeUser.attributes.id
+   console.log('match_id', match_id)
+   const status = "like"
+  const swipeResponse = await apiCalls.postSwipeData(user_id, match_id, status)
+  console.log('swipe response', swipeResponse)
+  return swipeResponse
+ }
+
+// handleSwipeLike = () => {
+
+// }
+
 render() {
+  // console.log('user', this.props.user)
+  // console.log('swipeUser', this.props.swipeUser)
     if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
       return null
     }
@@ -96,7 +113,7 @@ render() {
               <TouchableOpacity style={styles.button} onPress={() => console.log('DISLIKE')}>
                 <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={() => console.log('LIKE')}>
+              <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeLike()}>
                 <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
               </TouchableOpacity>
      </View>

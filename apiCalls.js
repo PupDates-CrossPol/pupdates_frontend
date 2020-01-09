@@ -105,3 +105,28 @@ export const patchUserPhoto = async (photo, id) => {
   const data = await resp.text();
   return data
 };
+
+export const postSwipeData = async (user_id, match_id, status) => {
+  console.log('hellooooooooooooooo', match_id, status)
+  // console.log('id', id)
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({ user_id, match_id, status }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${user_id}/matches`, options)
+  console.log('options from API CALL', options.body);
+  console.log('url', `https://backend-pupdates.herokuapp.com/api/v1/users/${user_id}/matches`)
+  
+  console.log('response on API CALL',response);
+  
+  if (!response.ok) {
+    console.log({ error })
+  }
+  console.log('response for post swipe data', response)
+  const swipeData = await response.json()
+  console.log('swipe data', swipeData)
+  return swipeData.data
+}
