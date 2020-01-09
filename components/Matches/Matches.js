@@ -44,7 +44,7 @@ class MatchesScreen extends React.Component {
                 <ScrollView>
                   <View >
                     <View style={styles.matches}>
-                      <Match matches={sampleMatches} />
+                      <Match />
                     </View>
                   </View>
                 </ScrollView>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = state => ({
   pack: state.pack,
-  matches: state.matches
+  matches: state.matches,
 })
 
 export default connect (mapStateToProps)(MatchesScreen)

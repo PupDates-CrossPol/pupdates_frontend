@@ -23,6 +23,12 @@ export class LoginScreen extends React.Component {
     });
   }
 
+  cleanResponse = responses => {
+    return responses.map( response => {
+      return response.attributes
+    })
+  }
+
   updateEmail(email) {
     this.setState({ email })
   }
@@ -44,19 +50,21 @@ export class LoginScreen extends React.Component {
     this.props.setPackInfo(dogPackResponse)
   }
 
-  getMatchesPackImages = async pack => {
+  getMatchesPackImages = pack => {
     pack.forEach( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
-      this.props.setMatchesPackImages(dogImages)
+      const cleanedDogImagesResponse = this.cleanResponse(dogImages)
+      this.props.setMatchesPackImages(cleanedDogImagesResponse)
     })
   }
 
-  getMatchesPackInfo = async matches => {
+  getMatchesPackInfo = matches => {
     if (!matches.length) {
-      matches.forEach( match => {
+      matches.forEach( async match => {
         const dogPackResponse = await apiCalls.getDogsForUser(match.id)
-        this.getMatchesPackImages(dogPackResponse)
-        this.props.setMatchesPack(dogPackResponse)
+        const cleanedMatchesPackImagesResponse = this.cleanResponse(dogPackResponse)
+        this.getMatchesPackImages(cleanedMatchesPackImagesResponse)
+        this.props.setMatchesPack(cleanedMatchesPackImagesResponse)
       })
     } else {
       return
@@ -75,8 +83,9 @@ export class LoginScreen extends React.Component {
       const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.attributes.id)
       this.props.setOtherUsers(otherUsers)
       const matches = await apiCalls.getMatchesForUser(loginResponse.attributes.id)
-      this.props.setMatches(matches)
-      this.getMatchesPackInfo(matches)
+      const cleanedMatchResponse = this.cleanResponse(matches)
+      this.props.setMatches(cleanedMatchResponse)
+      this.getMatchesPackInfo(cleanedMatchResponse)
       this.props.navigation.navigate('Home');
     }
   }
@@ -199,6 +208,8 @@ export const mapDispatchToProps = dispatch => ({
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
   // setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setMatches: (userMatches) => dispatch(setMatches(userMatches)),
+  setMatchesPack: (matchesPack => dispatch(setMatchesPack(matchesPack))),
+  setMatchesPackImages: (matchesPackPhotos => dispatch(setMatchesPackImages(matchesPackPhotos)))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)
