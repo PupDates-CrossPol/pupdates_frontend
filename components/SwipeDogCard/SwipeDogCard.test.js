@@ -6,10 +6,12 @@ import { Provider } from 'react-redux'
 describe('<SwipeDogCard />', () => {
   it('has two children', () => {
     const mockSwipePack = [
-      {
+      { 
+        attributes: {
         id: 1,
         user_id: 1,
         name: 'fluffy'
+        }
       }
     ]
     const mockSwipePackPhotos = [
@@ -24,10 +26,12 @@ describe('<SwipeDogCard />', () => {
   })
   it('renders correctly', () => {
     const mockSwipePack = [
-      {
+      { 
+        attributes: {
         id: 1,
         user_id: 1,
         name: 'fluffy'
+        }
       }
     ]
     const mockSwipePackPhotos = [

@@ -9,9 +9,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 export const SwipeDogCard = (props) => {
   const dogCards = props.swipePack.map((dog, index) => {
-   
+    console.log('swipe pack', props.swipePack)
     const currentImages = props.swipePackPhotos.filter(pic => pic.dog_id === dog.attributes.id)
-    
+    console.log('dog swipe card', dog)
     const boxPics = currentImages.map(image => image.image_url)
     return (
       <Card key={index} style={styles.imageCard}>
