@@ -28,10 +28,7 @@ describe('<Matches />', () => {
     }
 
     const store = mockStore(initialState);
-    // const naviProp = { navigation: { navigate: () => {} } };
-
-    console.log('store', store.getState())
-
+   
     const tree = renderer.create(
     <Provider store={store}>
       <Matches />
@@ -39,6 +36,35 @@ describe('<Matches />', () => {
     ).toJSON()
 
     expect(tree.children.length).toBe(1)
+  })
+
+  it('renders correctly', () => {
+    const initialState = {
+      matches: [
+        {
+          id: 1,
+          first_name: 'bob',
+          last_name: 'ross',
+          email: 'happy little trees'
+        }
+      ],
+      pack: [
+        {
+          id: 1,
+          name: 'fluffy'
+        }
+      ],
+    }
+
+    const store = mockStore(initialState);
+   
+    const tree = renderer.create(
+    <Provider store={store}>
+      <Matches />
+    </Provider>
+    ).toJSON()
+
+    expect(tree).toMatchSnapshot()
   })
 })
 

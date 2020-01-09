@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Matches /> renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Image
+      source={1}
+      style={
+        Object {
+          "height": 140,
+          "width": 140,
+        }
+      }
+    />
+    <Text
+      style={
+        Object {
+          "color": "rgba(0,0,0,0.4)",
+          "fontSize": 20,
+          "marginBottom": 15,
+        }
+      }
+    >
+      No Matches Yet
+    </Text>
+  </View>
+</RCTSafeAreaView>
+`;
