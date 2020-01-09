@@ -26,6 +26,10 @@ export class MenuScreen extends React.Component {
         headerRightContainerStyle: styles.rightNavIcon,
       })
 
+      checkForMatches = () => {
+        
+      }
+
     render() {
         return (
                 <View style={styles.container}>
@@ -168,11 +172,3 @@ const styles = StyleSheet.create({
   })
 
   export default connect (mapStateToProps)(MenuScreen)
-// const AppNavigator = createStackNavigator({
-//     Menu: {
-//         screen: MenuScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
-
-// export default MenuScreen;
