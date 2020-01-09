@@ -87,7 +87,7 @@ class ImageUpload extends React.Component {
     if (this.props.currentComponent === 'User') {
       this.props.setTempUserImage(null);
       this.props.setUserInfo({ description, email, first_name, id, last_name, image: url })
-      const user = await apiCalls.patchUserPhoto(url, id)
+      const user = await apiCalls.patchUserImage(url, id)
     } else {
       this.props.setNewDogAddImage(url);
     }

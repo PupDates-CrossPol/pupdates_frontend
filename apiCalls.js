@@ -92,7 +92,7 @@ export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed,
   return newDog
 }
 
-export const postDogPhoto = async (image, dogId) => {
+export const postDogImage = async (image, dogId) => {
   const options = {
     method: 'POST',
     body: JSON.stringify({ image }),
@@ -107,7 +107,7 @@ export const postDogPhoto = async (image, dogId) => {
   return data
 };
 
-export const patchUserPhoto = async (image, id) => {
+export const patchUserImage = async (image, id) => {
   const options = {
     method: 'PATCH',
     body: JSON.stringify({ image }),
