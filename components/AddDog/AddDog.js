@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ScrollView, SafeAreaView, Picker } from 'react-native';
 import { connect } from 'react-redux'
 import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as apiCalls from '../../apiCalls';
 import * as Font from 'expo-font';
 import AddDogPhotosGrid from '../AddPhotosGrid/AddPhotosGrid'
 import KeyboardShift from '../KeyboardShift/KeyboardShift'
@@ -13,11 +14,12 @@ class AddDogScreen extends React.Component {
     state = {
         name: null,
         sex: null,
+        breed: null,
         size: null,
         age: null,
-        fixed: false,
-        vaccinated: false,
-        goodWithKids: false,
+        fixed: null,
+        vaccinated: null,
+        good_with_kids: null,
         uploadedPhotos: []
       }
 
@@ -33,12 +35,45 @@ class AddDogScreen extends React.Component {
         headerRightContainerStyle: styles.rightNavIcon,
       })
 
+      resetState = () => {
+        this.setState({
+          name: null,
+          sex: null,
+          breed: null,
+          size: null,
+          age: null,
+          fixed: null,
+          vaccinated: null,
+          good_with_kids: null,
+          uploadedPhotos: []
+        })
+      };
+
+      canBeSubmitted() {
+        const { name, sex, breed, size, age, fixed, vaccinated, good_with_kids  } = this.state
+        return (!name === null && !sex === null && !breed === null && !size === null && !age === null && !fixed === null && !vaccinated === null && !good_with_kids === null)
+      };
+
       handleChange = stateLocation => {
         this.setState({ stateLocation });
       };
 
+      handleStart = () => {
+        const { ramdomizeGameData, gameData } = this.props
+        ramdomizeGameData(gameData)
+      };
+
+      handleSubmit = async () => {
+        const { name, sex, breed, size, age, fixed, vaccinated, good_with_kids  } = this.state
+        const newDogRequest = await apiCalls.addDogForUser( user_id= this.props.user.id, name, sex, breed, size, age, fixed, vaccinated, good_with_kids)
+        this.props.newDogImages.forEach(image => {
+            apiCalls.postDogImage(image, newDogRequest.id)
+        })
+        // resetState()
+      };
 
     render() {
+      const isEnabled = this.canBeSubmitted()
         return (
           <KeyboardShift>
           {() => (
@@ -46,18 +81,22 @@ class AddDogScreen extends React.Component {
                 <ScrollView>
                     <View style={styles.addDogCard}>
                         <AddDogPhotosGrid uploadedPhotos={this.state.uploadedPhotos}/>
-                        <TextInput placeholder='name' style={styles.input} onChangeText={ name => this.handleChange(name)} value={this.state.name}/>
-                        <TextInput placeholder='sex' style={styles.input} onChangeText={ sex => this.handleChange(sex)} value={this.state.sex}/>
-                        <TextInput placeholder='size' style={styles.input} onChangeText={ size => this.handleChange(size)} value={this.state.size}/>
-                        <TextInput placeholder='age' style={styles.input} onChangeText={ age => this.handleChange(age)} value={this.state.age}/>
-                        <TextInput placeholder='fixed' style={styles.input} onChangeText={ fixed => this.handleChange(fixed)} value={this.state.fixed}/>
-                        <TextInput placeholder='vaccinated' style={styles.input} onChangeText={ vaccinated => this.handleChange(vaccinated)} value={this.state.vaccinated}/>
-                        <TextInput placeholder='goodWithKids' style={styles.input} onChangeText={ goodWithKids => this.handleChange(goodWithKids)} value={this.state.goodWithKids}/>
-                        <TouchableOpacity style={styles.button} onPress={() => this.handleSubmit()}>
+                        <TextInput placeholder='Name' style={styles.input} onChangeText={ name => this.handleChange(name)} value={this.state.name}/>
+                        <TextInput placeholder='Sex' style={styles.input} onChangeText={ sex => this.handleChange(sex)} value={this.state.sex}/>
+                        <TextInput placeholder='Breed' style={styles.input} onChangeText={ breed => this.handleChange(breed)} value={this.state.breed}/>
+                        <TextInput placeholder='Size' style={styles.input} onChangeText={ size => this.handleChange(size)} value={this.state.size}/>
+                        <TextInput placeholder='Age' style={styles.input} onChangeText={ age => this.handleChange(age)} value={this.state.age}/>
+                        <TextInput placeholder='Fixed' style={styles.input} onChangeText={ fixed => this.handleChange(fixed)} value={this.state.fixed}/>
+                        <TextInput placeholder='Vaccinated' style={styles.input} onChangeText={ vaccinated => this.handleChange(vaccinated)} value={this.state.vaccinated}/>
+                        <TextInput placeholder='Good With Kids?' style={styles.input} onChangeText={ good_with_kids => this.handleChange(good_with_kids)} value={this.state.goodWithKids}/>
+                        <TouchableOpacity 
+                          // disabled={!isEnabled} 
+                          style={styles.button} 
+                          onPress={() => this.handleSubmit()}>
                             <LinearGradient
                                 colors={['orange', '#c32525']}
                                 style={styles.linearGradient}
-                                onPress={() => console.log('does this work?')} >
+                                >
                                 <Text style={styles.buttonText}>Save Pup</Text>
                             </LinearGradient>
                         </TouchableOpacity>
@@ -144,8 +183,10 @@ const styles = StyleSheet.create({
 
 
 export const mapStateToProps = state => ({
+    user: state.user,
     pack: state.pack,
-    packPhotos: state.packPhotos
+    packPhotos: state.packPhotos,
+    newDogImages: state.newDogImages
   })
   
   export const mapDispatchToProps = dispatch => ({

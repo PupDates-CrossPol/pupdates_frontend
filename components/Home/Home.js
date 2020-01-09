@@ -47,9 +47,7 @@ export class HomeScreen extends React.Component {
    await Font.loadAsync({
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
-    // const dogImages = await getDogImagesById(4)
     this.getRandomUser()
-    // this.setState({dogImages: dogImages.map( dog => dog.image_url)});
   }
   
  
@@ -71,13 +69,30 @@ export class HomeScreen extends React.Component {
 
  getSwipePackImages = async (swipePack) => {
     swipePack.forEach( async dog => {
-     const swipePics = await apiCalls.getDogImagesById(dog.id)
+     const swipePics = await apiCalls.getDogImagesById(dog.attributes.id)
      this.props.setSwipePackPhotos(swipePics)
      
     })
  }
 
+ handleSwipeLike = async () => {
+   const user_id = this.props.user.id
+   console.log('current user id', user_id)
+   const match_id = this.props.swipeUser.attributes.id
+   console.log('match_id', match_id)
+   const status = "like"
+  const swipeResponse = await apiCalls.postSwipeData(user_id, match_id, status)
+  console.log('swipe response', swipeResponse)
+  return swipeResponse
+ }
+
+// handleSwipeLike = () => {
+
+// }
+
 render() {
+  // console.log('user', this.props.user)
+  // console.log('swipeUser', this.props.swipeUser)
     if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
       return null
     }
@@ -98,7 +113,7 @@ render() {
               <TouchableOpacity style={styles.button} onPress={() => console.log('DISLIKE')}>
                 <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={() => console.log('LIKE')}>
+              <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeLike()}>
                 <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
               </TouchableOpacity>
      </View>

@@ -18,22 +18,22 @@ export const getSingleUser = async (userId) => {
 }
 
 export const getAllDogs = async () => {
-  const response = await fetch('https://node-pupdates-backend.herokuapp.com/api/v1/dogs')
+  const response = await fetch('https://backend-pupdates.herokuapp.com/api/v1/dogs')
   if (!response.ok) {
     throw Error('Failed to fetch dogs')
   }
   const dogs = await response.json()
-  return dogs;
+  return dogs.data;
 }
 
 export const getDogsForUser = async (userId) => {
-  const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${userId}/dogs`)
+  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${userId}/dogs`)
 
   if (!response.ok) {
     throw Error(`Failed to retrieve user's dogs`)
   }
   const userDogs = await response.json()
-  return userDogs
+  return userDogs.data
 }
 
 export const getAllDogImages = async () => {
@@ -92,16 +92,32 @@ export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed,
   return newDog
 }
 
-export const patchUserPhoto = async (photo, id) => {
+export const postDogImage = async (image, dogId) => {
   const options = {
-    method: 'PATCH',
-    body: JSON.stringify({ photo }),
+    method: 'POST',
+    body: JSON.stringify({ image }),
     headers: {
       'Content-Type': 'application/json'
     }
   };
 
-  const resp = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${id}`, options)
+  const resp = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/dog_images/${dogId}`, options)
+
+  const data = await resp.json();
+  return data
+};
+
+export const patchUserImage = async (image, id) => {
+  const options = {
+    method: 'PATCH',
+    body: JSON.stringify({ image }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const resp = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${id}`, options)
+
   const data = await resp.text();
   return data
 };
@@ -114,4 +130,29 @@ export const getMatchesForUser = async (userId) => {
   }
   const matches = await response.json()
   return matches.data
+}
+
+export const postSwipeData = async (user_id, match_id, status) => {
+  console.log('hellooooooooooooooo', match_id, status)
+  // console.log('id', id)
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({ user_id, match_id, status }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${user_id}/matches`, options)
+  console.log('options from API CALL', options.body);
+  console.log('url', `https://backend-pupdates.herokuapp.com/api/v1/users/${user_id}/matches`)
+  
+  console.log('response on API CALL',response);
+  
+  if (!response.ok) {
+    console.log({ error })
+  }
+  console.log('response for post swipe data', response)
+  const swipeData = await response.json()
+  console.log('swipe data', swipeData)
+  return swipeData.data
 }

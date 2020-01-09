@@ -43,7 +43,7 @@ export class MenuScreen extends React.Component {
                     </View>
                     <View style={styles.menuOptionsBottom}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('DogPack')} style={styles.menuImgText}>
-                        <Image source={require('../../images/rose-human1pack.jpeg')} style={styles.menuCircle} />
+                        <Image source={{uri: this.props.packPhotos[0].image_url}} style={styles.menuCircle} />
                         <Text style={styles.menuOptionsText} >Dog Pack</Text>
                       </TouchableOpacity>
                     </View>
@@ -163,7 +163,8 @@ const styles = StyleSheet.create({
 
 
   export const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    packPhotos: state.packPhotos
   })
 
   export default connect (mapStateToProps)(MenuScreen)

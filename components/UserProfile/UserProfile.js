@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as apiCalls from '../../apiCalls';
-import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload, setModalState } from '../../actions';
 import ImageUpload from '../ImageUpload/ImageUpload';
 
 export class UserProfileScreen extends React.Component {
@@ -27,22 +27,37 @@ export class UserProfileScreen extends React.Component {
       })
 
     render() {
+      const modalBackgroundStyle = {
+            backgroundColor: 'rgba(0, 0, 0, 0.2)'
+          };
+          console.log(this.props.user)
         return (
             <SafeAreaView>
-              <View style={styles.componentTitleHeader}>
-                  <TouchableOpacity style={styles.imageBtn} onPress={() =>this.props.setImageUpload(<ImageUpload />)
-                  }>
-                    {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
-                    {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
-                  </TouchableOpacity>
-                  {this.props.imageUpload && <View>{this.props.imageUpload}</View>}
-                  <Text style={styles.infoHeader}>About Me:</Text>
-                  <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
-                  <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
-                  <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
-                  <Text style={styles.infoHeader}>Description:</Text>
-                  <Text style={styles.userInfoText}>{this.props.user.description}</Text>
-              </View>
+              <ScrollView>
+                <View style={styles.componentTitleHeader}>
+                    <TouchableOpacity style={styles.imageBtn} onPress={() => 
+                      this.props.setModalState(this.props.modalState)
+                    }>
+                      {this.props.tempUserImage && <Image source={{uri: this.props.tempUserImage}} style={styles.userImage}/>}
+                      {!this.props.tempUserImage && <Image source={{uri: this.props.user.image}} style={styles.userImage}/>}
+                    </TouchableOpacity>
+                    <Text style={styles.infoHeader}>About Me:</Text>
+                    <Text style={styles.userInfoText}>First Name: {this.props.user.first_name}</Text>
+                    <Text style={styles.userInfoText}>Last Name: {this.props.user.last_name}</Text>
+                    <Text style={styles.userInfoText}>Email: {this.props.user.email}</Text>
+                    <Text style={styles.infoHeader}>Description:</Text>
+                    <Text style={styles.userInfoText}>{this.props.user.description}</Text>
+                    <Modal
+                          animationType="slide"
+                          transparent={true}
+                          visible={this.props.modalState}
+                          >
+                      <View style={[styles.modalContainer, modalBackgroundStyle]}>
+                          <ImageUpload currentComponent = {'User'}/>
+                      </View>
+                  </Modal>
+                </View>
+              </ScrollView>
             </SafeAreaView>
         )
     }
@@ -65,7 +80,6 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 50,
-      // fontFamily: 'major-mono-display'
     },
     backArrow: {
       marginLeft: 5,
@@ -90,8 +104,6 @@ const styles = StyleSheet.create({
       borderRadius: 100,
       borderColor: 'black',
       borderWidth: 2,
-      // marginLeft: 100,
-      // padding: 20
     },
     userInfoText: {
       fontSize: 20,
@@ -106,15 +118,19 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       paddingLeft: 15,
       marginBottom: 20,
-
       marginTop: 20,
+    },
+    modalContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ecf0f1',
     },
     input: {
       height: 30,
       width: '70%',
       borderColor: 'lightgrey',
       borderRadius: 50,
-      // borderColor: 'rgba(33,33,33,0.81)',
       borderWidth: 1.5,
       padding: 10,
       height: 60,
@@ -129,10 +145,6 @@ const styles = StyleSheet.create({
     },
     button: {
       borderRadius: 100,
-      // borderTopRightRadius: 20,
-      // borderBottomRightRadius: 20,
-      // borderBottomLeftRadius: 20,
-      // borderTopLeftRadius: 20,
       alignItems: 'center',
       justifyContent: 'center',
       color: 'black',
@@ -159,7 +171,8 @@ export const mapStateToProps = state => ({
   pack: state.pack,
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
-  imageUpload: state.imageUpload
+  imageUpload: state.imageUpload,
+  modalState: state.modalState
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -167,13 +180,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackInfo: (dogPack) => dispatch(setPackInfo(dogPack)),
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
-  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload))
+  setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
+  setModalState: (modalState) => dispatch(setModalState(modalState))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(UserProfileScreen)
-// const AppNavigator = createStackNavigator({
-//     UserProfile: {
-//         screen: UserProfileScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
