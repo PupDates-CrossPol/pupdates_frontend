@@ -7,9 +7,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux';
-import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload } from '../../actions';
+import { setUserInfo, setPackInfo, setPackPhotos, setTempUserImage, setImageUpload, setModalState, setNewDogAddImage } from '../../actions';
 import ApiKeys from '../../ApiKeys';
-import { setModalState } from '../../actions/index'
 
 
 firebase.initializeApp(ApiKeys.firebaseConfig);
@@ -17,24 +16,22 @@ firebase.initializeApp(ApiKeys.firebaseConfig);
 class ImageUpload extends React.Component {
 	state = {
     id: '',
-    images: [],
+    dogImages: [],
     loading: false
   }
 
   render() {
   	return (
   		<SafeAreaView style={styles.addImagesContainer}>
-      {this.state.loading && <Text>Loading</Text>}
+      {this.state.loading && <Text style={styles.loadingText}>Loading...</Text>}
         <TouchableOpacity style={styles.topButton} onPress={() => this.selectImg()}>
               <Text style={styles.buttonText}>Choose From Library</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.bottomButton} onPress={() => this.takeImg()}>
               <Text style={styles.buttonText}>Take A Photo</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.cancelButton} onPress={() => {
-          this.props.setModalState(this.props.modalState)
-          this.props.setImageUpload(null)
-          }}>
+        <TouchableOpacity style={styles.cancelButton} onPress={() => this.props.setModalState(this.props.modalState)
+          }>
               <Text style={styles.buttonText}>Cancel</Text>
         </TouchableOpacity>
   		</SafeAreaView>
@@ -86,12 +83,15 @@ class ImageUpload extends React.Component {
 
   addImg = async () => {
     const { id, email, first_name, last_name, description } = this.props.user
-    this.props.setTempUserImage(null);
     const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
-    this.setState({ images: [...this.state.images, url]});
-    this.props.setUserInfo({ description, email, first_name, id, last_name, photo: url })
-    const user = await apiCalls.patchUserPhoto(url, id)
-    this.props.setImageUpload(null);
+    if (this.props.currentComponent === 'User') {
+      this.props.setTempUserImage(null);
+      this.props.setUserInfo({ description, email, first_name, id, last_name, image: url })
+      const user = await apiCalls.patchUserImage(url, id)
+    } else {
+      this.props.setNewDogAddImage(url);
+    }
+    this.props.setModalState(this.props.modalState)
     this.setState({loading: false})
   }
 }
@@ -147,7 +147,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginBottom: 10,
     marginTop: 5,
-  }
+  },
+  loadingText: {
+      fontSize: 25,
+      fontWeight: '400',
+      marginLeft: 85,
+      marginBottom: 15
+    },
 })
 
 export const mapStateToProps = state => ({
@@ -156,7 +162,8 @@ export const mapStateToProps = state => ({
   packPhotos: state.packPhotos,
   tempUserImage: state.tempUserImage,
   imageUpload: state.imageUpload,
-  modalState: state.modalState
+  modalState: state.modalState,
+  newDogImages: state.newDogImages
 })
 
 export const mapDispatchToProps = dispatch => ({
@@ -165,7 +172,8 @@ export const mapDispatchToProps = dispatch => ({
   setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setTempUserImage: (tempUserImage) => dispatch(setTempUserImage(tempUserImage)),
   setImageUpload: (imageUpload) => dispatch(setImageUpload(imageUpload)),
-  setModalState: (modalState) => dispatch(setModalState(modalState))
+  setModalState: (modalState) => dispatch(setModalState(modalState)),
+  setNewDogAddImage: (newDogImages) => dispatch(setNewDogAddImage(newDogImages))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(ImageUpload)

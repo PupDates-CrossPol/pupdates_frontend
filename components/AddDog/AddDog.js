@@ -64,9 +64,11 @@ class AddDogScreen extends React.Component {
       };
 
       handleSubmit = async () => {
-        console.log('SUBMITING!!!!!');
         const { name, sex, breed, size, age, fixed, vaccinated, good_with_kids  } = this.state
         const newDogRequest = await apiCalls.addDogForUser( user_id= this.props.user.id, name, sex, breed, size, age, fixed, vaccinated, good_with_kids)
+        this.props.newDogImages.forEach(image => {
+            apiCalls.postDogImage(image, newDogRequest.id)
+        })
         // resetState()
       };
 
@@ -183,7 +185,8 @@ const styles = StyleSheet.create({
 export const mapStateToProps = state => ({
     user: state.user,
     pack: state.pack,
-    packPhotos: state.packPhotos
+    packPhotos: state.packPhotos,
+    newDogImages: state.newDogImages
   })
   
   export const mapDispatchToProps = dispatch => ({

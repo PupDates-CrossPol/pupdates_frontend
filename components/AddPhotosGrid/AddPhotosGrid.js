@@ -9,17 +9,18 @@ import { setModalState } from '../../actions/index'
 class AddDogPhotosGrid extends React.Component {
     state = {
         uploadedPhotos: this.props.uploadedPhotos,
-      };
+      }
 
 
-    dogImages = this.state.uploadedPhotos.map( (dogImage, i) =>  {
-        
-        return (
-            <Row key={i} style={styles.row}>
-                <Image source={{uri: dogImage.image_url}} style={styles.userCircle}/>
-            </Row>
+    dogImages = () => { 
+        return this.props.newDogImages.map( (dogImage, i) =>  {
+            return (
+                <Row key={i} style={styles.row}>
+                    <Image source={{uri: dogImage}} style={styles.userCircle}/>
+                </Row>
                 )
-    });
+        });
+    }
 
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
@@ -44,9 +45,9 @@ class AddDogPhotosGrid extends React.Component {
         const amountOfCurrentPhotos = 6 - this.state.uploadedPhotos.length
         let correctDogImages = this.state.uploadedPhotos
         if (amountOfCurrentPhotos > 0) {
-            correctDogImages =  [...this.dogImages, ...this.createButtons(amountOfCurrentPhotos)] 
+            correctDogImages =  [...this.dogImages(), ...this.createButtons(amountOfCurrentPhotos)] 
         } else {
-            correctDogImages = this.dogImages
+            correctDogImages = this.dogImages()
         }
         return this.buildGrid(correctDogImages)
     }
@@ -82,7 +83,7 @@ class AddDogPhotosGrid extends React.Component {
                         visible={this.props.modalState}
                         >
                     <View style={[styles.modalContainer, modalBackgroundStyle]}>
-                        <ImageUpload />
+                        <ImageUpload currentComponent={'Dog'}/>
                     </View>
                 </Modal>
                 {this.createImagesAndButtonsForGrid()}
@@ -172,7 +173,8 @@ const styles = StyleSheet.create({
 
 
   export const mapStateToProps = state => ({
-    modalState: state.modalState
+    modalState: state.modalState,
+    newDogImages: state.newDogImages
   })
   
   export const mapDispatchToProps = dispatch => ({
