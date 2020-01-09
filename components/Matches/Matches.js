@@ -7,7 +7,7 @@ import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 import Match from '../Match/Match'
 
-class MatchesScreen extends React.Component {
+export class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
           <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
@@ -30,7 +30,7 @@ class MatchesScreen extends React.Component {
 
       
       render() {
-        if (this.props.matches.length) {
+        if (!this.props.matches) {
           return (
             <SafeAreaView>
               <View style={styles.logoTitle}>
