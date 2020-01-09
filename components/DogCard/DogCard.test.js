@@ -6,15 +6,17 @@ describe('<DogCard />', () => {
   it('has one child', () => {
     const mockPack = [
       {
-        id: 1,
-        user_id: 1,
-        name: 'fluffy',
-        breed: 'lab',
-        size: 'medium',
-        age: 7,
-        good_with_kids: true,
-        fixed: true,
-        vaccinated: true
+         attributes: {
+           id: 1,
+          user_id: 1,
+          name: 'fluffy',
+          breed: 'lab',
+          size: 'medium',
+          age: 7,
+          good_with_kids: true,
+          fixed: true,
+          vaccinated: true
+        }
       }
     ]
   
@@ -33,15 +35,17 @@ describe('<DogCard />', () => {
   it('renders correctly', () => {
     const mockPack = [
       {
-        id: 1,
-        user_id: 1,
-        name: 'fluffy',
-        breed: 'lab',
-        size: 'medium',
-        age: 7,
-        good_with_kids: true,
-        fixed: true,
-        vaccinated: true
+         attributes: {
+           id: 1,
+          user_id: 1,
+          name: 'fluffy',
+          breed: 'lab',
+          size: 'medium',
+          age: 7,
+          good_with_kids: true,
+          fixed: true,
+          vaccinated: true
+        }
       }
     ]
   
