@@ -18,7 +18,7 @@ const Match = () => {
     }
 
     const allMatches = props.matches.map( (match, i) => {
-        const {userImage, pack, userName, userEmail} = match
+        const {userImage, userName, userEmail} = match
         const SelectedDogPackImages = userDogPack(match.id)
 
         return (
