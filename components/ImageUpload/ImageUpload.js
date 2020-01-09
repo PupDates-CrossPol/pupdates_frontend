@@ -85,12 +85,12 @@ class ImageUpload extends React.Component {
     const { id, email, first_name, last_name, description } = this.props.user
     const url = await firebase.storage().ref().child(`images/${this.state.id}`).getDownloadURL();
     if (this.props.currentComponent === 'User') {
-      this.props.setTempUserImage(null);
       this.props.setUserInfo({ description, email, first_name, id, last_name, image: url })
       const user = await apiCalls.patchUserImage(url, id)
     } else {
       this.props.setNewDogAddImage(url);
     }
+    this.props.setTempUserImage(null);
     this.props.setModalState(this.props.modalState)
     this.setState({loading: false})
   }
