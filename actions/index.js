@@ -48,6 +48,21 @@ export const setModalState = modalState => ({
 	modalState
 })
 
+export const setMatches = matches => ({
+	type: 'SET_MATCHES',
+	matches
+})
+
+export const setMatchesPack = matchesPack => ({
+	type: 'SET_MATCHES_PACK',
+	matchesPack
+})
+
+export const setMatchesPackImages = matchesImages => ({
+	type: 'SET_MATCHES_PACK_IMAGES',
+  matchesImages
+})
+  
 export const setNewDogAddImage = newDogImages => ({
 	type: 'SET_NEW_DOG_ADD_IMAGE',
 	newDogImages

@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { connect } from 'react-redux'
 import HomeScreen from '../Home/Home'
 import { Ionicons } from '@expo/vector-icons';
 import Match from '../Match/Match'
 
-export default class MatchesScreen extends React.Component {
+class MatchesScreen extends React.Component {
     static navigationOptions = ({navigation}) => ({        
         headerLeft: () => (
           <TouchableOpacity style={styles.backArrow} onPress={() => navigation.navigate('Menu')}>
@@ -27,38 +28,30 @@ export default class MatchesScreen extends React.Component {
         headerRightContainerStyle: styles.rightNavIcon,
       })
 
-    render() {
-        return (
-              <ScrollView>
-                <View >
-                  <View style={styles.matches}>
-                    <Match matches={sampleMatches} />
+      
+      render() {
+        if (this.props.matches.length) {
+          return (
+            <SafeAreaView>
+              <View style={styles.logoTitle}>
+                <Image source={require('../../assets/PupDatesLogo.png')} style={styles.image}/>
+                <Text style={styles.forgotPassowrdText}>No Matches Yet</Text>
+              </View>
+            </SafeAreaView>
+          )
+        } else {
+          return (
+                <ScrollView>
+                  <View >
+                    <View style={styles.matches}>
+                      <Match />
+                    </View>
                   </View>
-                </View>
-              </ScrollView>
-        )
+                </ScrollView>
+          )
+        }
     }
 }
-const sampleMatches = [
-  {
-    userName: 'Jordan',
-    userEmail: 'jordanjohnson@email.com',
-    userImage: 'https://lightroom.adobe.com/v2c/spaces/ee22bd2ae491408888e3e5ffb99696e4/assets/1b122fb0d190431db1d313f7c4221516/revisions/504f331b6a34459abad9c60b5af884c1/renditions/5e6818b84dd3757eac8988c6928b7d92',
-    pack: ['https://lightroom.adobe.com/v2c/spaces/997de26b6efb4e14869d673f387e8d76/assets/338b49ac421a43e7a2426fdf6c597b56/revisions/d05d5655a0b9440d91b9fcd0f2062f46/renditions/fdb85e2ae7c2b1811296dedfb5376e30']
-  },
-  {
-    userName: 'Tyler',
-    userEmail: 'tylersmith@email.com',
-    userImage: 'https://lightroom.adobe.com/v2c/spaces/ee22bd2ae491408888e3e5ffb99696e4/assets/1b122fb0d190431db1d313f7c4221516/revisions/504f331b6a34459abad9c60b5af884c1/renditions/5e6818b84dd3757eac8988c6928b7d92',
-    pack: ['https://lightroom.adobe.com/v2c/spaces/c393e3c850474b189f1065187d688a5c/assets/8e2864cbc2d6404caed72b42e6af8a9d/revisions/c430388e3268b503d43f0f3563b0cfaa/renditions/2c2b7f3832532454edbf44d4e984aa97', 'https://lightroom.adobe.com/v2c/spaces/f6e527e0e02d47ce8a1c06a03b7e7d98/assets/10f0ca254e4e4cd4a991446088be4cfc/revisions/368a48abcbc89120a875a853dd6f1619/renditions/aa44d8688c748a3c0bb32565a4a687f4']
-  },
-  {
-    userName: 'Sara(h)',
-    userEmail: 'sarajones@email.com',
-    userImage: 'https://lightroom.adobe.com/v2c/spaces/9b26d61cec7340ff9fcce8cf84bbf59b/assets/fbd5c280a5b84ba2bd19178b904ce419/revisions/c80ba2fa1b2b427faad57e47bfdfd606/renditions/ae57249d984d4515c3d5a1b71c740fbb',
-    pack: ['https://lightroom.adobe.com/v2c/spaces/c393e3c850474b189f1065187d688a5c/assets/8e2864cbc2d6404caed72b42e6af8a9d/revisions/c430388e3268b503d43f0f3563b0cfaa/renditions/2c2b7f3832532454edbf44d4e984aa97', 'https://lightroom.adobe.com/v2c/spaces/8e4779e58dac4ccbb7e10436df96677d/assets/b3a698c42adf48be93943f14b25d8760/revisions/03bcf2de31048faa936635b5d0eecc52/renditions/c9a6a4dd33dd308f4f91a75366c78b7c',  'https://lightroom.adobe.com/v2c/spaces/997de26b6efb4e14869d673f387e8d76/assets/338b49ac421a43e7a2426fdf6c597b56/revisions/d05d5655a0b9440d91b9fcd0f2062f46/renditions/fdb85e2ae7c2b1811296dedfb5376e30']
-  }
-]
 
 const styles = StyleSheet.create({
     container: {
@@ -67,6 +60,9 @@ const styles = StyleSheet.create({
     matches: {
       flex: 1,
       flexDirection: 'column',
+      alignItems: 'center',
+    },
+    logoTitle: {
       alignItems: 'center',
     },
     logo: {
@@ -82,7 +78,6 @@ const styles = StyleSheet.create({
     },
     title: {
       fontSize: 50,
-      // fontFamily: 'major-mono-display'
     },
     componentTitle: {
       alignSelf: 'center',
@@ -95,7 +90,6 @@ const styles = StyleSheet.create({
       width: '70%',
       borderColor: 'lightgrey',
       borderRadius: 50,
-      // borderColor: 'rgba(33,33,33,0.81)',
       borderWidth: 1.5,
       padding: 10,
       height: 60,
@@ -110,7 +104,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     button: {
-      // borderRadius: 50,
       borderTopRightRadius: 20,
       borderBottomRightRadius: 20,
       borderBottomLeftRadius: 20,
@@ -132,13 +125,21 @@ const styles = StyleSheet.create({
         marginRight: 20,  
         marginBottom: 10, 
     },
-    leftNavIcon: { marginLeft: 10,  marginBottom: 5, }
+    leftNavIcon: { marginLeft: 10,  marginBottom: 5, },
+    forgotPassowrdText: {
+      color: 'rgba(0,0,0,0.4)',
+      fontSize: 20,
+      marginBottom: 15,
+    },
+    image: {
+      height: 140,
+      width: 140,
+    },
   });
-// const AppNavigator = createStackNavigator({
-//     Matches: {
-//         screen: MatchesScreen,
-//     },
-// });
-//   export default createAppContainer(AppNavigator)
 
-// export default MatchesScreen;
+export const mapStateToProps = state => ({
+  pack: state.pack,
+  matches: state.matches,
+})
+
+export default connect (mapStateToProps)(MatchesScreen)

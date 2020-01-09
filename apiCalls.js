@@ -122,6 +122,16 @@ export const patchUserImage = async (image, id) => {
   return data
 };
 
+export const getMatchesForUser = async (userId) => {
+  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${userId}/matches`)
+
+  if (!response.ok) {
+    throw Error(`Failed to retrieve user's dogs`)
+  }
+  const matches = await response.json()
+  return matches.data
+}
+
 export const postSwipeData = async (user_id, match_id, status) => {
   console.log('hellooooooooooooooo', match_id, status)
   // console.log('id', id)

@@ -1,13 +1,28 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { connect } from 'react-redux'
 
-const Match = ({matches}) => {
-    const dogPackImages = dogs => dogs.map( (dog, i) =>  {
-    const dogPlacement = `dogCircle${(i+1)}`
-    return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />} );
 
-    const allMatches = matches.map( (match, i) => {
-        const {userImage, pack, userName, userEmail} = match
+const Match = () => {
+    const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
+        const dogPlacement = `dogCircle${(i+1)}`
+        return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />
+    } );
+
+    const dogPackImages = (dogIds) => {
+        return dogIds.map( id => props.matchesImages.find( photo => photo.dog_id === id))
+    }
+
+    const userDogPack = (userId) => {
+        const matchDogPack = props.matchesPack.filter( dog => dog.user_id === userId)
+        const dogIds = matchDogPack( dog => dog.id)
+        return dogPackImages(dogIds)
+    }
+
+    const allMatches = props.matches.map( (match, i) => {
+        const {userImage, userName, userEmail} = match
+        const SelectedDogPackImages = userDogPack(match.id)
+
         return (
             <View key={i} style={styles.matchViewIndividual}>
                 <View style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
@@ -15,7 +30,7 @@ const Match = ({matches}) => {
                     <Text style={styles.matchUserEmail}>{userEmail}</Text>
                     <View style={styles.matchesImages}>
                         <Image source={{uri: userImage}} style={styles.userCircle} />
-                        {dogPackImages(pack)}
+                        {dogPackImageCreator(SelectedDogPackImages )}
                     </View>
                 <View style={styles.bottomLine}></View>
                 </View>
@@ -121,4 +136,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Match
+export const mapStateToProps = state => ({
+    matches: state.matches,
+    matchesImages: state.matchesImages,
+    matchesPack: state.matchesPack
+  })
+  
+  export default connect (mapStateToProps)(Match)
