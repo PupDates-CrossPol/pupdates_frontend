@@ -115,10 +115,10 @@ render() {
     </ScrollView>
     <View style={styles.pawBtn}>
               <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeDisLike()}>
-                <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
+                <Ionicons name="ios-thumbs-down" size={60} color="rgba(239,62,103,0.7)" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeLike()}>
-                <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
+                <Ionicons name="md-paw" size={60} color="rgba(21, 112, 125, 0.7)"/>
               </TouchableOpacity>
      </View>
 

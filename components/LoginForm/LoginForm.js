@@ -60,7 +60,6 @@ export class LoginScreen extends React.Component {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
       // const matchesPackPhotos = this.cleanResponse(dogImages) - need after we swtich backed
       // console.log('dogImages', dogImages);
-      
       this.props.setMatchesPackImages(dogImages)
     })
   }

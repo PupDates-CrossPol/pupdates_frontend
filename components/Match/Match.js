@@ -4,14 +4,9 @@ import { connect } from 'react-redux'
 
 
 const Match = (props) => {
-    console.log('matches', props.matches);
-    console.log('matchesPack', props.matchesPack);
-    console.log('matchesPackImages', props.matchesPackImages);
-
-    
     const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
         const dogPlacement = `dogCircle${(i+1)}`
-        return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />
+        return <Image key={i} source={{uri: dog.image_url}} style={styles[dogPlacement]} />
     } );
 
     const dogPackImages = (dogIds) => {
@@ -20,23 +15,22 @@ const Match = (props) => {
 
     const userDogPack = (userId) => {
         const matchDogPack = props.matchesPack.filter( dog => dog.user_id === userId)
-        const dogIds = matchDogPack( dog => dog.id)
+        const dogIds = matchDogPack.map( dog => dog.id)
         return dogPackImages(dogIds)
     }
 
-    const allMatches = () => props.matches.map( (match, i) => {
-        const {userImage, userName, userEmail} = match
-        const SelectedDogPackImages = () => userDogPack(match.id)
-        console.log('maybe this tis going???', props);
-        
+    const allMatches = props.matches.map( (match, i) => {
+        const {first_name, image, email} = match
+        const SelectedDogPackImages = userDogPack(match.id)
+
         return (
             <View key={i} style={styles.matchViewIndividual}>
                 <View style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
-                    <Text style={styles.matchUserNameText}>{userName}'s Pack</Text>
-                    <Text style={styles.matchUserEmail}>{userEmail}</Text>
+                    <Text style={styles.matchUserNameText}>{first_name}'s Pack</Text>
+                    <Text style={styles.matchUserEmail}>{email}</Text>
                     <View style={styles.matchesImages}>
-                        <Image source={{uri: userImage}} style={styles.userCircle} />
-                        {dogPackImageCreator(SelectedDogPackImages())}
+                        <Image source={{uri: image}} style={styles.userCircle} />
+                        {dogPackImageCreator(SelectedDogPackImages )}
                     </View>
                 <View style={styles.bottomLine}></View>
                 </View>
@@ -45,9 +39,7 @@ const Match = (props) => {
     });
 
     return (
-        <>
-       {allMatches}
-       </>
+       allMatches
     );
 };
 
@@ -131,6 +123,7 @@ const styles = StyleSheet.create({
     matchUserNameText: {
         fontSize: 25,
         fontWeight: '300',
+        marginTop: 20,
     },
     matchUserEmail: {
         fontSize: 20,
