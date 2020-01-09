@@ -30,7 +30,9 @@ class MatchesScreen extends React.Component {
 
       
       render() {
-        if (this.props.matches.length) {
+        console.log('this.props', this.props.matches);
+        
+        if (!this.props.matches.length) {
           return (
             <SafeAreaView>
               <View style={styles.logoTitle}>
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
     },
     logoTitle: {
       alignItems: 'center',
+      marginTop: '50%'
     },
     logo: {
         height: 40,
