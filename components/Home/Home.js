@@ -77,12 +77,12 @@ export class HomeScreen extends React.Component {
 
  handleSwipeLike = async () => {
    const user_id = this.props.user.id
-   console.log('current user id', user_id)
+  //  console.log('current user id', user_id)
    const match_id = this.props.swipeUser.attributes.id
-   console.log('match_id', match_id)
+  //  console.log('match_id', match_id)
    const status = "like"
   const swipeResponse = await apiCalls.postSwipeData(user_id, match_id, status)
-  console.log('swipe response', swipeResponse)
+  // console.log('swipe response', swipeResponse)
   return swipeResponse
  }
 

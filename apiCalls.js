@@ -120,13 +120,13 @@ export const postSwipeData = async (user_id, match_id, status) => {
   console.log('options from API CALL', options.body);
   console.log('url', `https://backend-pupdates.herokuapp.com/api/v1/users/${user_id}/matches`)
   
-  console.log('response on API CALL',response);
+  // console.log('response on API CALL',response);
   
+  const swipeData = await response.json()
   if (!response.ok) {
-    console.log({ error })
+    throw Error('Failed post like')
   }
   console.log('response for post swipe data', response)
-  const swipeData = await response.json()
   console.log('swipe data', swipeData)
   return swipeData.data
 }
