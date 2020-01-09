@@ -23,7 +23,7 @@ class ImageUpload extends React.Component {
   render() {
   	return (
   		<SafeAreaView style={styles.addImagesContainer}>
-      {this.state.loading && <Image source={{ uri: 'https://i.gifer.com/ZZ5H.gif'}} style={styles.loadingText} />}
+      {this.state.loading && <Text style={styles.loadingText}>Loading...</Text>}
         <TouchableOpacity style={styles.topButton} onPress={() => this.selectImg()}>
               <Text style={styles.buttonText}>Choose From Library</Text>
         </TouchableOpacity>
@@ -149,10 +149,10 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   loadingText: {
-    width: 150,
-    height: 150,
-    margin: 120,
-    marginBottom: 60,
+      fontSize: 25,
+      fontWeight: '400',
+      marginLeft: 85,
+      marginBottom: 15
     },
 })
 
