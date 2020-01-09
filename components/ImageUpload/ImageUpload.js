@@ -90,9 +90,9 @@ class ImageUpload extends React.Component {
       const user = await apiCalls.patchUserPhoto(url, id)
     } else {
       this.props.setNewDogAddImage(url);
-      this.setState({loading: false})
-      this.props.setModalState(this.props.modalState)
     }
+    this.props.setModalState(this.props.modalState)
+    this.setState({loading: false})
   }
 }
 
