@@ -13,9 +13,17 @@ describe('<Menu />', () => {
       image: 'an image url'
     }
 
+    const mockPackPhotos = [
+      {
+        id: 1,
+        dog_id: 1,
+        image: 'somestring'
+      }
+    ]
+
     const naviProp = { navigation: { navigate: () => {} } };
 
-    const tree = renderer.create(<Menu user={mockUser} navigation={naviProp} />).toJSON()
+    const tree = renderer.create(<Menu user={mockUser} packPhotos={mockPackPhotos} navigation={naviProp} />).toJSON()
 
     expect(tree.children.length).toBe(4)
   })
@@ -30,9 +38,17 @@ describe('<Menu />', () => {
       image: 'an image url'
     }
 
+    const mockPackPhotos = [
+      {
+        id: 1,
+        dog_id: 1,
+        image: 'somestring'
+      }
+    ]
+
     const naviProp = { navigation: { navigate: () => {} } };
 
-    const tree = renderer.create(<Menu user={mockUser} navigation={naviProp} />).toJSON()
+    const tree = renderer.create(<Menu user={mockUser} packPhotos={mockPackPhotos} navigation={naviProp} />).toJSON()
 
     expect(tree).toMatchSnapshot()
   })

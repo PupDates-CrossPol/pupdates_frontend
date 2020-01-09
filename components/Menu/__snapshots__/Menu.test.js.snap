@@ -14,17 +14,6 @@ exports[`<Menu /> renders correctly 1`] = `
     }
   }
 >
-  <Text
-    style={
-      Object {
-        "color": "rgba(0,0,0,0.57)",
-        "fontSize": 30,
-        "fontWeight": "300",
-      }
-    }
-  >
-    Menu
-  </Text>
   <View
     style={
       Object {
@@ -186,7 +175,11 @@ exports[`<Menu /> renders correctly 1`] = `
       }
     >
       <Image
-        source={1}
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
             "aspectRatio": 1,
