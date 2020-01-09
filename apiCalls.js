@@ -92,6 +92,21 @@ export const addDogForUser = async (user_id, name, sex, breed, size, age, fixed,
   return newDog
 }
 
+export const postDogPhoto = async (image, dogId) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({ image }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const resp = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/dog_images/${dogId}`, options)
+
+  const data = await resp.json();
+  return data
+};
+
 export const patchUserPhoto = async (image, id) => {
   const options = {
     method: 'PATCH',
