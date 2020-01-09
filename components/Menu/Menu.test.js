@@ -25,7 +25,7 @@ describe('<Menu />', () => {
 
     const tree = renderer.create(<Menu user={mockUser} packPhotos={mockPackPhotos} navigation={naviProp} />).toJSON()
 
-    expect(tree.children.length).toBe(4)
+    expect(tree.children.length).toBe(3)
   })
 
   it('renders correctly', () => {

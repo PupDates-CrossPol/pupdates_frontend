@@ -36,10 +36,13 @@ describe('<Home />', () => {
 
     const mockSwipePack = [
       {
-        id: 2,
-        user_id: 2,
-        name: 'fido',
-        breed: 'dog'
+        attributes: 
+          {
+            id: 2,
+            user_id: 2,
+            name: 'fido',
+            breed: 'dog'
+          }
       }
     ]
 
