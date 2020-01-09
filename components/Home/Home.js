@@ -17,6 +17,8 @@ import { setSwipeUser, setOtherUsers, setSwipePack, setSwipePackPhotos } from '.
 import { connect } from 'react-redux'
 import * as apiCalls from '../../apiCalls'
 import { SwipeDogCard } from '../SwipeDogCard/SwipeDogCard'
+import { CheckForMatches } from '../CheckForMatches/CheckForMatches'
+
 
 export class HomeScreen extends React.Component {
   state = {
@@ -48,6 +50,7 @@ export class HomeScreen extends React.Component {
       'major-mono-display': require('../../assets/fonts/MajorMonoDisplay-Regular.ttf'),
     });
     this.getRandomUser()
+    // CheckForMatches(this.props)
   }
   
  
@@ -79,14 +82,19 @@ export class HomeScreen extends React.Component {
   const user_id = this.props.user.id
   const match_id = this.props.swipeUser.attributes.id
   const status = "like"
-  const swipeResponse = await apiCalls.postSwipeData(user_id, match_id, status)
-  // console.log('swipe response', swipeResponse)
-  return swipeResponse
+  await apiCalls.postSwipeData(user_id, match_id, status)
+  this.getRandomUser()
+  // CheckForMatches(this.props)
  }
 
-// handleSwipeLike = () => {
-
-// }
+ handleSwipeDisLike = async () => {
+  const user_id = this.props.user.id
+  const match_id = this.props.swipeUser.attributes.id
+  const status = "dislike"
+  await apiCalls.postSwipeData(user_id, match_id, status)
+  this.getRandomUser()
+  // CheckForMatches(this.props)
+ }
 
 render() {
     if (this.props.swipeUser === undefined || this.props.swipePackPhotos.length === 0 || this.props.swipePack.length === 0) {
@@ -106,11 +114,11 @@ render() {
     </Container>
     </ScrollView>
     <View style={styles.pawBtn}>
-              <TouchableOpacity style={styles.button} onPress={() => console.log('DISLIKE')}>
-                <Ionicons name="ios-thumbs-down" size={60} color="rgba(0,0,0,0.2)" />
+              <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeDisLike()}>
+                <Ionicons name="ios-thumbs-down" size={60} color="rgba(239,62,103,0.7)" />
               </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={() => this.handleSwipeLike()}>
-                <Ionicons name="md-paw" size={60} color="rgba(0,0,0,0.2)"/>
+                <Ionicons name="md-paw" size={60} color="rgba(21, 112, 125, 0.7)"/>
               </TouchableOpacity>
      </View>
 
@@ -227,14 +235,21 @@ export const mapStateToProps = state => ({
   user: state.user,
   otherUsers: state.otherUsers,
   swipePack: state.swipePack,
-  swipePackPhotos: state.swipePackPhotos
+  swipePackPhotos: state.swipePackPhotos,
+  matches: state.matches,
+  matchesImages: state.matchesImages,
+  matchesPack: state.matchesPack
+
 })
 
 export const mapDispatchToProps = dispatch => ({
   setSwipeUser: (swipeUser) => dispatch(setSwipeUser(swipeUser)),
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
   setSwipePack: (swipePack) => dispatch(setSwipePack(swipePack)),
-  setSwipePackPhotos: (swipePackPhotos) => dispatch(setSwipePackPhotos(swipePackPhotos))
+  setSwipePackPhotos: (swipePackPhotos) => dispatch(setSwipePackPhotos(swipePackPhotos)),
+  setMatches: (userMatches) => dispatch(setMatches(userMatches)),
+  setMatchesPack: (matchesPack) => dispatch(setMatchesPack(matchesPack)),
+  setMatchesPackImages: (matchesPackPhotos) => dispatch(setMatchesPackImages(matchesPackPhotos))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(HomeScreen)

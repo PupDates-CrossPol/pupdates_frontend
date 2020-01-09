@@ -27,12 +27,11 @@ class MatchesScreen extends React.Component {
         headerLeftContainerStyle: styles.leftNavIcon,
         headerRightContainerStyle: styles.rightNavIcon,
       })
-
       
       render() {
-        console.log('this.props', this.props.matches);
-        
         if (!this.props.matches.length) {
+          console.log('this.props.matchesPackImages', this.props.matchesPackImages);
+          
           return (
             <SafeAreaView>
               <View style={styles.logoTitle}>
@@ -66,7 +65,6 @@ const styles = StyleSheet.create({
     },
     logoTitle: {
       alignItems: 'center',
-      marginTop: '50%'
     },
     logo: {
         height: 40,
@@ -143,6 +141,7 @@ const styles = StyleSheet.create({
 export const mapStateToProps = state => ({
   pack: state.pack,
   matches: state.matches,
+  matchesPackImages: state.matchesPackImages,
 })
 
 export default connect (mapStateToProps)(MatchesScreen)

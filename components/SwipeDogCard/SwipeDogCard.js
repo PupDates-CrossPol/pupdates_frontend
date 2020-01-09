@@ -18,7 +18,7 @@ export const SwipeDogCard = (props) => {
         {/* <Text style={styles.packName}>{props.swipeUser.attributes.first_name}'s Pack</Text> */}
           <CardItem style={styles.imageCardContent}>
             <Body>
-            <SliderBox images={boxPics} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop />
+            <SliderBox images={boxPics} style={styles.image} dotColor='rgb(21, 112, 125)' circleLoop disableOnPress/>
             </Body>
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
@@ -84,7 +84,7 @@ export const SwipeDogCard = (props) => {
   
     imageCardContentText: {
       alignItems: 'center',
-      justifyContent: 'center',
+      // justifyContent: 'center',
       flexDirection: 'column',
       height: 250,
       width: '80%'
@@ -106,12 +106,12 @@ export const SwipeDogCard = (props) => {
     marginBottom: 5, 
   },
     image: {
-      height: 325,
-      width: 275,
+      height: '100%',
+      width: '90%',
       alignItems: 'center',
       justifyContent: 'center',
-      borderColor: 'black',
-      borderWidth: 3.5,
+      borderColor: 'rgba(0,0,0,0.2)',
+      borderWidth: 1.5,
       borderRadius: 50,
       alignSelf: 'center'
     },
@@ -123,14 +123,13 @@ export const SwipeDogCard = (props) => {
     },
     infoTextName: {
       fontSize: 30,
-      textAlign: 'left'
+      textAlign: 'left',
+      marginBottom: 5
     },
     infoBody: {
-      // alignItems: 'center',
       flexDirection: 'column',
       justifyContent: 'center',
       textAlign: 'left',
-      height: 50
     },
     roundBtn: {
       width: 40

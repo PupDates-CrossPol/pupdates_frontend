@@ -6,30 +6,30 @@ import { connect } from 'react-redux'
 const Match = (props) => {
     const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
         const dogPlacement = `dogCircle${(i+1)}`
-        return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />
+        return <Image key={i} source={{uri: dog.image_url}} style={styles[dogPlacement]} />
     } );
 
     const dogPackImages = (dogIds) => {
-        return dogIds.map( id => props.matchesImages.find( photo => photo.dog_id === id))
+        return dogIds.map( id => props.matchesPackImages.find( photo => photo.dog_id === id))
     }
 
     const userDogPack = (userId) => {
         const matchDogPack = props.matchesPack.filter( dog => dog.user_id === userId)
-        const dogIds = matchDogPack( dog => dog.id)
+        const dogIds = matchDogPack.map( dog => dog.id)
         return dogPackImages(dogIds)
     }
 
     const allMatches = props.matches.map( (match, i) => {
-        const {userImage, userName, userEmail} = match
+        const {first_name, image, email} = match
         const SelectedDogPackImages = userDogPack(match.id)
 
         return (
             <View key={i} style={styles.matchViewIndividual}>
                 <View style={styles.matchTouchableOpacity} onPress={() => console.log('TAKE ME TO THIS MATCH')} >
-                    <Text style={styles.matchUserNameText}>{userName}'s Pack</Text>
-                    <Text style={styles.matchUserEmail}>{userEmail}</Text>
+                    <Text style={styles.matchUserNameText}>{first_name}'s Pack</Text>
+                    <Text style={styles.matchUserEmail}>{email}</Text>
                     <View style={styles.matchesImages}>
-                        <Image source={{uri: userImage}} style={styles.userCircle} />
+                        <Image source={{uri: image}} style={styles.userCircle} />
                         {dogPackImageCreator(SelectedDogPackImages )}
                     </View>
                 <View style={styles.bottomLine}></View>
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     matchUserNameText: {
         fontSize: 25,
         fontWeight: '300',
+        marginTop: 20,
     },
     matchUserEmail: {
         fontSize: 20,
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
 
 export const mapStateToProps = state => ({
     matches: state.matches,
-    matchesImages: state.matchesImages,
+    matchesPackImages: state.matchesPackImages,
     matchesPack: state.matchesPack
   })
   

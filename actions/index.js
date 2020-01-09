@@ -58,9 +58,9 @@ export const setMatchesPack = matchesPack => ({
 	matchesPack
 })
 
-export const setMatchesPackImages = matchesImages => ({
+export const setMatchesPackImages = matchesPackImages => ({
 	type: 'SET_MATCHES_PACK_IMAGES',
-  matchesImages
+  matchesPackImages
 })
   
 export const setNewDogAddImage = newDogImages => ({
