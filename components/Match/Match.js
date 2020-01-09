@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import { connect } from 'react-redux'
 
 
-const Match = () => {
+const Match = (props) => {
     const dogPackImageCreator = dogs => dogs.map( (dog, i) =>  {
         const dogPlacement = `dogCircle${(i+1)}`
         return <Image key={i} source={{uri: dog}} style={styles[dogPlacement]} />

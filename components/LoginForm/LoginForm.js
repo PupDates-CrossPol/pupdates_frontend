@@ -7,7 +7,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import * as apiCalls from '../../apiCalls';
 import { connect } from 'react-redux'
-import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers, setMatches} from '../../actions'
+import { setUserInfo, setPackInfo, setPackPhotos, setOtherUsers, setMatches, setMatchesPack, setMatchesPackImages} from '../../actions'
 import KeyboardShift from '../KeyboardShift/KeyboardShift'
 
 export class LoginScreen extends React.Component {
@@ -54,8 +54,8 @@ export class LoginScreen extends React.Component {
   getMatchesPackImages = pack => {
     pack.forEach( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
-      const cleanedDogImagesResponse = this.cleanResponse(dogImages)
-      this.props.setMatchesPackImages(cleanedDogImagesResponse)
+      const matchesPackPhotos = this.cleanResponse(dogImages)
+      this.props.setMatchesPackImages(matchesPackPhotos)
     })
   }
 
@@ -84,9 +84,9 @@ export class LoginScreen extends React.Component {
       const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.attributes.id)
       this.props.setOtherUsers(otherUsers)
       const matches = await apiCalls.getMatchesForUser(loginResponse.attributes.id)
-      const cleanedMatchResponse = this.cleanResponse(matches)
-      this.props.setMatches(cleanedMatchResponse)
-      this.getMatchesPackInfo(cleanedMatchResponse)
+      const userMatches = this.cleanResponse(matches)
+      this.props.setMatches(userMatches)
+      this.getMatchesPackInfo(userMatches)
       this.props.navigation.navigate('Home');
     }
   }
@@ -207,8 +207,8 @@ export const mapDispatchToProps = dispatch => ({
   setOtherUsers: (otherUsers) => dispatch(setOtherUsers(otherUsers)),
   // setPackPhotos: (dogPackPictures) => dispatch(setPackPhotos(dogPackPictures)),
   setMatches: (userMatches) => dispatch(setMatches(userMatches)),
-  setMatchesPack: (matchesPack => dispatch(setMatchesPack(matchesPack))),
-  setMatchesPackImages: (matchesPackPhotos => dispatch(setMatchesPackImages(matchesPackPhotos)))
+  setMatchesPack: (matchesPack) => dispatch(setMatchesPack(matchesPack)),
+  setMatchesPackImages: (matchesPackPhotos) => dispatch(setMatchesPackImages(matchesPackPhotos))
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(LoginScreen)

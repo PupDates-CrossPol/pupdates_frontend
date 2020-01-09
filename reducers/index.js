@@ -10,6 +10,9 @@ import { tempUserImage } from './tempUserImage'
 import { imageUpload } from './imageUpload'
 import { modalState } from './modalState'
 import { newDogImages } from './newDogImages'
+import { matches } from './matches'
+import { matchesPack } from './matchesPack'
+import { matchesPackImages } from './matchesPackImages'
 
 export const rootReducer = combineReducers({
   user,
@@ -22,5 +25,8 @@ export const rootReducer = combineReducers({
   tempUserImage,
   imageUpload,
   modalState,
-  newDogImages
+  newDogImages,
+  matches,
+  matchesPack,
+  matchesPackImages
 })
