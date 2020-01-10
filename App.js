@@ -8,13 +8,15 @@ import MatchesScreen from './components/Matches/Matches'
 import UserProfileScreen from './components/UserProfile/UserProfile'
 import AddDogScreen from './components/AddDog/AddDog'
 import React, { Component } from 'react';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore } from 'redux'
 import { rootReducer } from './reducers/index.js'
-import { Provider, connect } from 'react-redux'
-import { logger } from 'redux-logger'
+import { Provider } from 'react-redux'
+
 
 
 const store = createStore(rootReducer)
+
+console.disableYellowBox = true;
 
 
 

@@ -5,7 +5,6 @@ import { setPackInfo, setPackPhotos } from '../../actions'
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as apiCalls from '../../apiCalls';
-import * as Font from 'expo-font';
 import AddDogPhotosGrid from '../AddPhotosGrid/AddPhotosGrid'
 import KeyboardShift from '../KeyboardShift/KeyboardShift'
 

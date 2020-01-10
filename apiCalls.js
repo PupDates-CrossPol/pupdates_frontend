@@ -150,6 +150,5 @@ export const postSwipeData = async (user_id, match_id, status) => {
     throw Error('Failed post like')
   }
   
-  console.log('swipe data', swipeData)
   return swipeData.data
 }
