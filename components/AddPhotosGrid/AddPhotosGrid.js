@@ -174,7 +174,8 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         fontSize: 20,
         color: 'grey',
-        marginLeft: '15%'
+        marginLeft: '15%',
+        marginBottom: 5
     },
   });
 
