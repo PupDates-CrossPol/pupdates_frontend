@@ -86,6 +86,7 @@ class AddDogPhotosGrid extends React.Component {
                         <ImageUpload currentComponent={'Dog'}/>
                     </View>
                 </Modal>
+                {this.props.componentFrom === 'AddDog' ? <Text style={styles.photoGridText}>Add Photos</Text> : <Text style={styles.photoGridText}>Photos</Text> }
                 {this.createImagesAndButtonsForGrid()}
             </View>
             )
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.2)',
         borderWidth: 2,
         marginBottom: '3%',
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     row: {
         justifyContent: "center",
@@ -168,6 +169,13 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginBottom: '5%',
         marginLeft: '7%'
+    },
+    photoGridText: {
+        textAlign: 'left',
+        fontSize: 20,
+        color: 'grey',
+        marginLeft: '15%',
+        marginBottom: 5
     },
   });
 

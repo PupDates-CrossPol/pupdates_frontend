@@ -80,7 +80,7 @@ class AddDogScreen extends React.Component {
             <SafeAreaView style={styles.container}>
                 <ScrollView>
                     <View style={styles.addDogCard}>
-                        <AddDogPhotosGrid uploadedPhotos={this.state.uploadedPhotos}/>
+                        <AddDogPhotosGrid uploadedPhotos={this.state.uploadedPhotos} componentFrom={'AddDog'}/>
                         <TextInput placeholder='Name' style={styles.input} onChangeText={ name => this.handleChange(name)} value={this.state.name}/>
                         <TextInput placeholder='Sex' style={styles.input} onChangeText={ sex => this.handleChange(sex)} value={this.state.sex}/>
                         <TextInput placeholder='Breed' style={styles.input} onChangeText={ breed => this.handleChange(breed)} value={this.state.breed}/>
