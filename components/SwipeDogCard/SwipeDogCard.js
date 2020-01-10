@@ -27,9 +27,18 @@ export const SwipeDogCard = (props) => {
               <Text style={styles.infoText}>Breed: {dog.attributes.breed}</Text>
               <Text style={styles.infoText}>Age: {dog.attributes.age}</Text>
               <Text style={styles.infoText}>Gender: {dog.attributes.sex}</Text>
-              <Text style={styles.infoText}>Fixed: {dog.attributes.fixed ? 'true' : 'false'}</Text>
-              <Text style={styles.infoText}>Vaccinated: {dog.attributes.vaccinated ? 'true' : 'false'}</Text>
-              <Text style={styles.infoText}>Good with kids: {dog.attributes.good_with_kids ? 'true' : 'false'}</Text>
+              <View style={styles.checkMark} >
+              <Text style={styles.infoText}>Fixed: </Text>{dog.attributes.fixed ? <Ionicons name="ios-checkmark" size={30} color='rgb(21, 112, 125)' />
+                : <Ionicons name="ios-close" size={30} color='rgb(239,62,103)' />}
+              </View>
+              <View style={styles.checkMark} >
+                <Text style={styles.infoText}>Vaccinated: </Text>{dog.attributes.vaccinated ? <Ionicons name="ios-checkmark" iconStyle={styles.iconStyle}  size={30} color='rgb(21, 112, 125)' />
+                : <Ionicons name="ios-close" iconStyle={styles.iconStyle} size={30} color='rgb(239,62,103)' />}
+              </View>
+              <View style={styles.checkMark} >
+                <Text style={styles.infoText}>Good with kids: </Text>{dog.attributes.good_with_kids ? <Ionicons name="ios-checkmark" size={30} color='rgb(21, 112, 125)' />
+                : <Ionicons name="ios-close" size={30} color='rgb(239,62,103)' />}
+              </View>
             </Body>
           </CardItem>
         </Card> 
@@ -81,7 +90,11 @@ export const SwipeDogCard = (props) => {
       flexDirection: 'column',
       height: 350,
     },
-  
+    yesNoIcon: {
+      alignSelf: 'baseline',
+      alignSelf: 'center'
+
+    },
     imageCardContentText: {
       alignItems: 'center',
       // justifyContent: 'center',
@@ -125,6 +138,18 @@ export const SwipeDogCard = (props) => {
       fontSize: 30,
       textAlign: 'left',
       marginBottom: 5
+    },
+    checkMark: {
+      height: 34,
+      justifyContent: 'center',
+      alignItems:"center",
+      alignContent: 'center',
+      flexDirection: 'row'
+    },
+    iconStyle: {
+      height: 23,
+      margin: 0,
+      padding: 0
     },
     infoBody: {
       flexDirection: 'column',
