@@ -56,6 +56,10 @@ Once you have login credentials and the API Key:
 
 The repo for the RESTful API upon which this project is built can be found [here](https://github.com/PupDates-CrossPol/pupdates_backend)
 
+## In The Works
+
+The PupDates team is still hard at work improving and building out the application. At the moment we're focusing on account creation, in-app messaging, and the ability to change the users' and dogs' photos. Stay tuned as we continue to implement more features!
+
 ## Project Board
 Our project board including ongoing issues can be found [here](https://github.com/orgs/PupDates-CrossPol/projects/1)
 
