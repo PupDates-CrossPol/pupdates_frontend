@@ -10,7 +10,7 @@ Contributors:
 ## Table of Contents
 * [About](#About)
 * [Built With](#Built-With) 
-* [Screenshots](#Screenshots)
+* [Take A Look](#Take-A-Look)
 * [To Get Started](#To-Get-Started)
 * [Try It Out](#Try-It-Out)
 * [Take It For A Spin](#Take-It-For-A-Spin)
@@ -30,7 +30,7 @@ PupDates is for the avid dog lover. Whether looking to properly socialize your p
 - Expo CLI
 - Firebase for image hosting
 
-## Screenshots
+## Take A Look
 
 <img width="343" alt="Screen Shot 2020-01-08 at 11 57 57 PM" src="https://user-images.githubusercontent.com/46407593/72045247-e2be3c00-3272-11ea-8ab3-95c99e9ce245.png">
 
