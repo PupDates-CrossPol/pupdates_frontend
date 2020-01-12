@@ -30,16 +30,12 @@ PupDates is for the avid dog lover. Whether looking to properly socialize your p
 - Firebase for image hosting
 
 ## Screenshots
+
 <img width="343" alt="Screen Shot 2020-01-08 at 11 57 57 PM" src="https://user-images.githubusercontent.com/46407593/72045247-e2be3c00-3272-11ea-8ab3-95c99e9ce245.png">
 
-<img width="346" alt="Screen Shot 2020-01-08 at 11 58 15 PM" src="https://user-images.githubusercontent.com/46407593/72045276-f2d61b80-3272-11ea-9ea0-def059b70328.png">
+To see more, check out a video demo [here](https://drive.google.com/open?id=1aAxzQy-_RtnYshRYPL7nGC2sGWZfHRaX)
 
 
-<img width="353" alt="Screen Shot 2020-01-08 at 11 58 23 PM" src="https://user-images.githubusercontent.com/46407593/72045303-01243780-3273-11ea-97e5-4d4d22b43a92.png">
-
-<img width="360" alt="Screen Shot 2020-01-08 at 11 58 30 PM" src="https://user-images.githubusercontent.com/46407593/72045332-0da89000-3273-11ea-8423-7eb42cc1faf6.png">
-
-<img width="356" alt="Screen Shot 2020-01-08 at 11 58 41 PM" src="https://user-images.githubusercontent.com/46407593/72045346-17ca8e80-3273-11ea-932f-6f13a09de406.png">
 
 
 ## To Get Started
