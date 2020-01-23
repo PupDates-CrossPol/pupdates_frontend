@@ -18,12 +18,12 @@ export const getSingleUser = async (userId) => {
 }
 
 export const getAllDogs = async () => {
-  const response = await fetch('https://backend-pupdates.herokuapp.com/api/v1/dogs')
+  const response = await fetch('https://node-pupdates-backend.herokuapp.com/api/v1/dogs')
   if (!response.ok) {
     throw Error('Failed to fetch dogs')
   }
   const dogs = await response.json()
-  return dogs.data;
+  return dogs;
 }
 
 export const getDogsForUser = async (userId) => {
