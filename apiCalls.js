@@ -27,13 +27,13 @@ export const getAllDogs = async () => {
 }
 
 export const getDogsForUser = async (userId) => {
-  const response = await fetch(`https://backend-pupdates.herokuapp.com/api/v1/users/${userId}/dogs`)
+  const response = await fetch(`https://node-pupdates-backend.herokuapp.com/api/v1/users/${userId}/dogs`)
 
   if (!response.ok) {
     throw Error(`Failed to retrieve user's dogs`)
   }
   const userDogs = await response.json()
-  return userDogs.data
+  return userDogs;
 }
 
 export const getAllDogImages = async () => {

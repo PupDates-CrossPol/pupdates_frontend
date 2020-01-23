@@ -22,9 +22,9 @@ import * as apiCalls from '../../apiCalls';
     if (!matches.length) {
       matches.forEach( async match => {
         const dogPackResponse = await apiCalls.getDogsForUser(match.id)
-        const cleanedMatchesPackImagesResponse = cleanResponse(dogPackResponse)
-        getMatchesPackImages(cleanedMatchesPackImagesResponse, props)
-        props.setMatchesPack(cleanedMatchesPackImagesResponse)
+        // const cleanedMatchesPackImagesResponse = cleanResponse(dogPackResponse)
+        getMatchesPackImages(dogPackResponse, props)
+        props.setMatchesPack(dogPackResponse)
       })
     } else {
       return

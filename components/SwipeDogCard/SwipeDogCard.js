@@ -10,7 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 export const SwipeDogCard = (props) => {
   const dogCards = props.swipePack.map((dog, index) => {
    
-    const currentImages = props.swipePackPhotos.filter(pic => pic.dog_id === dog.attributes.id)
+    const currentImages = props.swipePackPhotos.filter(pic => pic.dog_id === dog.id)
     
     const boxPics = currentImages.map(image => image.image_url)
     return (
@@ -23,13 +23,13 @@ export const SwipeDogCard = (props) => {
           </CardItem>
           <CardItem style={styles.imageCardContentText}>
             <Body style={styles.infoBody}>
-              <Text style={styles.infoTextName}>{dog.attributes.name}</Text>
-              <Text style={styles.infoText}>Breed: {dog.attributes.breed}</Text>
-              <Text style={styles.infoText}>Age: {dog.attributes.age}</Text>
-              <Text style={styles.infoText}>Gender: {dog.attributes.sex}</Text>
-              <Text style={styles.infoText}>Fixed: {dog.attributes.fixed ? 'true' : 'false'}</Text>
-              <Text style={styles.infoText}>Vaccinated: {dog.attributes.vaccinated ? 'true' : 'false'}</Text>
-              <Text style={styles.infoText}>Good with kids: {dog.attributes.good_with_kids ? 'true' : 'false'}</Text>
+              <Text style={styles.infoTextName}>{dog.name}</Text>
+              <Text style={styles.infoText}>Breed: {dog.breed}</Text>
+              <Text style={styles.infoText}>Age: {dog.age}</Text>
+              <Text style={styles.infoText}>Gender: {dog.sex}</Text>
+              <Text style={styles.infoText}>Fixed: {dog.fixed ? 'true' : 'false'}</Text>
+              <Text style={styles.infoText}>Vaccinated: {dog.vaccinated ? 'true' : 'false'}</Text>
+              <Text style={styles.infoText}>Good with kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
             </Body>
           </CardItem>
         </Card> 
