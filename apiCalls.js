@@ -56,7 +56,7 @@ export const getDogImagesById = async (dogId) => {
 }
 
 export const loginUser = async (email, password) => {
-  const response = await fetch('https://backend-pupdates.herokuapp.com/api/v1/login', {
+  const response = await fetch('https://node-pupdates-backend.herokuapp.com/api/v1/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
@@ -65,7 +65,7 @@ export const loginUser = async (email, password) => {
     throw Error('Failed to login')
   }
   const user = await response.json()
-  return user.data
+  return user;
 }
 
 
