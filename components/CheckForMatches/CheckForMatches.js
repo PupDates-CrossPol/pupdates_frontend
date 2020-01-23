@@ -13,8 +13,8 @@ import * as apiCalls from '../../apiCalls';
   const getMatchesPackImages = (pack, props) => {
     pack.forEach( async dog => {
       const dogImages = await apiCalls.getDogImagesById(dog.id)
-      const matchesPackPhotos = cleanResponse(dogImages)
-      props.setMatchesPackImages(matchesPackPhotos)
+      // const matchesPackPhotos = cleanResponse(dogImages)
+      props.setMatchesPackImages(dogImages)
     })
   }
 

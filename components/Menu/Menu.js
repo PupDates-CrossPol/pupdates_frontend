@@ -31,6 +31,7 @@ export class MenuScreen extends React.Component {
       }
 
     render() {
+      console.log('props menu screen', this.props)
         return (
                 <View style={styles.container}>
                     <View style={styles.menuOptions}>
