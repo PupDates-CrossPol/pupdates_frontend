@@ -42,7 +42,7 @@ export class MenuScreen extends React.Component {
                     </View>
                     <View style={styles.menuOptions}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')} style={styles.menuImgText}>
-                        <Image source={{uri: this.props.user.image}} style={styles.menuCircle} />
+                        <Image source={{uri: this.props.user.photo}} style={styles.menuCircle} />
                         <Text style={styles.menuOptionsText} >{this.props.user.first_name}</Text>
                       </TouchableOpacity>
                     </View>
