@@ -64,17 +64,17 @@ export const DogCard = (props) => {
 
         return (
         <View key={i} style={styles.container}>
-            <Text style={styles.dogTextName}>{dog.attributes.name}</Text>
+            <Text style={styles.dogTextName}>{dog.name}</Text>
             {createImagesAndButtonsForGrid()}
             <View style={styles.imageContainer}>
             </View>
-            <Text style={styles.infoText}>Sex: {dog.attributes.sex}</Text>
-            <Text style={styles.infoText}>Breed: {dog.attributes.breed}</Text>
-            <Text style={styles.infoText}>Size: {dog.attributes.size}</Text>
-            <Text style={styles.infoText}>Age:  {dog.attributes.age}</Text>
-            <Text style={styles.infoText}>Fixed: {dog.attributes.fixed ? 'true' : 'false'}</Text>
-            <Text style={styles.infoText}>Vaccinated: {dog.attributes.vaccinated ? 'true' : 'false'}</Text>
-            <Text style={styles.infoTextBottom}>Good With Kids: {dog.attributes.good_with_kids ? 'true' : 'false'}</Text>
+            <Text style={styles.infoText}>Sex: {dog.sex}</Text>
+            <Text style={styles.infoText}>Breed: {dog.breed}</Text>
+            <Text style={styles.infoText}>Size: {dog.size}</Text>
+            <Text style={styles.infoText}>Age:  {dog.age}</Text>
+            <Text style={styles.infoText}>Fixed: {dog.fixed ? 'true' : 'false'}</Text>
+            <Text style={styles.infoText}>Vaccinated: {dog.vaccinated ? 'true' : 'false'}</Text>
+            <Text style={styles.infoTextBottom}>Good With Kids: {dog.good_with_kids ? 'true' : 'false'}</Text>
         </View>
         )
     })

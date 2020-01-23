@@ -14,6 +14,7 @@ const Match = (props) => {
     }
 
     const userDogPack = (userId) => {
+        console.log('user dog pack', props.matchesPack)
         const matchDogPack = props.matchesPack.filter( dog => dog.user_id === userId)
         const dogIds = matchDogPack.map( dog => dog.id)
         return dogPackImages(dogIds)
