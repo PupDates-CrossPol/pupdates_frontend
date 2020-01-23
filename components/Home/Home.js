@@ -105,7 +105,7 @@ render() {
       <ScrollView>
       <Container>
       <Content>
-      <Text style={styles.packName}>{this.props.swipeUser.attributes.first_name}'s Pack</Text>
+      <Text style={styles.packName}>{this.props.swipeUser.first_name}'s Pack</Text>
         <SwipeDogCard
         swipePack={this.props.swipePack}
         swipePackPhotos={this.props.swipePackPhotos}

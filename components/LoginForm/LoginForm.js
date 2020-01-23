@@ -86,7 +86,7 @@ export class LoginScreen extends React.Component {
       this.props.setUserInfo(loginResponse.attributes)
       this.getPackInfo(loginResponse.attributes.id)
       const allUsers = await apiCalls.getAllUsers()
-      const otherUsers = allUsers.filter(user => user.attributes.id !== loginResponse.attributes.id)
+      const otherUsers = allUsers.filter(user => user.id !== loginResponse.attributes.id)
       this.props.setOtherUsers(otherUsers)
       const matches = await apiCalls.getMatchesForUser(loginResponse.attributes.id)
       const userMatches = this.cleanResponse(matches)
